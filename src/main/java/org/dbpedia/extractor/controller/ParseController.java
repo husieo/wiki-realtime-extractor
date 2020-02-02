@@ -3,6 +3,7 @@ package org.dbpedia.extractor.controller;
 
 import org.dbpedia.extractor.parser.WikipediaPageParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,10 +16,13 @@ import java.util.List;
 @RequestMapping("/")
 public class ParseController {
 
-    @Autowired
-    private WikipediaPageParser parser;
+    private final WikipediaPageParser parser;
 
-    @GetMapping("/paragraphs/{title}")
+    public ParseController(WikipediaPageParser parser) {
+        this.parser = parser;
+    }
+
+    @GetMapping(value = "/paragraphs/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<String> getParagraphs(@PathVariable(value = "title")String title) throws IOException {
         return parser.parsePage(title).getParagraphs();
     }

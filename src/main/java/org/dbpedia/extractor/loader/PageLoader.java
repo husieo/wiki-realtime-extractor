@@ -12,9 +12,7 @@ import java.io.IOException;
 public class PageLoader {
 
     public Document readPage(String title) throws IOException {
-        Document doc = Jsoup.connect(buildUrl(title)).get();
-        log.info(doc.body());
-        return doc;
+        return Jsoup.connect(buildUrl(title)).get();
     }
 
     private String buildUrl(String title){
