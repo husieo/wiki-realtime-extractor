@@ -1,9 +1,6 @@
-package org.dbpedia.extractor.parser;
+package org.dbpedia.extractor.page;
 
-import org.dbpedia.extractor.loader.PageLoader;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.dbpedia.extractor.xml.XmlParser;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -17,21 +14,9 @@ public class WikipediaPageParser {
 
     private static Pattern paragraphBreakPattern = Pattern.compile("\\r?\\n\\n");
 
-    private final PageLoader pageLoader;
-
-    public WikipediaPageParser(PageLoader pageLoader) {
-        this.pageLoader = pageLoader;
-    }
-
-    public ParsedPage parsePage(String title) throws IOException {
+    public ParsedPage parsePage(WikiPage page) throws IOException {
         ParsedPage result = new ParsedPage();
-        result.setTitle(title);
-        Document document = pageLoader.readPage(title);
-        Element docBody = document.body();
-        String docText = docBody.text();
-        docText = removeInitialInformation(docText);
-
-        result.setParagraphs(parseParagraphs(docText));
+        result.setTitle(page.getTitle());
         return result;
     }
 

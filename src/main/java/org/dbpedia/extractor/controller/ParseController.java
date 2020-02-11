@@ -1,8 +1,7 @@
 package org.dbpedia.extractor.controller;
 
 
-import org.dbpedia.extractor.parser.WikipediaPageParser;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.dbpedia.extractor.page.WikipediaPageParser;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,4 +25,6 @@ public class ParseController {
     public List<String> getParagraphs(@PathVariable(value = "title")String title) throws IOException {
         return parser.parsePage(title).getParagraphs();
     }
+
+
 }
