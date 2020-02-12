@@ -1,5 +1,7 @@
-package org.dbpedia.extractor.page;
+package org.dbpedia.extractor.service;
 
+import org.dbpedia.extractor.page.ParsedPage;
+import org.dbpedia.extractor.page.WikiPage;
 import org.dbpedia.extractor.xml.XmlParser;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +15,13 @@ import java.util.regex.Pattern;
 public class WikipediaPageParser {
 
     private static Pattern paragraphBreakPattern = Pattern.compile("\\r?\\n\\n");
+    private static Pattern initialInformationPattern = Pattern.compile("(\\{\\{.*\\}\\})");
 
     public ParsedPage parsePage(WikiPage page) throws IOException {
         ParsedPage result = new ParsedPage();
         result.setTitle(page.getTitle());
+        String text = page.getText();
+        result.setParagraphs(parseParagraphs(text));
         return result;
     }
 
@@ -28,10 +33,4 @@ public class WikipediaPageParser {
         return Arrays.asList(paragraphBreakPattern.split(text));
     }
 
-    String removeInitialInformation(String text){
-        Matcher matcher = paragraphBreakPattern.matcher(text);
-        int firstOccurence = matcher.start();
-        text = text.substring(0, firstOccurence);
-        return text;
-    }
 }
