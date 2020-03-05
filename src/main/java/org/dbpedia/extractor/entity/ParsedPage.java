@@ -1,4 +1,4 @@
-package org.dbpedia.extractor.page;
+package org.dbpedia.extractor.entity;
 
 import lombok.Getter;
 import lombok.Setter;

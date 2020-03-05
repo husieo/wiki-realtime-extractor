@@ -1,6 +1,7 @@
 package org.dbpedia.splitter;
 
-import org.dbpedia.extractor.page.WikiPage;
+import lombok.extern.log4j.Log4j;
+import org.dbpedia.extractor.entity.WikiPage;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Log4j
 public class DumpSplitService {
 
     private static final String PAGE_ELEM = "page";
@@ -46,8 +48,8 @@ public class DumpSplitService {
 
                 String text = textElement.getTextContent();
                 textList.add(new WikiPage(title,text));
-                System.out.printf("Page id: %s%n", title);
-                System.out.printf("Text: %s%n", text);
+                log.info(String.format("Page id: %s%n", title));
+                log.info(String.format("Text: %s%n", text));
             }
         }
     }
