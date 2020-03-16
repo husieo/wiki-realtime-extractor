@@ -11,11 +11,14 @@ import java.util.Map;
 @Setter
 @ToString
 public class ParsedPage {
-    private String title;
     private List<String> paragraphs;
+
+    private List<Position> links;
 
     /**
      * Page structure: topics, subtopics, etc.
      */
-    private Map<Integer,List<Integer>> pageStructure;
+    private Subdivision structureRoot;
+
+    private WikiPage wikiPage;
 }

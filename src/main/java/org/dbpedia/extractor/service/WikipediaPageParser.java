@@ -20,9 +20,9 @@ public class WikipediaPageParser {
 
     public ParsedPage parsePage(WikiPage page) throws IOException {
         ParsedPage result = new ParsedPage();
-        result.setTitle(page.getTitle());
         String text = page.getText();
         result.setParagraphs(parseParagraphs(text));
+        result.setStructureRoot(buildPageStructure(page));
         return result;
     }
 

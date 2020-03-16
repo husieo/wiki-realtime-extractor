@@ -1,4 +1,4 @@
-package org.dbpedia.extractor.xml;
+package org.dbpedia.extractor.service;
 
 import lombok.Getter;
 import lombok.Setter;
