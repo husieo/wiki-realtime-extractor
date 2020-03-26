@@ -27,6 +27,8 @@ public class Subdivision {
 
     private List<Subdivision> children = new ArrayList<>();
 
+    private List<Paragraph> paragraphs = new ArrayList<>();
+
     public void addChild(Subdivision child){
         children.add(child);
     }

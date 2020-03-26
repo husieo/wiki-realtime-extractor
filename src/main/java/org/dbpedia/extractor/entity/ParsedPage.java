@@ -11,7 +11,6 @@ import java.util.Map;
 @Setter
 @ToString
 public class ParsedPage {
-    private List<String> paragraphs;
 
     private List<Position> links;
 

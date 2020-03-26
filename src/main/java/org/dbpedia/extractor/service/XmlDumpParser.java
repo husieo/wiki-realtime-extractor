@@ -7,7 +7,6 @@ import org.dbpedia.extractor.entity.WikiPage;
 import org.dbpedia.extractor.entity.xml.Mediawiki;
 import org.dbpedia.extractor.entity.xml.Page;
 import org.dbpedia.extractor.entity.xml.Revision;
-import org.dbpedia.extractor.entity.xml.XmlDump;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;

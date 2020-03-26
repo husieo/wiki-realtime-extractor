@@ -1,12 +1,9 @@
 package org.dbpedia.extractor.service;
 
-import org.dbpedia.extractor.entity.ParsedPage;
-import org.dbpedia.extractor.entity.Position;
-import org.dbpedia.extractor.entity.Subdivision;
-import org.dbpedia.extractor.entity.WikiPage;
+import org.dbpedia.extractor.entity.*;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -18,10 +15,9 @@ public class WikipediaPageParser {
     private static Pattern paragraphBreakPattern = Pattern.compile("\\r?\\n\\n");
     private static Pattern headingPattern = Pattern.compile("=+.+=+\\n");
 
-    public ParsedPage parsePage(WikiPage page) throws IOException {
+    public ParsedPage parsePage(WikiPage page) {
         ParsedPage result = new ParsedPage();
         String text = page.getText();
-        result.setParagraphs(parseParagraphs(text));
         result.setStructureRoot(buildPageStructure(page));
         return result;
     }
@@ -30,8 +26,17 @@ public class WikipediaPageParser {
      * @param text wiki article
      * @return list of paragraphs
      */
-    List<String> parseParagraphs(String text) {
-        return Arrays.asList(paragraphBreakPattern.split(text));
+    private List<Paragraph> parseParagraphs(String text) {
+        Matcher paragraphBreakMatcher = paragraphBreakPattern.matcher(text);
+        List<Paragraph> paragraphs = new ArrayList<>();
+        paragraphBreakMatcher.find();
+        int paragraphStart = paragraphBreakMatcher.start();
+        while(paragraphBreakMatcher.find()){
+            int newStart = paragraphBreakMatcher.start();
+            paragraphs.add(new Paragraph(paragraphStart, newStart));
+            paragraphStart = newStart;
+        }
+        return paragraphs;
     }
 
     public Subdivision buildPageStructure(WikiPage page) {
@@ -55,6 +60,8 @@ public class WikipediaPageParser {
             Position position = new Position(headingMatcher.start(), headingMatcher.end());
             int order = getSubdivisionOrder(title);
             Subdivision subdivision = new Subdivision(order, position, title);
+            String sectionText = text.substring(0,headingMatcher.start());
+            subdivision.setParagraphs(parseParagraphs(sectionText));
             if (order > currentOrder) {
                 getLastChild(root).addChild(subdivision);
                 Subdivision retChild = findChildren(headingMatcher, text, subdivision);
@@ -88,4 +95,5 @@ public class WikipediaPageParser {
         List<Subdivision> children = subdivision.getChildren();
         return children.get(children.size() - 1);
     }
+
 }
