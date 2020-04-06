@@ -1,6 +1,7 @@
 package org.dbpedia.extractor.entity;
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -12,7 +13,10 @@ import java.util.Map;
 @ToString
 public class ParsedPage {
 
-    private List<Position> links;
+    /**
+     * NIF context
+     */
+    private Context context;
 
     /**
      * Page structure: topics, subtopics, etc.
@@ -20,4 +24,8 @@ public class ParsedPage {
     private Subdivision structureRoot;
 
     private WikiPage wikiPage;
+
+    public String getTitle(){
+        return wikiPage.getTitle();
+    }
 }

@@ -7,6 +7,7 @@ import org.dbpedia.extractor.entity.WikiPage;
 import org.dbpedia.extractor.entity.xml.Mediawiki;
 import org.dbpedia.extractor.entity.xml.Page;
 import org.dbpedia.extractor.entity.xml.Revision;
+import org.dbpedia.extractor.storage.PageStorage;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -18,10 +19,11 @@ public class XmlDumpParser {
 
     private final WikipediaPageParser wikipediaPageParser;
 
-    public List<WikiPage> pageList;
+    private PageStorage pageStorage;
 
-    public XmlDumpParser(WikipediaPageParser wikipediaPageParser) {
+    public XmlDumpParser(WikipediaPageParser wikipediaPageParser, PageStorage pageStorage) {
         this.wikipediaPageParser = wikipediaPageParser;
+        this.pageStorage = pageStorage;
     }
 
     public List<ParsedPage> parseXmlDump(String xmlDump) throws IOException {
@@ -32,6 +34,9 @@ public class XmlDumpParser {
             Revision revision = page.getRevision();
             WikiPage wikiPage = new WikiPage(page.getTitle(), revision.getText());
             parsedPages.add(wikipediaPageParser.parsePage(wikiPage));
+        }
+        for(ParsedPage parsedPage : parsedPages){
+            pageStorage.putPage(parsedPage);
         }
         return parsedPages;
     }

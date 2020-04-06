@@ -1,9 +1,6 @@
 package org.dbpedia.extractor.entity;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang3.StringUtils;
 
@@ -14,6 +11,7 @@ import java.util.List;
 @Setter
 @RequiredArgsConstructor
 @Log4j
+@ToString
 public class Subdivision {
 
     @NonNull
@@ -44,5 +42,16 @@ public class Subdivision {
             tree.append(traverseSubdivisionTree(child));
         }
         return tree;
+    }
+
+    public List<Link> getLinks(){
+        List<Link> links = new ArrayList<>();
+        for(Paragraph paragraph : paragraphs){
+            links.addAll(paragraph.getLinks());
+        }
+        for(Subdivision child : children){
+            links.addAll(child.getLinks());
+        }
+        return links;
     }
 }

@@ -32,9 +32,8 @@ public class WikipediaPageParserTest {
 
     @Test
     public void parseParagraphsTest() throws IOException {
-        ParsedPage parsedPage = pageParser.parsePage(wikiPage);
-        log.info(parsedPage.getParagraphs().toString());
-        assertTrue(parsedPage.getParagraphs().size() > 1);
+        Subdivision root = pageParser.buildPageStructure(wikiPage);
+        assertTrue(root.getParagraphs().size() > 1);
     }
 
     @Test
