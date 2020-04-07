@@ -35,7 +35,8 @@ POST /submit - submit an xml with pages. Submitted pages are stored in-memory us
   </revision>
 </page>
 </mediawiki>
-' ```
+' 
+```
 GET {title}/context - get the context of a page with {title}. Example: 
 ```
   curl --location --request GET 'localhost:9090/AccessibleComputing/context'
