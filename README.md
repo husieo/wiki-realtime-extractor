@@ -42,4 +42,5 @@ GET {title}/context - get the context of a page with {title}. Example:
   curl --location --request GET 'localhost:9090/AccessibleComputing/context'
 ```
 GET {title}/structure - get the structure(sections, subsections) of a page.
+
 GET {title}/links - get the links of a page.
