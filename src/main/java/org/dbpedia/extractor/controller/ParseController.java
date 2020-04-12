@@ -1,6 +1,8 @@
 package org.dbpedia.extractor.controller;
 
 
+import org.dbpedia.extractor.entity.Context;
+import org.dbpedia.extractor.entity.Link;
 import org.dbpedia.extractor.service.WikipediaPageParser;
 import org.dbpedia.extractor.service.XmlDumpParser;
 import org.dbpedia.extractor.storage.PageStorage;
@@ -9,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/")
@@ -41,7 +44,13 @@ public class ParseController {
 
     @GetMapping(value = "/{title}/links")
     public String getLinks(@PathVariable String title){
-        return pageStorage.getPage(title).getStructureRoot().getLinks().toString();
+        StringBuilder result = new StringBuilder();
+        List<Link> links = pageStorage.getPage(title).getStructureRoot().getLinks();
+        Context context = pageStorage.getPage(title).getContext();
+        for(Link link : links){
+            result.append(link.getNifFormat(context));
+        }
+        return result.toString();
     }
 
 }

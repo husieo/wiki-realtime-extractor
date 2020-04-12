@@ -14,7 +14,7 @@ public class WikipediaPageParser {
 
     private static Pattern paragraphBreakPattern = Pattern.compile("\\r?\\n\\n");
     private static Pattern headingPattern = Pattern.compile("=+.+=+\\n");
-    private static Pattern linkPattern = Pattern.compile("\\[\\[.+\\]\\]");
+    private static Pattern linkPattern = Pattern.compile("\\[\\[.+?\\]\\]");
 
     public ParsedPage parsePage(WikiPage page) {
         ParsedPage parsedPage = new ParsedPage();

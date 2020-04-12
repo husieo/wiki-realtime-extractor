@@ -21,8 +21,13 @@ public class Link {
      * Link text
      */
     @NonNull
+    @ToString.Exclude
     private String anchorOf;
 
     @ToString.Exclude
     private Paragraph superString;
+
+    public String getNifFormat(Context context){
+        return toString() + "text: " + context.getText(position) + System.lineSeparator();
+    }
 }
