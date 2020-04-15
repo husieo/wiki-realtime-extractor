@@ -42,7 +42,7 @@ Example with data from file:
 curl --location --request POST 'localhost:9090/submit' \
 --header 'Content-Type: application/xml' \
 --header 'Accept: application/xml' \
---data-binary file.xml
+--data "@file.xml"
 ```
 
 GET {title}/context - get the context of a page with {title}. Example: 
