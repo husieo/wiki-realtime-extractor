@@ -1,9 +1,14 @@
 Prerequisites: mvn and JDK 1.8 installed.
 
-Running spring project: 
+Submit the dump via CLI:
+
+```
+    mvn spring-boot:run -Dspring-boot.run.arguments="--output=output.nt,documents/xml_test_page.xml" 
+```
+
+Running the application as a server: 
 ``` 
     mvn spring-boot:run 
-    mvn spring-boot:run -Dspring-boot.run.arguments="--output=output.nt,documents/xml_test_page.xml" 
 
 ```
 
