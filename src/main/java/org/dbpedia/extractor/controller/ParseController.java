@@ -32,17 +32,17 @@ public class ParseController {
         return parser.parseXmlDump(dump).toString();
     }
 
-    @GetMapping(value = "/{title}/context")
+    @GetMapping(value = "/articles/{title}/context")
     public String getContext(@PathVariable String title){
         return pageStorage.getPage(title).getContext().getText();
     }
 
-    @GetMapping(value = "/{title}/structure")
+    @GetMapping(value = "/articles/{title}/structure")
     public String getStructure(@PathVariable String title){
         return pageStorage.getPage(title).getStructureRoot().toString();
     }
 
-    @GetMapping(value = "/{title}/links")
+    @GetMapping(value = "/articles/{title}/links")
     public String getLinks(@PathVariable String title){
         StringBuilder result = new StringBuilder();
         List<Link> links = pageStorage.getPage(title).getStructureRoot().getLinks();
@@ -51,6 +51,11 @@ public class ParseController {
             result.append(link.getNifFormat(context));
         }
         return result.toString();
+    }
+
+    @GetMapping(value = "/articles/count")
+    public int getArticleCount(){
+        return pageStorage.getPageCount();
     }
 
 }

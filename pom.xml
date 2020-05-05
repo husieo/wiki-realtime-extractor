@@ -19,6 +19,7 @@
         <junit.jupiter.version>5.6.0</junit.jupiter.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <start-class>org.dbpedia.application.ExtractionApplicationCLI</start-class>
     </properties>
 
     <dependencies>
@@ -87,6 +88,18 @@
             <version>2.9.8</version>
         </dependency>
 
+        <dependency>
+            <groupId>info.picocli</groupId>
+            <artifactId>picocli</artifactId>
+            <version>4.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>info.picocli</groupId>
+            <artifactId>picocli-spring-boot-starter</artifactId>
+            <version>4.2.0</version>
+        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/log4j/log4j -->
         <dependency>
@@ -140,6 +153,17 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
             </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <jvmArguments>
+                        -Xms4048m
+                        -Xmx8096m
+                    </jvmArguments>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 

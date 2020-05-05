@@ -1,7 +1,11 @@
 Prerequisites: mvn and JDK 1.8 installed.
 
 Running spring project: 
-``` mvn spring-boot:run ```
+``` 
+    mvn spring-boot:run 
+    mvn spring-boot:run -Dspring-boot.run.arguments="--output=output.nt,documents/xml_test_page.xml" 
+
+```
 
 REST API description:
 POST /submit - submit an xml with pages. Submitted pages are stored in-memory using title as a key. Example:

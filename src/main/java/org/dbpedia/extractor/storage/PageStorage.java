@@ -21,4 +21,8 @@ public class PageStorage {
     public ParsedPage getPage(String title){
         return pageMap.get(title);
     }
+
+    public int getPageCount(){
+        return pageMap.size();
+    }
 }
