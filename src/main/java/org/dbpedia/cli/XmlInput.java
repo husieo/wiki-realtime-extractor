@@ -29,7 +29,7 @@ public class XmlInput implements Callable<Integer> {
 
     public Integer call() throws Exception {
         // business logic here
-        xmlDumpService.submitXml(readFile(xmlFile));
+        xmlDumpService.submitXml(xmlFile.getPath());
         writeToFile(outputPath, xmlDumpService.getNifContext());
         return 0;
     }

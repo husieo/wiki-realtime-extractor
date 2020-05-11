@@ -23,8 +23,8 @@ public class XmlDumpService {
         this.nifFormatter = nifFormatter;
     }
 
-    public void submitXml(String dump) throws IOException {
-        parser.parseXmlDump(dump);
+    public void submitXml(String path) throws IOException {
+        parser.iterativeParseXmlDump(path);
     }
 
     public String getNifContext(){
