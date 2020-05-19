@@ -52,6 +52,14 @@ public class NifFormatter {
         return contextEntry.toString();
     }
 
+    public String generatePageStructureEntry(ParsedPage parsedPage){
+        StringBuilder pageStructureEntry = new StringBuilder();
+        Context context = parsedPage.getContext();
+        int beginIndex = 0;
+        int endIndex = context.getText().length();
+        return pageStructureEntry.toString();
+    }
+
     private String getDbpediaUrl(String title, String nifType) {
         return String.format("<%s/%s?dbpv=%s&nif=%s>", DBPEDIA_LINK, title, currentDateString, nifType);
     }

@@ -29,36 +29,7 @@ public class XmlInput implements Callable<Integer> {
 
     public Integer call() throws Exception {
         // business logic here
-        xmlDumpService.submitXml(xmlFile.getPath());
-        writeToFile(outputPath, xmlDumpService.getNifContext());
+        xmlDumpService.submitXml(xmlFile.getPath(), outputPath.getPath());
         return 0;
-    }
-
-    private static String readFile(File xmlFile)
-    {
-        StringBuilder contentBuilder = new StringBuilder();
-
-        try (Stream<String> stream = Files.lines( xmlFile.toPath(), StandardCharsets.UTF_8))
-        {
-            stream.forEach(s -> contentBuilder.append(s).append("\n"));
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-
-        return contentBuilder.toString();
-    }
-
-    private static void writeToFile(File outputFile, String text){
-        try {
-            FileWriter myWriter = new FileWriter(outputFile);
-            myWriter.write(text);
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
     }
 }

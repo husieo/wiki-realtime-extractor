@@ -11,6 +11,7 @@ import org.dbpedia.extractor.entity.xml.Mediawiki;
 import org.dbpedia.extractor.entity.xml.Page;
 import org.dbpedia.extractor.entity.xml.Revision;
 import org.dbpedia.extractor.storage.PageStorage;
+import org.dbpedia.extractor.writer.OutputFolderWriter;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -30,12 +31,15 @@ public class XmlDumpParser {
 
     private XmlMapper xmlMapper;
 
+    private NifFormatter nifFormatter;
+
     private static final String pageBegin = "<page>";
     private static final String pageEnd = "</page>";
 
-    public XmlDumpParser(WikipediaPageParser wikipediaPageParser, PageStorage pageStorage) {
+    public XmlDumpParser(WikipediaPageParser wikipediaPageParser, PageStorage pageStorage, NifFormatter nifFormatter) {
         this.wikipediaPageParser = wikipediaPageParser;
         this.pageStorage = pageStorage;
+        this.nifFormatter = nifFormatter;
         xmlMapper = new XmlMapper();
         xmlMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
@@ -61,7 +65,8 @@ public class XmlDumpParser {
         return parsedPages;
     }
 
-    public void iterativeParseXmlDump(String filePath) throws IOException {
+    public void iterativeParseXmlDump(String filePath, String outputFolder) throws IOException {
+        OutputFolderWriter outputFolderWriter = new OutputFolderWriter(outputFolder);
         File xmlDumpFile = new File(filePath);
         LineIterator it = FileUtils.lineIterator(xmlDumpFile, "UTF-8");
         List<ParsedPage> parsedPages = new ArrayList<>();
@@ -83,16 +88,14 @@ public class XmlDumpParser {
                     ParsedPage parsedPage = wikipediaPageParser.parsePage(wikiPage);
                     pageStarted = false;
                     log.info("Parsed page: " + parsedPage.getTitle());
+                    String contextEntry = nifFormatter.generateContextEntry(parsedPage);
+                    outputFolderWriter.writeToFile(OutputFolderWriter.CONTEXT_FILENAME, contextEntry);
                 } else if(pageStarted){ // write down a line
                     pageString.append(line);
                 }
             }
         } finally {
             LineIterator.closeQuietly(it);
-        }
-        for (ParsedPage parsedPage : parsedPages) {
-//            log.info("Parsed page: " + parsedPage.getTitle());
-//            pageStorage.putPage(parsedPage);
         }
     }
 
