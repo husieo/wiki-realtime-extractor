@@ -54,4 +54,8 @@ public class Subdivision {
         }
         return links;
     }
+
+    public Position getPosition() {
+        return position;
+    }
 }
