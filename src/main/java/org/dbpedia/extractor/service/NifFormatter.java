@@ -5,7 +5,12 @@ import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
+
+/**
+ * Class to format NIF entries
+ */
 @Component
 public class NifFormatter {
     private static final String DBPEDIA_LINK = "http://dbpedia.org/resource";
@@ -59,10 +64,14 @@ public class NifFormatter {
 
     public String generatePageStructureEntry(ParsedPage parsedPage) {
         StringBuilder pageStructureEntry = new StringBuilder();
-        Context context = parsedPage.getContext();
-        int beginIndex = 0;
-        int endIndex = context.getText().length();
+        pageStructureEntry.append(generateNodeEntry(parsedPage.getStructureRoot()));
         return pageStructureEntry.toString();
+    }
+
+    public String generateLinksEntry(ParsedPage parsedPage) {
+        StringBuilder linksEntry = new StringBuilder();
+//        linksEntry.append("", );
+        return linksEntry.toString();
     }
 
     private String generateNodeEntry(Subdivision node) {
@@ -113,6 +122,11 @@ public class NifFormatter {
                 nodeEntry.append(String.format("%s <%s> %s .%s",
                         dbPediaSectionUrl, getPersistenceOntologyUrl(LAST_PARAGRAPH), dbPediaParagraphUrl, System.lineSeparator()));
             }
+        }
+        //initiate recursion
+        List<Subdivision> nodeChildren = node.getChildren();
+        for(Subdivision child : nodeChildren){
+            nodeEntry.append(generateNodeEntry(child));
         }
         return nodeEntry.toString();
     }

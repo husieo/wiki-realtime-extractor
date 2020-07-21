@@ -78,10 +78,10 @@ public class XmlDumpParser {
 
                 if(line.equals(pageBegin) && !pageStarted) { // start page
                     pageString = new StringBuilder();
-                    pageString.append(line);
+                    pageString.append(line).append(System.lineSeparator());
                     pageStarted = true;
                 } else if(pageStarted && line.equals(pageEnd)){ //end page
-                    pageString.append(line);
+                    pageString.append(line).append(System.lineSeparator());
                     Page page = deserializePage(pageString.toString());
                     Revision revision = page.getRevision();
                     WikiPage wikiPage = new WikiPage(page.getTitle(), revision.getText());
@@ -91,9 +91,9 @@ public class XmlDumpParser {
                     String contextEntry = nifFormatter.generateContextEntry(parsedPage);
                     outputFolderWriter.writeToFile(OutputFolderWriter.CONTEXT_FILENAME, contextEntry);
                     String pageStructEntry = nifFormatter.generatePageStructureEntry(parsedPage);
-                    outputFolderWriter.writeToFile(OutputFolderWriter.STRUCTURE_FILENAME, contextEntry);
+                    outputFolderWriter.writeToFile(OutputFolderWriter.STRUCTURE_FILENAME, pageStructEntry);
                 } else if(pageStarted){ // write down a line
-                    pageString.append(line);
+                    pageString.append(line).append(System.lineSeparator());
                 }
             }
         } finally {

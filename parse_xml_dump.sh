@@ -1,0 +1,1 @@
+mvn spring-boot:run -Dspring-boot.run.arguments="--output=output,$1"

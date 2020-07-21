@@ -1,15 +1,21 @@
 Prerequisites: mvn and JDK 1.8 installed.
 
-Submit the dump via CLI:
+Submit the XML dump to process via sh script(outputs to /output folder):
 
 ```
-    mvn spring-boot:run -Dspring-boot.run.arguments="--output=output.nt,documents/xml_test_page.xml" 
+   ./parse_xml_dump.sh documents/xml_test_page.xml
+```
+
+Submit the XML dump via CLI:
+
+```
+    mvn spring-boot:run -Dspring-boot.run.arguments="--output=output,documents/xml_test_page.xml" 
 ```
 
 Running the application as a server: 
-``` 
-    mvn spring-boot:run 
 
+``` 
+    mvn spring-boot:run
 ```
 
 REST API description:
@@ -61,3 +67,9 @@ GET {title}/context - get the context of a page with {title}. Example:
 GET {title}/structure - get the structure(sections, subsections) of a page.
 
 GET {title}/links - get the links of a page.
+
+
+Links examples:
+* File link: [[File:Paolo Monti - Servizio fotografico (Napoli, 1969) - BEIC 6353768.jpg|thumb|140px|[[Zeno of Citium]] (c. 334 – c. 262 BC), whose ''[[Republic (Zeno)|Republic]]'' inspired [[Peter Kropotkin]]{{sfn|Marshall|1993|p=70}}]]
+* Wiki internal link: [[Zeno of Citium]] , also [[Zoroastrianism|Zoroastrian Prophet]]
+* External link(reference): {{sfn|Marshall|1993|p=4}}

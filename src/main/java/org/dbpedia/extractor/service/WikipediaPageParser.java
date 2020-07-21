@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Parser to split WikiPage into ParsedPage: paragraphs,links, page structure
+ */
 @Service
 public class WikipediaPageParser {
 
@@ -72,6 +75,7 @@ public class WikipediaPageParser {
         int currentOrder = root.getOrder() + 1;
         while (!headingMatcher.hitEnd()) {
             String title = text.substring(headingMatcher.start(), headingMatcher.end());
+            title = pruneTitle(title);
             String sectionText = text.substring(0, headingMatcher.start());
             if (!headingMatcher.find()) {
                 break;
@@ -112,6 +116,11 @@ public class WikipediaPageParser {
     private Subdivision getLastChild(Subdivision subdivision) {
         List<Subdivision> children = subdivision.getChildren();
         return children.get(children.size() - 1);
+    }
+
+    private String pruneTitle(String title){
+        String[] titleArray = title.split(" ");
+        return titleArray[1];
     }
 
 }
