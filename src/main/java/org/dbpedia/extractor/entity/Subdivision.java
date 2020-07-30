@@ -23,6 +23,8 @@ public class Subdivision {
     @NonNull
     private String title;
 
+    private Subdivision parent;
+
     private List<Subdivision> children = new ArrayList<>();
 
     private List<Paragraph> paragraphs = new ArrayList<>();

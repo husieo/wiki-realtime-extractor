@@ -4,8 +4,8 @@ import org.dbpedia.extractor.entity.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,7 +17,9 @@ public class WikipediaPageParser {
 
     private static Pattern paragraphBreakPattern = Pattern.compile("\\r?\\n\\n");
     private static Pattern headingPattern = Pattern.compile("=+.+=+\\n");
-    private static Pattern linkPattern = Pattern.compile("\\[\\[.+?\\]\\]");
+
+
+    private static Pattern internalLinkPattern = Pattern.compile("\\[\\[.+?\\]\\]");
 
     public ParsedPage parsePage(WikiPage page) {
         ParsedPage parsedPage = new ParsedPage();
@@ -47,58 +49,51 @@ public class WikipediaPageParser {
         return paragraphs;
     }
 
-    private List<Link> parseLinks(String text, Paragraph superString) {
-        List<Link> links = new ArrayList<>();
-        Matcher linkMatcher = linkPattern.matcher(text);
-        while (linkMatcher.find()) {
-            Position linkPosition = new Position(linkMatcher.start(), linkMatcher.end());
-            String linkText = text.substring(linkPosition.getStart() + 2, linkPosition.getEnd() - 2); // without brackets
-            Link link = new Link(linkPosition, LinkType.PHRASE, linkText);
-            link.setSuperString(superString);
-            links.add(link);
-        }
-        return links;
-    }
-
     public Subdivision buildPageStructure(WikiPage page) {
         String text = page.getText();
         Matcher headingMatcher = headingPattern.matcher(text);
-        Position rootPosition = new Position(0, 0);
-        Subdivision root = new Subdivision(1, rootPosition, page.getTitle());
-        if (headingMatcher.find()) {
-            root.addChild(findChildren(headingMatcher, text, root));
+        Position rootPosition;
+        List<Position> headingPositions = new ArrayList<>();
+        while(headingMatcher.find()){
+            headingPositions.add(new Position(headingMatcher.start(), headingMatcher.end()));
         }
-        return root;
-    }
-
-    private Subdivision findChildren(Matcher headingMatcher, String text, Subdivision root) {
-        int currentOrder = root.getOrder() + 1;
-        while (!headingMatcher.hitEnd()) {
-            String title = text.substring(headingMatcher.start(), headingMatcher.end());
-            title = pruneTitle(title);
-            String sectionText = text.substring(0, headingMatcher.start());
-            if (!headingMatcher.find()) {
-                break;
-            }
-            Position position = new Position(headingMatcher.start(), headingMatcher.end());
+        if(!headingPositions.isEmpty()){
+            rootPosition = new Position(0, headingPositions.get(0).getStart());
+        } else{
+            rootPosition = new Position(0, text.length()-1);
+        }
+        Subdivision root = new Subdivision(1, rootPosition, page.getTitle());
+        root.setParagraphs(parseParagraphs(text.substring(rootPosition.getStart(), rootPosition.getEnd())));
+        Stack<Subdivision> subdivisionStack = new Stack<>();
+        subdivisionStack.push(root);
+        for(int i=0;i<headingPositions.size();i++){
+            Position headPos = headingPositions.get(i);
+            String title = text.substring(headPos.getStart(), headPos.getEnd());
             int order = getSubdivisionOrder(title);
-            Subdivision subdivision = new Subdivision(order, position, title);
-            subdivision.setParagraphs(parseParagraphs(sectionText));
-            if (order > currentOrder) { // not working cos subdiv takes paragraphs of root
-                getLastChild(root).addChild(subdivision);
-                Subdivision retChild = findChildren(headingMatcher, text, subdivision);
-                if (retChild.getOrder() == currentOrder + 1) {
-                    getLastChild(root).addChild(retChild);
-                } else if (retChild.getOrder() == currentOrder) {
-                    root.addChild(retChild);
-                } else {
-                    return retChild;
-                }
-            } else if (order < currentOrder) {
-                return subdivision;
-            } else {
-                root.addChild(subdivision);
+            title = pruneTitle(title);
+            int sectionEnd;
+            if(i < headingPositions.size() - 1){
+                sectionEnd = headingPositions.get(i+1).getStart();
+            } else{ // special case for last paragraph
+                sectionEnd = text.length() - 1;
             }
+            String sectionText = text.substring(headPos.getEnd(), sectionEnd);
+            Position subdivPos = new Position(headPos.getStart(), sectionEnd);
+            Subdivision subdivision = new Subdivision(order, subdivPos, title);
+            subdivision.setParagraphs(parseParagraphs(sectionText));
+            Subdivision prevDiv = subdivisionStack.peek();
+            while (order < prevDiv.getOrder()) {
+                prevDiv = subdivisionStack.pop();
+            }
+            if (order > prevDiv.getOrder()) {
+                subdivision.setParent(prevDiv);
+                prevDiv.addChild(subdivision);
+            } else {
+                Subdivision parent = prevDiv.getParent();
+                subdivision.setParent(parent);
+                parent.addChild(subdivision);
+            }
+            subdivisionStack.push(subdivision);
         }
         return root;
     }
@@ -118,9 +113,49 @@ public class WikipediaPageParser {
         return children.get(children.size() - 1);
     }
 
-    private String pruneTitle(String title){
-        String[] titleArray = title.split(" ");
-        return titleArray[1];
+    private String pruneTitle(String title) {
+        int orderOfTitle = 0;
+        while (title.charAt(orderOfTitle) == '=') {
+            orderOfTitle++;
+        }
+        return title.substring(orderOfTitle, title.length() - orderOfTitle - 1);
+    }
+
+    //// LINKS PARSING /////
+
+    private List<Link> parseLinks(String text, Paragraph paragraph) {
+        List<Link> links = new ArrayList<>();
+        String linkOp = "[[";
+        String linkClosing = "]]";
+        int length = text.length();
+        Stack<Integer> openingsStack = new Stack<>();
+        for (int i = 0; i < length - 1; i++) {
+            String testSubStr = text.substring(i, i + 1);
+            if (testSubStr.equals(linkOp)) {
+                openingsStack.push(i);
+            } else if (testSubStr.equals(linkClosing)) {
+                Integer linkOpPosition = openingsStack.pop();
+                Position linkPosition = new Position(linkOpPosition, i + 1);
+                String linkText = text.substring(linkPosition.getStart(), linkPosition.getEnd());
+                LinkType linkType = determineLinkType(linkText);
+                String linkAnchor = linkText.substring(2, linkText.length() - 2);
+                Link link = new Link(linkPosition, linkType, linkAnchor);
+                link.setSuperString(paragraph);
+                links.add(link);
+            }
+        }
+        return links;
+    }
+
+    private LinkType determineLinkType(String linkText) {
+        LinkType linkType;
+        long wordCount = linkText.chars().filter(ch -> ch == ' ').count();
+        if (wordCount == 1) {
+            linkType = LinkType.WORD;
+        } else {
+            linkType = LinkType.PHRASE;
+        }
+        return linkType;
     }
 
 }

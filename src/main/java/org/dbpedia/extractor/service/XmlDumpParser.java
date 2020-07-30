@@ -92,6 +92,8 @@ public class XmlDumpParser {
                     outputFolderWriter.writeToFile(OutputFolderWriter.CONTEXT_FILENAME, contextEntry);
                     String pageStructEntry = nifFormatter.generatePageStructureEntry(parsedPage);
                     outputFolderWriter.writeToFile(OutputFolderWriter.STRUCTURE_FILENAME, pageStructEntry);
+                    String linksEntry = nifFormatter.generateLinksEntry(parsedPage);
+                    outputFolderWriter.writeToFile(OutputFolderWriter.LINKS_FILENAME, pageStructEntry);
                 } else if(pageStarted){ // write down a line
                     pageString.append(line).append(System.lineSeparator());
                 }
