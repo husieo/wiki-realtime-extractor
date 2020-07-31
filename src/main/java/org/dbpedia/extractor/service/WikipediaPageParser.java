@@ -130,18 +130,20 @@ public class WikipediaPageParser {
         int length = text.length();
         Stack<Integer> openingsStack = new Stack<>();
         for (int i = 0; i < length - 1; i++) {
-            String testSubStr = text.substring(i, i + 1);
+            String testSubStr = text.substring(i, i + 2);
             if (testSubStr.equals(linkOp)) {
                 openingsStack.push(i);
+                i++;
             } else if (testSubStr.equals(linkClosing)) {
                 Integer linkOpPosition = openingsStack.pop();
                 Position linkPosition = new Position(linkOpPosition, i + 1);
                 String linkText = text.substring(linkPosition.getStart(), linkPosition.getEnd());
                 LinkType linkType = determineLinkType(linkText);
-                String linkAnchor = linkText.substring(2, linkText.length() - 2);
+                String linkAnchor = linkText.substring(2, linkText.length() - 1);
                 Link link = new Link(linkPosition, linkType, linkAnchor);
                 link.setSuperString(paragraph);
                 links.add(link);
+                i++;
             }
         }
         return links;

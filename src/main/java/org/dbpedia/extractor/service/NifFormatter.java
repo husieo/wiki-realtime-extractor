@@ -101,6 +101,7 @@ public class NifFormatter {
             nodeEntry.append(String.format("%s <%s#hasSection> %s .%s",
                     dbPediaContextUrl, PERSISTENCE_ONTOLOGY_LINK, dbPediaSectionUrl, System.lineSeparator()));
         }
+        int offset = beginIndex;
         int numberOfParagraphs = node.getParagraphs().size();
         for (int paragraphIndex = 0; paragraphIndex < numberOfParagraphs; paragraphIndex++) {
             Paragraph paragraph = node.getParagraphs().get(paragraphIndex);
@@ -113,9 +114,9 @@ public class NifFormatter {
             String dbPediaParagraphUrl = getDbpediaUrl(title, urlParagraphSuffix);
             //NIF Indexes
             nodeEntry.append(String.format("%s <%s> %s .%s",
-                    dbPediaParagraphUrl, getPersistenceOntologyUrl(BEGIN_INDEX), getIndexValue(beginIndex, BEGIN_INDEX), System.lineSeparator()));
+                    dbPediaParagraphUrl, getPersistenceOntologyUrl(BEGIN_INDEX), getIndexValue(offset + beginIndex, BEGIN_INDEX), System.lineSeparator()));
             nodeEntry.append(String.format("%s <%s> %s .%s",
-                    dbPediaParagraphUrl, getPersistenceOntologyUrl(END_INDEX), getIndexValue(endIndex, END_INDEX), System.lineSeparator()));
+                    dbPediaParagraphUrl, getPersistenceOntologyUrl(END_INDEX), getIndexValue(offset + endIndex, END_INDEX), System.lineSeparator()));
             //Reference Context
             nodeEntry.append(String.format("%s <%s> %s .%s",
                     dbPediaParagraphUrl, getPersistenceOntologyUrl(REFERENCE_CONTEXT), dbPediaContextUrl, System.lineSeparator()));
