@@ -18,9 +18,6 @@ public class WikipediaPageParser {
     private static Pattern paragraphBreakPattern = Pattern.compile("\\r?\\n\\n");
     private static Pattern headingPattern = Pattern.compile("=+.+=+\\n");
 
-
-    private static Pattern internalLinkPattern = Pattern.compile("\\[\\[.+?\\]\\]");
-
     public ParsedPage parsePage(WikiPage page) {
         ParsedPage parsedPage = new ParsedPage();
         String text = page.getText();
@@ -139,7 +136,7 @@ public class WikipediaPageParser {
                 Position linkPosition = new Position(linkOpPosition, i + 1);
                 String linkText = text.substring(linkPosition.getStart(), linkPosition.getEnd());
                 LinkType linkType = determineLinkType(linkText);
-                String linkAnchor = linkText.substring(2, linkText.length() - 1);
+                String linkAnchor = getLinkAnchor(linkText);
                 Link link = new Link(linkPosition, linkType, linkAnchor);
                 link.setSuperString(paragraph);
                 links.add(link);
@@ -158,6 +155,13 @@ public class WikipediaPageParser {
             linkType = LinkType.PHRASE;
         }
         return linkType;
+    }
+
+    private String getLinkAnchor(String link){
+       String result = link.substring(2, link.length() - 1); // remove parentheses
+       String[] linkArray = result.split("\\|");
+       result = String.format("\"%s\"",linkArray[0]);
+       return result;
     }
 
 }

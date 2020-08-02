@@ -69,18 +69,16 @@ public class XmlDumpParser {
         OutputFolderWriter outputFolderWriter = new OutputFolderWriter(outputFolder);
         File xmlDumpFile = new File(filePath);
         LineIterator it = FileUtils.lineIterator(xmlDumpFile, "UTF-8");
-        List<ParsedPage> parsedPages = new ArrayList<>();
         try {
             StringBuilder pageString = new StringBuilder();
             boolean pageStarted = false;
             while (it.hasNext()) {
                 String line = it.nextLine();
-
-                if(line.equals(pageBegin) && !pageStarted) { // start page
+                if (line.contains(pageBegin) && !pageStarted) { // start page
                     pageString = new StringBuilder();
                     pageString.append(line).append(System.lineSeparator());
                     pageStarted = true;
-                } else if(pageStarted && line.equals(pageEnd)){ //end page
+                } else if (pageStarted && line.contains(pageEnd)) { //end page
                     pageString.append(line).append(System.lineSeparator());
                     Page page = deserializePage(pageString.toString());
                     Revision revision = page.getRevision();
@@ -94,7 +92,7 @@ public class XmlDumpParser {
                     outputFolderWriter.writeToFile(OutputFolderWriter.STRUCTURE_FILENAME, pageStructEntry);
                     String linksEntry = nifFormatter.generateLinksEntry(parsedPage);
                     outputFolderWriter.writeToFile(OutputFolderWriter.LINKS_FILENAME, linksEntry);
-                } else if(pageStarted){ // write down a line
+                } else if (pageStarted) { // write down a line
                     pageString.append(line).append(System.lineSeparator());
                 }
             }
