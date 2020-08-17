@@ -21,6 +21,7 @@ public class WikipediaPageParser {
     public ParsedPage parsePage(WikiPage page) {
         ParsedPage parsedPage = new ParsedPage();
         String text = page.getText();
+        text = removeInfobox(text);
         Context context = new Context(text);
         parsedPage.setWikiPage(page);
         parsedPage.setContext(context);
@@ -51,27 +52,27 @@ public class WikipediaPageParser {
         Matcher headingMatcher = headingPattern.matcher(text);
         Position rootPosition;
         List<Position> headingPositions = new ArrayList<>();
-        while(headingMatcher.find()){
+        while (headingMatcher.find()) {
             headingPositions.add(new Position(headingMatcher.start(), headingMatcher.end()));
         }
-        if(!headingPositions.isEmpty()){
+        if (!headingPositions.isEmpty()) {
             rootPosition = new Position(0, headingPositions.get(0).getStart());
-        } else{
-            rootPosition = new Position(0, text.length()-1);
+        } else {
+            rootPosition = new Position(0, text.length() - 1);
         }
         Subdivision root = new Subdivision(1, rootPosition, page.getTitle());
         root.setParagraphs(parseParagraphs(text.substring(rootPosition.getStart(), rootPosition.getEnd())));
         Stack<Subdivision> subdivisionStack = new Stack<>();
         subdivisionStack.push(root);
-        for(int i=0;i<headingPositions.size();i++){
+        for (int i = 0; i < headingPositions.size(); i++) {
             Position headPos = headingPositions.get(i);
             String title = text.substring(headPos.getStart(), headPos.getEnd());
             int order = getSubdivisionOrder(title);
             title = pruneTitle(title);
             int sectionEnd;
-            if(i < headingPositions.size() - 1){
-                sectionEnd = headingPositions.get(i+1).getStart();
-            } else{ // special case for last paragraph
+            if (i < headingPositions.size() - 1) {
+                sectionEnd = headingPositions.get(i + 1).getStart();
+            } else { // special case for last paragraph
                 sectionEnd = text.length() - 1;
             }
             String sectionText = text.substring(headPos.getEnd(), sectionEnd);
@@ -157,11 +158,33 @@ public class WikipediaPageParser {
         return linkType;
     }
 
-    private String getLinkAnchor(String link){
-       String result = link.substring(2, link.length() - 1); // remove parentheses
-       String[] linkArray = result.split("\\|");
-       result = String.format("\"%s\"",linkArray[0]);
-       return result;
+    private String getLinkAnchor(String link) {
+        String result = link.substring(2, link.length() - 1); // remove parentheses
+        String[] linkArray = result.split("\\|");
+        result = String.format("\"%s\"", linkArray[0]);
+        return result;
     }
 
+    private String removeInfobox(String text) {
+        String infoboxStartPattern = "{{Infobox";
+        String figureStart = "{{";
+        String figureEnd = "}}";
+        if (!text.contains(infoboxStartPattern)) {
+            //return unmodified text
+            return text;
+        }
+        int infoboxStart = text.indexOf(infoboxStartPattern);
+        int parenthesesCounter = 1;
+        int i = infoboxStart;
+        while (parenthesesCounter > 0) {
+            i++;
+            String testSubStr = text.substring(i, i + 2);
+            if (testSubStr.equals(figureStart)) {
+                parenthesesCounter++;
+            } else if (testSubStr.equals(figureEnd)) {
+                parenthesesCounter--;
+            }
+        }
+        return text.substring(i + 3);
+    }
 }

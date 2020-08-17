@@ -200,7 +200,7 @@ public class NifFormatter {
     }
 
     private String getIndexValue(int index, String indexType) {
-        return String.format("\"%d\"^^<%s%s>", index, NON_NEGATIVE_INTEGER, indexType);
+        return String.format("\"%d\"^^<%s#%s>", index, NON_NEGATIVE_INTEGER, indexType);
     }
 
     private String getCurrentDateString() {
