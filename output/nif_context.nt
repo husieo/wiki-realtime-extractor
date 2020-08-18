@@ -1,9 +1,8 @@
 <http://dbpedia.org/resource/Actinium?dbpv=2020-08&nif=Context> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Context> .
 <http://dbpedia.org/resource/Actinium?dbpv=2020-08&nif=Context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger#beginIndex> .
-<http://dbpedia.org/resource/Actinium?dbpv=2020-08&nif=Context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "13131"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger#endIndex> .
+<http://dbpedia.org/resource/Actinium?dbpv=2020-08&nif=Context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "13130"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger#endIndex> .
 <http://dbpedia.org/resource/Actinium?dbpv=2020-08&nif=Context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#sourceUrl> <http://en.wikipedia.org/wiki/Actinium> .
 <http://dbpedia.org/resource/Actinium?dbpv=2020-08&nif=Context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#isString> "
-
 '''Actinium''' ist ein [[Radioaktivität|radioaktives]] [[chemisches Element]] mit dem [[Elementsymbol]] '''Ac''' und der [[Ordnungszahl]] 89. Im [[Periodensystem der Elemente]] steht es in der 3.&nbsp;[[Gruppe des Periodensystems|IUPAC-Gruppe]], der [[Scandiumgruppe]]. Das Element ist ein [[Metalle|Metall]] und gehört zur [[Periode-7-Element|7.&nbsp;Periode]], [[Block des Periodensystems|d-Block]]. Es ist der Namensgeber der Gruppe der [[Actinoide]], der ihm folgenden 14 Elemente.
 
 == Geschichte ==

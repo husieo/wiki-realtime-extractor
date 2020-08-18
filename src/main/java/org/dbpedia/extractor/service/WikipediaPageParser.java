@@ -134,7 +134,7 @@ public class WikipediaPageParser {
                 i++;
             } else if (testSubStr.equals(linkClosing)) {
                 Integer linkOpPosition = openingsStack.pop();
-                Position linkPosition = new Position(linkOpPosition, i + 1);
+                Position linkPosition = new Position(linkOpPosition + 2, i);
                 String linkText = text.substring(linkPosition.getStart(), linkPosition.getEnd());
                 LinkType linkType = determineLinkType(linkText);
                 String linkAnchor = getLinkAnchor(linkText);
@@ -150,7 +150,7 @@ public class WikipediaPageParser {
     private LinkType determineLinkType(String linkText) {
         LinkType linkType;
         long wordCount = linkText.chars().filter(ch -> ch == ' ').count();
-        if (wordCount == 1) {
+        if (wordCount == 0) {
             linkType = LinkType.WORD;
         } else {
             linkType = LinkType.PHRASE;
@@ -159,7 +159,7 @@ public class WikipediaPageParser {
     }
 
     private String getLinkAnchor(String link) {
-        String result = link.substring(2, link.length() - 1); // remove parentheses
+        String result = link;
         String[] linkArray = result.split("\\|");
         result = String.format("\"%s\"", linkArray[0]);
         return result;

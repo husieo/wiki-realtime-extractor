@@ -158,8 +158,8 @@ public class NifFormatter {
             for (Link link : paragraph.getLinks()) {
                 int linkBeginIndex = link.getPosition().getStart();
                 int linkEndIndex = link.getPosition().getEnd();
-                String linkBeginIndexString = Integer.toString(beginIndex);
-                String linkEndIndexString = Integer.toString(endIndex);
+                String linkBeginIndexString = Integer.toString(linkBeginIndex);
+                String linkEndIndexString = Integer.toString(linkEndIndex);
                 LinkType linkType = link.getLinkType();
                 String dbPediaLinkUrl = getDbpediaUrl(title, String.format("%s_%s_%s",
                         linkType.getTypeLabel(), linkBeginIndexString, linkEndIndexString));
