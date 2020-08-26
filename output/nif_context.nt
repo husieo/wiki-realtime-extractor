@@ -1,208 +1,105 @@
-<http://dbpedia.org/resource/Actinium?dbpv=2020-08&nif=Context> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Context> .
-<http://dbpedia.org/resource/Actinium?dbpv=2020-08&nif=Context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger#beginIndex> .
-<http://dbpedia.org/resource/Actinium?dbpv=2020-08&nif=Context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "13130"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger#endIndex> .
-<http://dbpedia.org/resource/Actinium?dbpv=2020-08&nif=Context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#sourceUrl> <http://en.wikipedia.org/wiki/Actinium> .
-<http://dbpedia.org/resource/Actinium?dbpv=2020-08&nif=Context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#isString> "
-'''Actinium''' ist ein [[Radioaktivität|radioaktives]] [[chemisches Element]] mit dem [[Elementsymbol]] '''Ac''' und der [[Ordnungszahl]] 89. Im [[Periodensystem der Elemente]] steht es in der 3.&nbsp;[[Gruppe des Periodensystems|IUPAC-Gruppe]], der [[Scandiumgruppe]]. Das Element ist ein [[Metalle|Metall]] und gehört zur [[Periode-7-Element|7.&nbsp;Periode]], [[Block des Periodensystems|d-Block]]. Es ist der Namensgeber der Gruppe der [[Actinoide]], der ihm folgenden 14 Elemente.
+<http://dbpedia.org/resource/Anarchism?dbpv=2020-08&nif=Context> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Context> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2020-08&nif=Context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger#beginIndex> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2020-08&nif=Context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "750"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger#endIndex> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2020-08&nif=Context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#sourceUrl> <http://en.wikipedia.org/wiki/Anarchism> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2020-08&nif=Context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#isString> "Anarchism
 
-== Geschichte ==
-[[Datei:Periodensystem Mendelejews.jpg|mini|hochkant=2|ohne|Mendelejews Periodensystem von 1871 mit einer Lücke für Actinium am unteren Rand, vor Thorium (''Th&nbsp;=&nbsp;231'')]]
 
-Das Actinium wurde im Jahr 1899 von dem französischen Chemiker [[André-Louis Debierne]] entdeckt, der es aus [[Pechblende]] isolierte und ihm zunächst Ähnlichkeiten mit dem [[Titan (Element)|Titan]]<ref>André-Louis Debierne: „Sur une nouvelle matière radio-active“, in: ''[[Comptes rendus]]'', '''1899''', ''129'', S.&nbsp;593–595 ({{Gallica |ID=bpt6k3085b|Seite=593}}).</ref> oder dem [[Thorium]]<ref>André-Louis Debierne: „Sur un nouvel élément radio-actif&nbsp;: l’actinium“, in: ''[[Comptes rendus]]'', '''1900''', ''130'', S.&nbsp;906–908 ({{Gallica |ID=bpt6k3086n|Seite=906}}).</ref> zuschrieb; seine Bezeichnung leitete er wegen der [[Radioaktivität]] von [[Griechische Sprache|griechisch]] ἀκτίς ''aktís'' ‚Strahl‘ ab.<ref name="fg">N. A. Figurowski, ''Die Entdeckung der chemischen Elemente und der Ursprung ihrer Namen'', in deutscher Übersetzung von Leo Korniljew/Ernst Lemke, Moskau 1981, ISBN 3-7614-0561-8, S.&nbsp;64.</ref> [[Friedrich Giesel]] entdeckte das Element unabhängig davon im Jahr 1902<ref>Friedrich Oskar Giesel: „Ueber Radium und radioactive Stoffe“, in: ''[[Berichte der Deutschen Chemischen Gesellschaft]]'', '''1902''', ''35''&nbsp;(3), S.&nbsp;3608–3611 ([[doi:10.1002/cber.190203503187]]).</ref> und beschrieb eine Ähnlichkeit zum [[Lanthan]]; er gab ihm den Namen '''Emanium''',<ref>Friedrich Oskar Giesel: „Ueber den Emanationskörper (Emanium)“, in: ''[[Berichte der Deutschen Chemischen Gesellschaft]]'', '''1904''', ''37''&nbsp;(2), S.&nbsp;1696–1699 ([[doi:10.1002/cber.19040370280]]).</ref> eine Bildung zu [[lateinisch]] ''emano'' ‚ausfließen‘, ebenfalls mit Bezug zur abgegebenen Strahlung.<ref name="fg" /> Nachdem Actinium und Emanium im Jahre 1904 als identisch erkannt worden waren, wurde Debiernes Namensgebung der Vorzug gegeben, da er es zuerst entdeckt hatte.<ref>Friedrich Oskar Giesel: „Ueber Emanium“, in: ''[[Berichte der Deutschen Chemischen Gesellschaft]]'', '''1905''', ''38''&nbsp;(1), S.&nbsp;775–778 ([[doi:10.1002/cber.190503801130]]).</ref>
+ Etymology, terminology and definition 
 
-Die Geschichte der Entdeckung wurde in Publikationen von 1971<ref>H. W. Kirby: „The Discovery of Actinium“, in: ''[[Isis (Zeitschrift, 1912)|Isis]]'', '''1971''', ''62''&nbsp;(3), S.&nbsp;290–308 ({{JSTOR|229943}}).</ref> und später im Jahr 2000<ref>J. P. Adloff: „The centenary of a controversial discovery: actinium“, in:'' [[Radiochimica Acta|Radiochim. Acta]]'', '''2000''', ''88'', S.&nbsp;123 ([[doi:10.1524/ract.2000.88.3-4.123]]).</ref> immer noch als fraglich beschrieben. Sie zeigen, dass die Publikationen von 1904 einerseits und die von 1899 und 1900 andererseits Widersprüche aufweisen.
 
-== Gewinnung und Darstellung ==
-Da in [[Uran]]erzen nur wenig Actinium vorhanden ist, spielt diese Quelle keine Rolle für die Gewinnung. Technisch wird das Isotop <sup>227</sup>Ac durch Bestrahlung von <sup>226</sup>Ra mit [[Neutron]]en in [[Kernreaktor]]en hergestellt.
 
-:<math>\mathrm{^{226}_{\ 88}Ra\ +\ ^{1}_{0}n\ \longrightarrow \ ^{227}_{\ 88}Ra\ \xrightarrow[42,2 \ min]{\beta^-} \ ^{227}_{\ 89}Ac}</math>
 
-:<small>Die Zeitangaben sind [[Halbwertszeit]]en.</small>
+ History 
 
-Durch den schnellen Zerfall des Actiniums waren stets nur geringe Mengen verfügbar. Die erste künstliche Herstellung von Actinium wurde im [[Argonne National Laboratory]] in [[Chicago]] durchgeführt.
+Prehistoric and ancient world
 
-== Eigenschaften ==
-=== Physikalische Eigenschaften ===
-Das Metall ist silberweiß glänzend<ref name="blueglow" /> und relativ weich.<ref>Frederick Seitz, David Turnbull: ''Solid state physics: advances in research and applications'', Academic Press, 1964, ISBN 0-12-607716-9, S.&nbsp;289–291 ({{Google Buch|BuchID=F9V3a-0V3r8C|Seite=289}}).</ref> Aufgrund seiner starken Radioaktivität leuchtet Actinium im Dunkeln in einem hellblauen Licht.<ref name="blueglow" />
 
-Actinium ist das namensgebende Element der [[Actinoide]]n, ähnlich wie [[Lanthan]] für die [[Lanthanoide]]n. Die Gruppe der Elemente zeigt deutlichere Unterschiede als die Lanthanoide; daher dauerte es bis 1945, bis [[Glenn T. Seaborg]] die wichtigsten Änderungen zum Periodensystem von Mendelejew vorschlagen konnte: die Einführung der Actinoide.<ref>Glenn T. Seaborg: „The Transuranium Elements“, in: ''[[Science]]'', '''1946''', ''104'', Nr.&nbsp;2704, S.&nbsp;379–386 ([[doi:10.1126/science.104.2704.379]]; PMID 17842184).</ref>
+ Modern era 
 
-=== Chemische Eigenschaften ===
-Es ist sehr reaktionsfähig und wird von Luft und Wasser angegriffen, überzieht sich aber mit einer Schicht von Actiniumoxid, wodurch es vor weiterer Oxidation geschützt ist.<ref name="blueglow">Joseph G. Stites, Murrell L. Salutsky, Bob D. Stone: „Preparation of Actinium Metal“, in: ''[[J. Am. Chem. Soc.]]'', '''1955''', ''77''&nbsp;(1), S.&nbsp;237–240 ([[doi:10.1021/ja01606a085]]).</ref> Das Ac<sup>3+</sup>-Ion ist farblos. Das chemische Verhalten von Actinium ähnelt sehr dem [[Lanthan]]. Actinium ist in allen zehn bekannten Verbindungen dreiwertig.<ref>J. J. Katz, W. M. Manning: „Chemistry of the Actinide Elements“, in: ''[[Annual Review of Nuclear Science]]'', '''1952''', ''1'', S.&nbsp;245–262 ([[doi:10.1146/annurev.ns.01.120152.001333]]).</ref>
 
-== Isotope ==
-Bekannt sind 26 [[Isotop]]e, wovon nur zwei natürlich vorkommen. Das langlebigste Isotop <sup>227</sup>Ac ([[Halbwertszeit]] 21,8&nbsp;Jahre) hat zwei [[Zerfallskanal|Zerfallskanäle]]: es ist ein [[Alphastrahlung|Alpha-]] und [[Betastrahlung|Betastrahler]]. <sup>227</sup>Ac ist ein Zerfallsprodukt des Uranisotops <sup>235</sup>U und kommt zu einem kleinen Teil in Uranerzen vor. Daraus lassen sich wägbare Mengen <sup>227</sup>Ac gewinnen, die somit ein verhältnismäßig einfaches Studium dieses Elementes ermöglichen. Da sich unter den radioaktiven Zerfallsprodukten einige [[Gammastrahlung|Gammastrahler]] befinden, sind aber aufwändige Strahlenschutzvorkehrungen nötig.
 
-== Verwendung ==
-Actinium wird zur Erzeugung von Neutronen eingesetzt, die bei [[Neutronenaktivierungsanalyse|Aktivierungsanalysen]] eine Rolle spielen. Außerdem wird es für die [[Radionuklidbatterie#Wandler|thermoionische Energieumwandlung]] genutzt.
 
-Beim dualen Zerfall des <sup>227</sup>Ac geht der größte Teil unter Emission von Beta-Teilchen in das [[Thorium]]<nowiki />isotop <sup>227</sup>Th, aber ca. 1 % zerfällt durch Alpha-Emission zu [[Francium]] <sup>223</sup>Fr. Eine Lösung von <sup>227</sup>Ac ist daher als Quelle für das kurzlebige <sup>223</sup>Fr verwendbar. Letzteres kann dann regelmäßig abgetrennt und untersucht werden.
 
-== Sicherheitshinweise ==
-Einstufungen nach der [[Verordnung (EG) Nr. 1272/2008 (CLP)|CLP-Verordnung]] liegen nicht vor, weil diese nur die chemische Gefährlichkeit umfassen und eine völlig untergeordnete Rolle gegenüber den auf der [[Radioaktivität]] beruhenden Gefahren spielen. Auch Letzteres gilt nur, wenn es sich um eine dafür relevante Stoffmenge handelt.
+ Post-World War II era 
 
-== Verbindungen ==
-Nur eine geringe Anzahl von Actiniumverbindungen ist bekannt. Mit Ausnahme von AcPO<sub>4</sub> sind sie alle den entsprechenden Lanthanverbindungen ähnlich und enthalten Actinium in der Oxidationsstufe +3.<ref name="j2">Sherman Fried, French Hagemann, W. H. Zachariasen: „The Preparation and Identification of Some Pure Actinium Compounds“, in: ''[[J. Am. Chem. Soc.]]'', '''1950''', ''72'', S.&nbsp;771–775 ([[doi:10.1021/ja01158a034]]).</ref> Insbesondere unterscheiden sich die Gitterkonstanten der jeweiligen Lanthan- und Actinium-Verbindungen nur in wenigen Prozent.<ref name="j2" />
 
-{| class="wikitable" style="text-align:center; margin-left:1.5em;"
-! Formel
-! Farbe
-! Symmetrie
-! [[Raumgruppe]]
-! [[Pearson-Symbol]]
-! ''a'' (pm)
-! ''b'' (pm)
-! ''c'' (pm)
-! ''Z''
-! Dichte,<br />g/cm<sup>3</sup>
-|-
-| Ac
-| silber
-| ''fcc''<ref name="ach">J. D. Farr, A. L. Giorgi, M. G. Bowman, R. K. Money: „The crystal structure of actinium metal and actinium hydride“, in: ''[[Journal of Inorganic and Nuclear Chemistry]]'', '''1961''', ''18'', S.&nbsp;42–47 ([[doi:10.1016/0022-1902(61)80369-2]]).</ref>
-| {{Raumgruppe|Fm-3m|kurz}}
-| cF4
-| 531,1
-| 531,1
-| 531,1
-| 4
-| 10,07
-|-
-| AcH<sub>2</sub>
-|
-| kubisch<ref name="ach" />
-| {{Raumgruppe|Fm-3m|kurz}}
-| cF12
-| 567
-| 567
-| 567
-| 4
-| 8,35
-|-
-| Ac<sub>2</sub>O<sub>3</sub>
-| weiß<ref name="blueglow" />
-| trigonal<ref name="aco">W. H. Zachariasen: „Crystal Chemical Studies of the 5''f''-Series of Elements. XII. New Compounds Representing known Structure Types“, in: ''[[Acta Crystallographica]]'', '''1949''', ''2'', S.&nbsp;388–390 ([[doi:10.1107/S0365110X49001016]]).</ref>
-| {{Raumgruppe|P-3m1|kurz}}
-| hP5
-| 408
-| 408
-| 630
-| 1
-| 9,18
-|-
-| Ac<sub>2</sub>S<sub>3</sub>
-|
-| kubisch<ref name="acs">W. H. Zachariasen: „Crystal Chemical Studies of the 5''f''-Series of Elements. VI. The Ce<sub>2</sub>S<sub>3</sub>–Ce<sub>3</sub>S<sub>4</sub> Type of Structure“, in: ''[[Acta Crystallographica]]'', '''1949''', ''2'', S.&nbsp;57–60 ([[doi:10.1107/S0365110X49000126]]).</ref>
-| {{Raumgruppe|I-43d|kurz}}
-| cI28
-| 778,56
-| 778,56
-| 778,56
-| 4
-| 6,71
-|-
-| AcF<sub>3</sub>
-| weiß<ref name="m71">Gerd Meyer, Lester R. Morss: ''Synthesis of lanthanide and actinide compounds'', Springer, 1991, ISBN 0-7923-1018-7, S.&nbsp;71 ({{Google Buch|BuchID=bnS5elHL2w8C|Seite=71}}).</ref>
-| hexagonal<ref name="aco" /><ref name="j2" />
-| {{Raumgruppe|P-3c1|kurz}}
-| hP24
-| 741
-| 741
-| 755
-| 6
-| 7,88
-|-
-| AcCl<sub>3</sub>
-|
-| hexagonal<ref name="accl">W. H. Zachariasen: „Crystal Chemical Studies of the 5''f''-Series of Elements. I. New Structure Types“, in: ''[[Acta Crystallographica]]'', '''1948''', ''1'', S.&nbsp;265–268 ([[doi:10.1107/S0365110X48000703]]).</ref><ref name="j2" />
-| {{Raumgruppe|P63/m|kurz}}
-| hP8
-| 764
-| 764
-| 456
-| 2
-| 4,8
-|-
-| AcBr<sub>3</sub>
-| weiß<ref name="j2" />
-| hexagonal<ref name="accl" />
-| {{Raumgruppe|P63/m|kurz}}
-| hP8
-| 764
-| 764
-| 456
-| 2
-| 5,85
-|-
-| AcOF
-| weiß<ref name="m87">Gerd Meyer, Lester R. Morss: ''Synthesis of lanthanide and actinide compounds'', Springer, 1991, ISBN 0-7923-1018-7, S.&nbsp;87–88 ({{Google Buch|BuchID=bnS5elHL2w8C|Seite=87}}).</ref>
-| kubisch<ref name="j2" />
-| {{Raumgruppe|Fm-3m|kurz}}
-|
-| 593,1
-|
-|
-|
-| 8,28
-|-
-| AcOCl
-|
-| tetragonal<ref name="j2" />
-|
-|
-| 424
-| 424
-| 707
-|
-| 7,23
-|-
-| AcOBr
-|
-| tetragonal<ref name="j2" />
-|
-|
-| 427
-| 427
-| 740
-|
-| 7,89
-|-
-| AcPO<sub>4</sub> · 0,5 H<sub>2</sub>O
-|
-| hexagonal<ref name="j2" />
-|
-|
-| 721
-| 721
-| 664
-|
-| 5,48
-|}
+ Anarchist schools of thought 
 
-=== Oxide ===
-[[Actinium(III)-oxid]]&nbsp;(Ac<sub>2</sub>O<sub>3</sub>) kann durch Erhitzen des [[Actinium(III)-hydroxid|Hydroxids]] bei 500&nbsp;°C oder des [[Actinium(III)-oxalat|Oxalats]] bei 1100&nbsp;°C im Vakuum erhalten werden. Das Kristallgitter ist isotyp mit den Oxiden der meisten dreiwertigen [[Seltenerdmetalle]].<ref name="j2" />
 
-=== Halogenide ===
-[[Actinium(III)-fluorid]]&nbsp;(AcF<sub>3</sub>) kann entweder in Lösung oder durch Feststoffreaktion dargestellt werden. Im ersten Fall gibt man bei Raumtemperatur [[Flusssäure]] zu einer Ac<sup>3+</sup>-Lösung und fällt das Produkt aus. im anderen Fall wird Actinium-Metall mit Fluorwasserstoff bei 700&nbsp;°C in einer Platinapparatur behandelt.
+ Classical 
 
-[[Actinium(III)-chlorid]]&nbsp;(AcCl<sub>3</sub>) wird durch Umsetzung von Actiniumhydroxid oder -oxalat mit [[Tetrachlormethan]] bei Temperaturen oberhalb von 960&nbsp;°C erhalten.<ref name="j2" />
+ Mutualism 
 
-Die Reaktion von [[Aluminiumbromid]] und Actinium(III)-oxid führt zum [[Actinium(III)-bromid]]&nbsp;(AcBr<sub>3</sub>) und Behandlung mit feuchtem Ammoniak bei 500&nbsp;°C führt zum Oxibromid AcOBr.<ref name="j2" />
 
-=== Weitere Verbindungen ===
-Gibt man [[Natriumdihydrogenphosphat]]&nbsp;(NaH<sub>2</sub>PO<sub>4</sub>) zu einer Lösung von Actinium in Salzsäure, erhält man weiß gefärbtes [[Actiniumphosphat]]&nbsp;(AcPO<sub>4</sub>&nbsp;·&nbsp;0,5&nbsp;H<sub>2</sub>O); ein Erhitzen von [[Actinium(III)-oxalat]] mit [[Schwefelwasserstoff]] bei 1400&nbsp;°C für ein paar Minuten führt zu schwarzem [[Actinium(III)-sulfid]]&nbsp;(Ac<sub>2</sub>S<sub>3</sub>).<ref name="j2" />
 
-== Literatur ==
-* Harold W. Kirby, Lester R. Morss: [http://radchem.nevada.edu/classes/rdch710/files/Actinium.pdf Actinium], in: Lester R. Morss, Norman M. Edelstein, Jean Fuger (Hrsg.): ''The Chemistry of the Actinide and Transactinide Elements'', Springer, Dordrecht 2006; ISBN 1-4020-3555-1, S.&nbsp;18–51 ([[doi:10.1007/1-4020-3598-5_2]]).
+ Collectivist anarchism 
 
-== Weblinks ==
-{{Wiktionary}}
-{{Commonscat}}
-* {{RömppOnline |Name=Actinium |Datum=3. Januar 2015 |ID=RD-01-00659 }}
 
-== Einzelnachweise ==
-<references />
 
-{{Navigationsleiste Periodensystem}}
+ Anarcho-communism 
 
-{{Normdaten|TYP=s|GND=4523163-1|LCCN=sh/85/000706}}" .
-<http://dbpedia.org/resource/Actinium?dbpv=2020-08&nif=Context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#predLang> <http://lexvo.org/id/iso639-3/eng> .
+
+
+
+ Anarcho-syndicalism 
+
+
+
+ Individualist anarchism 
+
+
+
+
+
+ Post-classical and contemporary 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Anarcha-feminism 
+
+
+ Anarcho-capitalism 
+
+ Internal issues and debates 
+
+ Topics of interest 
+
+ Anarchism and free love 
+
+ Anarchism and education 
+
+
+
+
+
+ Anarchism and the state 
+
+ Anarchism and violence 
+
+ Anarchist strategies and tactics 
+
+ Criticism{{anchor|Criticisms}} 
+
+ Allegation of utopianism 
+
+ Industrial civilisation 
+
+
+ Tacit authoritarianism 
+
+ List of anarchist societies 
+
+" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2020-08&nif=Context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#predLang> <http://lexvo.org/id/iso639-3/eng> .

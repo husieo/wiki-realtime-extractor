@@ -3,9 +3,7 @@ package org.dbpedia.extractor.service;
 import org.dbpedia.extractor.entity.*;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,15 +15,29 @@ public class WikipediaPageParser {
 
     private static Pattern paragraphBreakPattern = Pattern.compile("\\r?\\n\\n");
     private static Pattern headingPattern = Pattern.compile("=+.+=+\\n");
+    private static Map<String, String> matchingBraces;
+    private static String LINK_START_PATTERN = "[[";
+    private static String LINK_END_PATTERN = "]]";
+
+    public WikipediaPageParser() {
+        //initialize braces map
+        matchingBraces = new HashMap<>();
+        matchingBraces.put("{{", "}}");
+        matchingBraces.put("<!--", "-->");
+        matchingBraces.put("{|", "|}");
+    }
 
     public ParsedPage parsePage(WikiPage page) {
         ParsedPage parsedPage = new ParsedPage();
         String text = page.getText();
         text = removeInfobox(text);
-        Context context = new Context(text);
+        text = removeFiles(text);
+        text = removeFooters(text);
+        page.setText(text);
         parsedPage.setWikiPage(page);
-        parsedPage.setContext(context);
         parsedPage.setStructureRoot(buildPageStructure(page));
+        Context context = new Context(createContext(parsedPage.getStructureRoot()));
+        parsedPage.setContext(context);
         return parsedPage;
     }
 
@@ -39,14 +51,21 @@ public class WikipediaPageParser {
         int paragraphStart = 0;
         while (paragraphBreakMatcher.find()) {
             int newStart = paragraphBreakMatcher.start();
-            Paragraph paragraph = new Paragraph(paragraphStart, newStart);
-            paragraph.setLinks(parseLinks(text, paragraph));
+            String paragraphText = text.substring(paragraphStart, newStart);
+            Paragraph paragraph = parseParagraph(paragraphText);
+            paragraph.setPosition(new Position(paragraphStart, paragraphStart + paragraph.getContext().length()));
             paragraphs.add(paragraph);
             paragraphStart = newStart;
         }
         return paragraphs;
     }
 
+    /**
+     * Build page tree, with sections and subsections as nodes.
+     *
+     * @param page
+     * @return page tree root
+     */
     public Subdivision buildPageStructure(WikiPage page) {
         String text = page.getText();
         Matcher headingMatcher = headingPattern.matcher(text);
@@ -121,30 +140,11 @@ public class WikipediaPageParser {
 
     //// LINKS PARSING /////
 
-    private List<Link> parseLinks(String text, Paragraph paragraph) {
-        List<Link> links = new ArrayList<>();
-        String linkOp = "[[";
-        String linkClosing = "]]";
-        int length = text.length();
-        Stack<Integer> openingsStack = new Stack<>();
-        for (int i = 0; i < length - 1; i++) {
-            String testSubStr = text.substring(i, i + 2);
-            if (testSubStr.equals(linkOp)) {
-                openingsStack.push(i);
-                i++;
-            } else if (testSubStr.equals(linkClosing)) {
-                Integer linkOpPosition = openingsStack.pop();
-                Position linkPosition = new Position(linkOpPosition + 2, i);
-                String linkText = text.substring(linkPosition.getStart(), linkPosition.getEnd());
-                LinkType linkType = determineLinkType(linkText);
-                String linkAnchor = getLinkAnchor(linkText);
-                Link link = new Link(linkPosition, linkType, linkAnchor);
-                link.setSuperString(paragraph);
-                links.add(link);
-                i++;
-            }
-        }
-        return links;
+    private Link parseLink(String linkText) {
+        LinkType linkType = determineLinkType(linkText);
+        String linkAnchor = getLinkAnchor(linkText);
+        Link link = new Link(linkType, linkAnchor);
+        return link;
     }
 
     private LinkType determineLinkType(String linkText) {
@@ -161,30 +161,142 @@ public class WikipediaPageParser {
     private String getLinkAnchor(String link) {
         String result = link;
         String[] linkArray = result.split("\\|");
-        result = String.format("\"%s\"", linkArray[0]);
+        result = String.format("\"%s\"", linkArray[linkArray.length - 1]);
         return result;
     }
 
     private String removeInfobox(String text) {
         String infoboxStartPattern = "{{Infobox";
-        String figureStart = "{{";
-        String figureEnd = "}}";
-        if (!text.contains(infoboxStartPattern)) {
-            //return unmodified text
-            return text;
+        String linkStart = LINK_START_PATTERN;
+        String linkEnd = LINK_END_PATTERN;
+        int i = 0;
+        while (text.contains(infoboxStartPattern)) {
+            int infoboxStart = text.indexOf(infoboxStartPattern);
+            int parenthesesCounter = 1;
+            i = infoboxStart;
+            while (parenthesesCounter > 0) {
+                i++;
+                String testSubStr = text.substring(i, i + 2);
+                if (testSubStr.equals(linkStart)) {
+                    parenthesesCounter++;
+                } else if (testSubStr.equals(linkEnd)) {
+                    parenthesesCounter--;
+                }
+            }
+            text = text.substring(0, infoboxStart) + text.substring(i + 3);
         }
-        int infoboxStart = text.indexOf(infoboxStartPattern);
+        return text;
+    }
+
+    private String removeFiles(String text) {
+        String fileStartPattern = "[[File";
+        String figureStart = "[[";
+        String figureEnd = "]]";
+        int i = 0;
+        while (text.contains(fileStartPattern)) {
+            int fileStart = text.indexOf(fileStartPattern);
+            int parenthesesCounter = 1;
+            i = fileStart;
+            while (parenthesesCounter > 0) {
+                i++;
+                String testSubStr = text.substring(i, i + 2);
+                if (testSubStr.equals(figureStart)) {
+                    parenthesesCounter++;
+                } else if (testSubStr.equals(figureEnd)) {
+                    parenthesesCounter--;
+                }
+            }
+            text = text.substring(0, fileStart) + text.substring(i + 3);
+        }
+        return text;
+    }
+
+    private String removeFooters(String text) {
+        String footerStart = "== See also ==";
+        if (text.contains(footerStart)) {
+            int footerStartIndex = text.indexOf(footerStart);
+            text = text.substring(0, footerStartIndex);
+        }
+        return text;
+    }
+
+    /**
+     * Find end of an xml component in braces
+     *
+     * @param text        XML text
+     * @param bracesStart brace start
+     * @param bracesPos   brace position
+     * @return index of the brace end
+     */
+    private int findMatchingBracesIndex(String text, String bracesStart, int bracesPos) {
+        String bracesEnd = matchingBraces.get(bracesStart);
+        Integer bracesEndLen = bracesEnd.length();
         int parenthesesCounter = 1;
-        int i = infoboxStart;
+        int i = bracesPos;
         while (parenthesesCounter > 0) {
             i++;
-            String testSubStr = text.substring(i, i + 2);
-            if (testSubStr.equals(figureStart)) {
+            String testSubStr = text.substring(i, i + bracesEndLen);
+            if (testSubStr.equals(bracesStart)) {
                 parenthesesCounter++;
-            } else if (testSubStr.equals(figureEnd)) {
+            } else if (testSubStr.equals(bracesEnd)) {
                 parenthesesCounter--;
             }
         }
-        return text.substring(i + 3);
+        return i;
+    }
+
+    private Paragraph parseParagraph(String text) {
+        Set<String> xmlTagSet = matchingBraces.keySet();
+        List<Link> links = new ArrayList<>();
+        StringBuilder cleanedText = new StringBuilder();
+
+        for (String xmlTag : xmlTagSet) {
+            int index = text.indexOf(xmlTag);
+            int previousIndex = 0;
+            while (index >= 0) {
+                cleanedText.append(text, previousIndex, index);
+                int tagEndIndex = findMatchingBracesIndex(text, xmlTag, index);
+                int tagEndLength = matchingBraces.get(xmlTag).length();
+
+                previousIndex = tagEndIndex + tagEndLength;
+                index = text.indexOf(xmlTag, index + tagEndLength);
+            }
+            text = cleanedText.toString();
+            cleanedText = new StringBuilder();
+//            String cleanedXmlString = text.substring(index + xmlTag.length(), tagEndIndex);
+//            if (xmlTag.equals(LINK_START_PATTERN)) {
+//                // add link
+//                Link link = parseLink(cleanedXmlString);
+//                cleanedXmlString = link.getAnchorOf();
+////                    links.add(link);
+//                cleanedText.append(cleanedXmlString);
+//            }
+        }
+        Paragraph paragraph = new Paragraph();
+        for (Link link : links) {
+            link.setSuperString(paragraph);
+        }
+        paragraph.setLinks(links);
+        paragraph.setContext(text);
+        return paragraph;
+    }
+
+    /**
+     * Combine sections into context
+     *
+     * @param root
+     * @return
+     */
+    private String createContext(Subdivision root) {
+        StringBuilder result = new StringBuilder();
+        List<Paragraph> paragraphs = root.getParagraphs();
+        result.append(root.getTitle()).append("\n");
+        for (Paragraph paragraph : paragraphs) {
+            result.append(paragraph.getContext()).append("\n");
+        }
+        for (Subdivision child : root.getChildren()) {
+            result.append(createContext(child));
+        }
+        return result.toString();
     }
 }

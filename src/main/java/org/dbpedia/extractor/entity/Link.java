@@ -11,7 +11,6 @@ import lombok.*;
 @ToString
 public class Link {
 
-    @NonNull
     private Position position;
 
     @NonNull

@@ -4,7 +4,6 @@ import org.dbpedia.extractor.entity.ParsedPage;
 import org.dbpedia.extractor.storage.PageStorage;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 

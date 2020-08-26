@@ -12,10 +12,7 @@ import java.util.List;
 public class Paragraph {
     private Position position;
 
-
     private List<Link> links;
 
-    public Paragraph(int start, int end){
-        position = new Position(start, end);
-    }
+    private String context;
 }

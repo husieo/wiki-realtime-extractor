@@ -9,6 +9,9 @@ import lombok.ToString;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * XML Classes for simplified XML parsing
+ */
 @Getter
 @Setter
 @ToString
