@@ -179,7 +179,7 @@ public class NifFormatter {
                 nodeEntry.append(String.format("%s <%s> %s .%s",
                         dbPediaLinkUrl, getPersistenceOntologyUrl(SUPER_STRING), dbPediaParagraphUrl, System.lineSeparator()));
                 // anchorOf
-                nodeEntry.append(String.format("%s <%s> %s .%s",
+                nodeEntry.append(String.format("%s <%s> \"%s\" .%s",
                         dbPediaLinkUrl, getPersistenceOntologyUrl("anchorOf"), link.getAnchorOf(), System.lineSeparator()));
             }
         }
