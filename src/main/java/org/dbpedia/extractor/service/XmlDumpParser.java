@@ -49,6 +49,7 @@ public class XmlDumpParser {
         return CompletableFuture.completedFuture(parseXmlDump(xmlDump));
     }
 
+    ///// NOT USED (IN ITERATIVE PARSE)
     public List<ParsedPage> parseXmlDump(String xmlDump) throws IOException {
         Mediawiki mediawiki = deserializeXml(xmlDump);
         List<Page> pages = mediawiki.getPages();

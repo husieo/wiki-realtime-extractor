@@ -15,4 +15,9 @@ import lombok.ToString;
 public class Position {
     private int start;
     private int end;
+
+    public void addOffset(int offset){
+        start += offset;
+        end += offset;
+    }
 }

@@ -2,10 +2,11 @@ package org.dbpedia.extractor.page;
 
 import com.google.common.io.Resources;
 import lombok.extern.log4j.Log4j;
-import org.dbpedia.extractor.entity.ParsedPage;
 import org.dbpedia.extractor.entity.Subdivision;
 import org.dbpedia.extractor.entity.WikiPage;
 import org.dbpedia.extractor.service.WikipediaPageParser;
+import org.dbpedia.extractor.service.transformer.ContextLanguageTransformer;
+import org.dbpedia.extractor.service.transformer.XmlTransformer;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -20,10 +21,11 @@ public class WikipediaPageParserTest {
 
     private static WikipediaPageParser pageParser;
     private static WikiPage wikiPage;
+    private static XmlTransformer contextLanguageTransformer;
 
     @BeforeAll
     public static void beforeAll() throws IOException {
-        pageParser = new WikipediaPageParser();
+        pageParser = new WikipediaPageParser(new ContextLanguageTransformer());
 
         URL textUrl = Resources.getResource("page_test.txt");
         wikiPage = new WikiPage("Anarchism",

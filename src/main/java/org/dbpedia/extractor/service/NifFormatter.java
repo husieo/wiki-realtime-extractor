@@ -4,8 +4,10 @@ import org.dbpedia.extractor.entity.*;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Stack;
 
 
 /**
@@ -37,8 +39,6 @@ public class NifFormatter {
         this.currentDateString = getCurrentDateString();
     }
 
-    // Context block
-    private static final String CONTEXT_NIF_TYPE = "Context";
     //TODO create a recursion class
     private String pageTitle;
 
@@ -48,7 +48,7 @@ public class NifFormatter {
         int beginIndex = 0;
         int endIndex = context.getText().length();
         StringBuilder contextEntry = new StringBuilder();
-        String dbpediaUrl = getDbpediaUrl(parsedPage.getTitle(), CONTEXT_NIF_TYPE);
+        String dbpediaUrl = getDbpediaUrl(parsedPage.getTitle(), NIF_CONTEXT);
         contextEntry.append(String.format("%s <%s> <%s#Context> .%s",
                 dbpediaUrl, RDF_SYNTAX_TYPE, PERSISTENCE_ONTOLOGY_LINK, System.lineSeparator()));
         contextEntry.append(String.format("%s <%s> %s .%s",
@@ -74,7 +74,7 @@ public class NifFormatter {
     public String generateLinksEntry(ParsedPage parsedPage) {
         StringBuilder linksEntry = new StringBuilder();
         pageTitle = parsedPage.getTitle();
-        linksEntry.append(generateLinkNodeEntry(parsedPage.getStructureRoot()));
+        linksEntry.append(generateLinkNodeEntry(parsedPage));
         return linksEntry.toString();
     }
 
@@ -140,53 +140,55 @@ public class NifFormatter {
         return nodeEntry.toString();
     }
 
-    public String generateLinkNodeEntry(Subdivision node) {
+    public String generateLinkNodeEntry(ParsedPage parsedPage) {
         StringBuilder nodeEntry = new StringBuilder();
-        String title = node.getTitle();
-        Position nodePosition = node.getPosition();
-        int beginIndex = nodePosition.getStart();
-        int endIndex = nodePosition.getEnd();
-        String beginIndexString = Integer.toString(beginIndex);
-        String endIndexString = Integer.toString(endIndex);
-        String dbPediaContextUrl = getDbpediaUrl(title, NIF_CONTEXT);
-        int numberOfParagraphs = node.getParagraphs().size();
+        String articleTitle = parsedPage.getTitle();
+        Stack<Subdivision> nodeStack = new Stack<>();
+        nodeStack.push(parsedPage.getStructureRoot());
+        while(!nodeStack.empty()) {
+            Subdivision node = nodeStack.pop();
+            String dbPediaContextUrl = getDbpediaUrl(articleTitle, NIF_CONTEXT);
+            int numberOfParagraphs = node.getParagraphs().size();
 
-        for (int paragraphIndex = 0; paragraphIndex < numberOfParagraphs; paragraphIndex++) {
-            Paragraph paragraph = node.getParagraphs().get(paragraphIndex);
-            String urlParagraphSuffix = String.format("paragraph_%s_%s", paragraph.getPosition().getStart(), paragraph.getPosition().getEnd());
-            String dbPediaParagraphUrl = getDbpediaUrl(title, urlParagraphSuffix);
-            for (Link link : paragraph.getLinks()) {
-                int linkBeginIndex = link.getPosition().getStart();
-                int linkEndIndex = link.getPosition().getEnd();
-                String linkBeginIndexString = Integer.toString(linkBeginIndex);
-                String linkEndIndexString = Integer.toString(linkEndIndex);
-                LinkType linkType = link.getLinkType();
-                String dbPediaLinkUrl = getDbpediaUrl(title, String.format("%s_%s_%s",
-                        linkType.getTypeLabel(), linkBeginIndexString, linkEndIndexString));
-                // Link Type NIF
-                nodeEntry.append(String.format("%s <%s> <%s#%s> .%s",
-                        dbPediaLinkUrl, RDF_SYNTAX_TYPE, PERSISTENCE_ONTOLOGY_LINK,
-                        linkType.getCapitalizedTypeLabel(), System.lineSeparator()));
-                // Reference Context
-                nodeEntry.append(String.format("%s <%s> %s .%s",
-                        dbPediaLinkUrl, getPersistenceOntologyUrl(REFERENCE_CONTEXT), dbPediaContextUrl, System.lineSeparator()));
-                //NIF Indexes
-                nodeEntry.append(String.format("%s <%s> %s .%s",
-                        dbPediaLinkUrl, getPersistenceOntologyUrl(BEGIN_INDEX), getIndexValue(linkBeginIndex, BEGIN_INDEX), System.lineSeparator()));
-                nodeEntry.append(String.format("%s <%s> %s .%s",
-                        dbPediaLinkUrl, getPersistenceOntologyUrl(END_INDEX), getIndexValue(linkEndIndex, END_INDEX), System.lineSeparator()));
-                // Super String
-                nodeEntry.append(String.format("%s <%s> %s .%s",
-                        dbPediaLinkUrl, getPersistenceOntologyUrl(SUPER_STRING), dbPediaParagraphUrl, System.lineSeparator()));
-                // anchorOf
-                nodeEntry.append(String.format("%s <%s> \"%s\" .%s",
-                        dbPediaLinkUrl, getPersistenceOntologyUrl("anchorOf"), link.getAnchorOf(), System.lineSeparator()));
+            for (int paragraphIndex = 0; paragraphIndex < numberOfParagraphs; paragraphIndex++) {
+                Paragraph paragraph = node.getParagraphs().get(paragraphIndex);
+                String urlParagraphSuffix = String.format("paragraph_%s_%s", paragraph.getPosition().getStart(), paragraph.getPosition().getEnd());
+                String dbPediaParagraphUrl = getDbpediaUrl(articleTitle, urlParagraphSuffix);
+                for (Link link : paragraph.getLinks()) {
+                    int linkBeginIndex = link.getPosition().getStart();
+                    int linkEndIndex = link.getPosition().getEnd();
+                    String linkBeginIndexString = Integer.toString(linkBeginIndex);
+                    String linkEndIndexString = Integer.toString(linkEndIndex);
+                    LinkType linkType = link.getLinkType();
+                    String dbPediaLinkUrl = getDbpediaUrl(articleTitle, String.format("%s_%s_%s",
+                            linkType.getTypeLabel(), linkBeginIndexString, linkEndIndexString));
+                    // Link Type NIF
+                    nodeEntry.append(String.format("%s <%s> <%s#%s> .%s",
+                            dbPediaLinkUrl, RDF_SYNTAX_TYPE, PERSISTENCE_ONTOLOGY_LINK,
+                            linkType.getCapitalizedTypeLabel(), System.lineSeparator()));
+                    // Reference Context
+                    nodeEntry.append(String.format("%s <%s> %s .%s",
+                            dbPediaLinkUrl, getPersistenceOntologyUrl(REFERENCE_CONTEXT), dbPediaContextUrl, System.lineSeparator()));
+                    //NIF Indexes
+                    nodeEntry.append(String.format("%s <%s> %s .%s",
+                            dbPediaLinkUrl, getPersistenceOntologyUrl(BEGIN_INDEX), getIndexValue(linkBeginIndex, BEGIN_INDEX), System.lineSeparator()));
+                    nodeEntry.append(String.format("%s <%s> %s .%s",
+                            dbPediaLinkUrl, getPersistenceOntologyUrl(END_INDEX), getIndexValue(linkEndIndex, END_INDEX), System.lineSeparator()));
+                    // Super String
+                    nodeEntry.append(String.format("%s <%s> %s .%s",
+                            dbPediaLinkUrl, getPersistenceOntologyUrl(SUPER_STRING), dbPediaParagraphUrl, System.lineSeparator()));
+                    // anchorOf
+                    nodeEntry.append(String.format("%s <%s> \"%s\" .%s",
+                            dbPediaLinkUrl, getPersistenceOntologyUrl("anchorOf"), link.getAnchorOf(), System.lineSeparator()));
+                }
             }
-        }
-        //initiate recursion
-        List<Subdivision> nodeChildren = node.getChildren();
-        for (Subdivision child : nodeChildren) {
-            nodeEntry.append(generateLinkNodeEntry(child));
+
+            List<Subdivision> children = node.getChildren();
+            Collections.reverse(children);
+            for (Subdivision child : children) {
+                nodeStack.push(child);
+            }
+            Collections.reverse(children);
         }
         return nodeEntry.toString();
     }
