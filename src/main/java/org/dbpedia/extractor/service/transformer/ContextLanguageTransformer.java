@@ -1,9 +1,18 @@
 package org.dbpedia.extractor.service.transformer;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 @Component
 public class ContextLanguageTransformer implements XmlTransformer {
@@ -11,20 +20,18 @@ public class ContextLanguageTransformer implements XmlTransformer {
 
     public ContextLanguageTransformer() {
         // initialize language Map
+        InputStream inputStream = getClass()
+                .getClassLoader().getResourceAsStream("iso_language_codes.csv");
         languagesMap = new HashMap<>();
-        languagesMap.put("fr", "French");
-        languagesMap.put("de", "German");
-        languagesMap.put("la", "Latin");
-        languagesMap.put("grc", "Greek");
-        languagesMap.put("grc-gre", "Greek"); // might be Modern Greek
-        languagesMap.put("ru", "Russian");
-        languagesMap.put("rus", "Russian"); // also Russian
-        languagesMap.put("en", "English");
-        languagesMap.put("ar", "Arabic");
-        languagesMap.put("arq", "Arabic"); // don't know which dialect
-        languagesMap.put("ca", "Catalan");
-        languagesMap.put("ale", "Aleut");
-        languagesMap.put("ik", "Inupiaq");
+        try {
+            CSVParser parser = CSVParser.parse(new InputStreamReader(inputStream), CSVFormat.RFC4180);
+            for (CSVRecord csvRecord : parser) {
+                languagesMap.put(csvRecord.get(0),csvRecord.get(1));
+            }
+        } catch (IOException e) {
+            //Missing ISO-639 language codes file
+            e.printStackTrace();
+        }
     }
 
     public String transformText(String text) {
@@ -58,13 +65,29 @@ public class ContextLanguageTransformer implements XmlTransformer {
 
     private String getLangEntryText(String entryText) {
         String[] linkArray = entryText.split("\\|");
-        entryText = String.format("%s", linkArray[linkArray.length - 1]);
+        int textIndex = linkArray.length - 1;
+        //wikipedia puts pronunication or links last sometimes
+        Set<String> lastElementChecks = new HashSet<>();
+        lastElementChecks.add("p");
+        lastElementChecks.add("link");
+        if(linkArray[textIndex].contains("=")){
+            String elementPurpose = linkArray[textIndex]
+                    .substring(0, linkArray[textIndex].indexOf("="));
+            if(lastElementChecks.contains(elementPurpose)){
+                textIndex--;
+            }
+        }
+        entryText = String.format("%s", linkArray[textIndex]);
         return entryText;
     }
 
     private String getLanguage(String entryText) {
         String[] linkArray = entryText.split("\\|");
         String language = linkArray[0];
-        return languagesMap.get(language);
+        String result = "Unknown language";
+        if(languagesMap.containsKey(language)) {
+            result = languagesMap.get(language);
+        }
+        return result;
     }
 }

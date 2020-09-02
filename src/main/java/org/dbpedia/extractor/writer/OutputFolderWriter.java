@@ -16,27 +16,41 @@ public class OutputFolderWriter {
         createOutputFolder(folderName);
     }
 
-    private void createOutputFolder(String folderName){
-         File folder = new File(folderName);
-         if(!folder.exists()){
-             try {
-                 Files.createDirectory(folder.toPath());
-             } catch (IOException e) {
-                 e.printStackTrace();
-             }
-         }
+    private void createOutputFolder(String folderName) {
+        File folder = new File(folderName);
+        if (!folder.exists()) {
+            try {
+                Files.createDirectory(folder.toPath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void removeAllFileContents() {
+        removeFileContents(CONTEXT_FILENAME);
+        removeFileContents(STRUCTURE_FILENAME);
+        removeFileContents(LINKS_FILENAME);
+    }
+
+    private void removeFileContents(String filename) {
+        try {
+            new FileWriter(new File(outputFolder + "/" + filename), false).close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void writeToFile(String fileName, String text) {
         File fout = new File(outputFolder + "/" + fileName);
         BufferedWriter bw = null;
-        FileOutputStream fos = null;
+        FileWriter fw = null;
         try {
-            fos = new FileOutputStream(fout);
-            bw = new BufferedWriter(new OutputStreamWriter(fos));
-            bw.append(text);
+            fw = new FileWriter(fout.toPath().toString(), true);
+            bw = new BufferedWriter(fw);
+            bw.write(text);
             bw.close();
-
+            fw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
