@@ -1,6 +1,8 @@
 package org.dbpedia.configuration;
 
 import lombok.extern.log4j.Log4j;
+import org.dbpedia.extractor.service.remover.language.English;
+import org.dbpedia.extractor.service.remover.language.LanguageFooterRemover;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -11,7 +13,7 @@ import java.util.concurrent.Executor;
 @Configuration
 @EnableAsync
 @Log4j
-public class AsyncConfig {
+public class SpringBootConfig {
 
     @Bean
     public Executor taskExecutor() {

@@ -1,8 +1,16 @@
 package org.dbpedia.extractor.service.remover;
 
+import lombok.Setter;
+import org.dbpedia.extractor.service.remover.language.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.regex.Pattern;
 
+@Component
 public class WikiTagsRemover {
+
+    private LanguageFooterRemover languageFooterRemover;
 
     private static final Pattern EMPHASIS = Pattern.compile("('''|'')");
     private static final Pattern HTML_COMMENT = Pattern.compile(
@@ -22,36 +30,36 @@ public class WikiTagsRemover {
     private static final Pattern IPA2 = Pattern.compile(" \\{\\{IPA[^\\}]+\\}\\}");
     private static final Pattern HTML_TAGS = Pattern.compile("<[^>]+>");
 
-    public static String removeMath(String s) {
+    public String removeMath(String s) {
         return MATH.matcher(s).replaceAll("");
     }
 
-    public static String fixUnitConversion(String s) {
+    public String fixUnitConversion(String s) {
         String t = UNIT_CONVERSION1.matcher(s).replaceAll("$1 $2");
         return UNIT_CONVERSION2.matcher(t).replaceAll("$1 $2");
     }
 
-    public static String removeEmphasis(String s) {
+    public String removeEmphasis(String s) {
         return EMPHASIS.matcher(s).replaceAll("");
     }
 
-    public static String removeHtmlComments(String s) {
+    public String removeHtmlComments(String s) {
         return HTML_COMMENT.matcher(s).replaceAll("");
     }
 
-    public static String removeGallery(String s) {
+    public String removeGallery(String s) {
         return GALLERY.matcher(s).replaceAll("");
     }
 
-    public static String removeNoToc(String s) {
+    public String removeNoToc(String s) {
         return NO_TOC.matcher(s).replaceAll("");
     }
 
-    public static String removeIndentation(String s) {
+    public String removeIndentation(String s) {
         return INDENTATION.matcher(s).replaceAll("\n");
     }
 
-    public static String removeParentheticals(String s) {
+    public String removeParentheticals(String s) {
         // Take care of things like: id 36
         // '''Albedo''' ({{IPAc-en|icon|æ|l|ˈ|b|iː|d|oʊ}}), or ''reflection coefficient'' ...
         //
@@ -65,8 +73,42 @@ public class WikiTagsRemover {
         return s;
     }
 
-    public static String removeHtmlTags(String s) {
+    public String removeHtmlTags(String s) {
         return HTML_TAGS.matcher(s).replaceAll("");
+    }
+
+    public String removeFooter(String s) {
+        return languageFooterRemover.removeFooter(s);
+    }
+
+    public String removeCategoryLinks(String s) {
+        return languageFooterRemover.removeCategoryLinks(s);
+    }
+
+    public void setLanguageFooterRemover(WikiLanguages language){
+        switch (language){
+            case FRENCH:
+                languageFooterRemover = new French();
+                break;
+            case GERMAN:
+                languageFooterRemover = new German();
+                break;
+            case CHINESE:
+                languageFooterRemover = new Chinese();
+                break;
+            case ENGLISH:
+                languageFooterRemover = new English();
+                break;
+            case ITALIAN:
+                languageFooterRemover = new Italian();
+                break;
+            case RUSSIAN:
+                languageFooterRemover = new Russian();
+                break;
+            case SPANISH:
+                languageFooterRemover = new Spanish();
+                break;
+        }
     }
 
 }

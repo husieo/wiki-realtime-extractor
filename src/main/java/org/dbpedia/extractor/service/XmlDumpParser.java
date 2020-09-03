@@ -10,6 +10,7 @@ import org.dbpedia.extractor.entity.WikiPage;
 import org.dbpedia.extractor.entity.xml.Mediawiki;
 import org.dbpedia.extractor.entity.xml.Page;
 import org.dbpedia.extractor.entity.xml.Revision;
+import org.dbpedia.extractor.service.remover.language.WikiLanguages;
 import org.dbpedia.extractor.storage.PageStorage;
 import org.dbpedia.extractor.writer.OutputFolderWriter;
 import org.springframework.scheduling.annotation.Async;
@@ -32,6 +33,7 @@ public class XmlDumpParser {
     private XmlMapper xmlMapper;
 
     private NifFormatter nifFormatter;
+
 
     private static final String pageBegin = "<page>";
     private static final String pageEnd = "</page>";

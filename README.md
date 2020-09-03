@@ -3,14 +3,23 @@ Prerequisites: mvn and JDK 1.8 installed.
 Submit the XML dump to process via sh script(outputs to /output folder):
 
 ```
-   ./parse_xml_dump.sh documents/xml_test_page.xml
+   ./parse_xml_dump.sh documents/xml_test_page.xml --language=ENGLISH --clean
 ```
 
-Submit the XML dump via CLI:
+Possible command line arguments:
+```
+  -c, --clean     Clean output files
+  -h, --help      Show this help message and exit.
+  -l, --language=<language>
+                  Xml dump language. Valid values: ENGLISH, GERMAN, CHINESE,
+                    FRENCH, ITALIAN, RUSSIAN, SPANISH
+  -o, --output=<outputPath>
+                  The NIF output folder
+```
 
-```
-    mvn spring-boot:run -Dspring-boot.run.arguments="--output=output,documents/xml_test_page.xml" 
-```
+
+# Run as a server
+
 
 Running the application as a server: 
 

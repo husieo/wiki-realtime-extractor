@@ -1,10 +1,12 @@
 package org.dbpedia.extractor.service;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.dbpedia.extractor.entity.*;
 import org.dbpedia.extractor.service.remover.WikiTagsRemover;
+import org.dbpedia.extractor.service.remover.language.LanguageIdentifierBean;
 import org.dbpedia.extractor.service.transformer.ContextLanguageTransformer;
 import org.dbpedia.extractor.service.transformer.XmlTransformer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -26,6 +28,12 @@ public class WikipediaPageParser {
     private final XmlTransformer contextLanguageTransformer;
     private final BracesMatcher bracesMatcher = new BracesMatcher();
 
+    @Autowired
+    private WikiTagsRemover wikiTagsRemover;
+
+    @Autowired
+    private LanguageIdentifierBean languageIdentifierBean;
+
     public WikipediaPageParser(ContextLanguageTransformer contextLanguageTransformer) {
 
         //initalize tags to remove
@@ -45,17 +53,20 @@ public class WikipediaPageParser {
         text = removeInfoObjects(text, "[[Image");
         text = removeInfoObjects(text, "[[Datei");
         text = removeApostrophes(text);
-        text = WikiTagsRemover.fixUnitConversion(text);
-        text = WikiTagsRemover.removeEmphasis(text);
-        text = WikiTagsRemover.removeGallery(text);
-        text = WikiTagsRemover.removeHtmlComments(text);
-        text = WikiTagsRemover.removeIndentation(text);
-        text = WikiTagsRemover.removeMath(text);
-        text = WikiTagsRemover.removeNoToc(text);
-        text = WikiTagsRemover.removeParentheticals(text);
+        wikiTagsRemover.setLanguageFooterRemover(languageIdentifierBean.getLanguage());
+        text = wikiTagsRemover.fixUnitConversion(text);
+        text = wikiTagsRemover.removeEmphasis(text);
+        text = wikiTagsRemover.removeGallery(text);
+        text = wikiTagsRemover.removeHtmlComments(text);
+        text = wikiTagsRemover.removeIndentation(text);
+        text = wikiTagsRemover.removeMath(text);
+        text = wikiTagsRemover.removeNoToc(text);
+        text = wikiTagsRemover.removeParentheticals(text);
+        text = wikiTagsRemover.removeFooter(text);
+        text = wikiTagsRemover.removeFooter(text);
         // some HTML entities are doubly encoded.
         text = StringEscapeUtils.unescapeHtml4(StringEscapeUtils.unescapeHtml4(text));
-        text = WikiTagsRemover.removeHtmlTags(text);
+        text = wikiTagsRemover.removeHtmlTags(text);
         page.setText(text);
         parsedPage.setWikiPage(page);
         parsedPage.setStructureRoot(buildPageStructure(page));
