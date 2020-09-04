@@ -1,6 +1,7 @@
 package org.dbpedia.extractor.service;
 
 import org.apache.commons.text.StringEscapeUtils;
+import org.dbpedia.exception.ParsingException;
 import org.dbpedia.extractor.entity.*;
 import org.dbpedia.extractor.service.remover.WikiTagsRemover;
 import org.dbpedia.extractor.service.remover.language.LanguageIdentifierBean;
@@ -20,7 +21,7 @@ import java.util.regex.Pattern;
 public class WikipediaPageParser {
 
     private static Pattern paragraphBreakPattern = Pattern.compile("\\r?\\n\\n");
-    private static Pattern headingPattern = Pattern.compile("=+.+=+\\n");
+    private static Pattern headingPattern = Pattern.compile("={2,}.+={2,}\\n");
     private static List<String> tagsToRemove;
     private static String LINK_START_PATTERN = "[[";
     private static String LINK_END_PATTERN = "]]";
@@ -45,7 +46,7 @@ public class WikipediaPageParser {
         this.contextLanguageTransformer = contextLanguageTransformer;
     }
 
-    public ParsedPage parsePage(WikiPage page) {
+    public ParsedPage parsePage(WikiPage page) throws ParsingException {
         ParsedPage parsedPage = new ParsedPage();
         String text = page.getText();
         text = removeInfobox(text);
@@ -63,7 +64,8 @@ public class WikipediaPageParser {
         text = wikiTagsRemover.removeNoToc(text);
         text = wikiTagsRemover.removeParentheticals(text);
         text = wikiTagsRemover.removeFooter(text);
-        text = wikiTagsRemover.removeFooter(text);
+        text = wikiTagsRemover.removeCategoryLinks(text);
+        text = wikiTagsRemover.removeCites(text);
         // some HTML entities are doubly encoded.
         text = StringEscapeUtils.unescapeHtml4(StringEscapeUtils.unescapeHtml4(text));
         text = wikiTagsRemover.removeHtmlTags(text);
@@ -79,7 +81,7 @@ public class WikipediaPageParser {
      * @param text wiki article
      * @return list of paragraphs
      */
-    private List<Paragraph> parseParagraphs(String text) {
+    private List<Paragraph> parseParagraphs(String text) throws ParsingException {
         Matcher paragraphBreakMatcher = paragraphBreakPattern.matcher(text);
         List<Paragraph> paragraphs = new ArrayList<>();
         int paragraphStart = 0;
@@ -99,7 +101,7 @@ public class WikipediaPageParser {
      * @param page
      * @return page tree root
      */
-    public Subdivision buildPageStructure(WikiPage page) {
+    public Subdivision buildPageStructure(WikiPage page) throws ParsingException {
         String text = page.getText();
         Matcher headingMatcher = headingPattern.matcher(text);
         Position rootPosition;
@@ -259,7 +261,7 @@ public class WikipediaPageParser {
         return text;
     }
 
-    private Paragraph parseParagraph(String text) {
+    private Paragraph parseParagraph(String text) throws ParsingException {
         List<Link> links = new ArrayList<>();
         //preprocess text for special xml entries
         text = contextLanguageTransformer.transformText(text);

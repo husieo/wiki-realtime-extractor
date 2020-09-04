@@ -2,6 +2,7 @@ package org.dbpedia.extractor.page;
 
 import com.google.common.io.Resources;
 import lombok.extern.log4j.Log4j;
+import org.dbpedia.exception.ParsingException;
 import org.dbpedia.extractor.entity.Subdivision;
 import org.dbpedia.extractor.entity.WikiPage;
 import org.dbpedia.extractor.service.WikipediaPageParser;
@@ -33,13 +34,13 @@ public class WikipediaPageParserTest {
     }
 
     @Test
-    public void parseParagraphsTest() throws IOException {
+    public void parseParagraphsTest() throws IOException, ParsingException {
         Subdivision root = pageParser.buildPageStructure(wikiPage);
         assertTrue(root.getParagraphs().size() > 1);
     }
 
     @Test
-    public void parseSubdivisionsTest(){
+    public void parseSubdivisionsTest() throws ParsingException {
         Subdivision root = pageParser.buildPageStructure(wikiPage);
         root.logSubdivisionTree();
     }

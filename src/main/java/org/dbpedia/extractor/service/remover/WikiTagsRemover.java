@@ -1,8 +1,8 @@
 package org.dbpedia.extractor.service.remover;
 
-import lombok.Setter;
+import org.dbpedia.exception.ParsingException;
+import org.dbpedia.extractor.service.BracesMatcher;
 import org.dbpedia.extractor.service.remover.language.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.regex.Pattern;
@@ -83,6 +83,19 @@ public class WikiTagsRemover {
 
     public String removeCategoryLinks(String s) {
         return languageFooterRemover.removeCategoryLinks(s);
+    }
+
+    public String removeCites(String s) throws ParsingException {
+        String citesStart = "{{cite";
+        String figureStart = "{{";
+        String figureEnd = "}}";
+        int i = 0;
+        while (s.contains(citesStart)) {
+            int citeStartIndex = s.indexOf(citesStart);
+            i = BracesMatcher.findMatchingBracesIndex(s,figureStart, citeStartIndex);
+            s = s.substring(0, citeStartIndex) + s.substring(i + figureEnd.length() + 1);
+        }
+        return s;
     }
 
     public void setLanguageFooterRemover(WikiLanguages language){
