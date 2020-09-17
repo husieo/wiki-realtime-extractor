@@ -16,4 +16,14 @@
         <footer>Uwagi</footer>
         <footer>Zobacz też</footer>
     </language>
+    <language>
+        <langName>GERMAN</langName>
+        <categoryName>Kategorie</categoryName>
+        <footer>Referenzen</footer>
+        <footer>Weblinks</footer>
+        <footer>Literatur</footer>
+        <footer>Einzelnachweise</footer>
+        <footer>Siehe auch</footer>
+        <footer>Quellen</footer>
+    </language>
 </languageContainer>
