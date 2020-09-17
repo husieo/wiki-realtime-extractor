@@ -25,7 +25,7 @@ public class English extends LanguageFooterRemover {
 
   @Override
   protected List<Pattern> footerPatterns() {
-    return footerPatterns("See also", "References", "Further reading", "External Links", "Related pages");
+    return footerPatterns();
   }
 
   @Override

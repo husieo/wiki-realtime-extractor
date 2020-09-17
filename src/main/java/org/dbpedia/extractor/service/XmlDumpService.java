@@ -2,7 +2,6 @@ package org.dbpedia.extractor.service;
 
 import org.dbpedia.extractor.entity.ParsedPage;
 import org.dbpedia.extractor.service.remover.language.LanguageIdentifierBean;
-import org.dbpedia.extractor.service.remover.language.WikiLanguages;
 import org.dbpedia.extractor.storage.PageStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

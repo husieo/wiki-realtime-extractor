@@ -98,30 +98,8 @@ public class WikiTagsRemover {
         return s;
     }
 
-    public void setLanguageFooterRemover(WikiLanguages language){
-        switch (language){
-            case FRENCH:
-                languageFooterRemover = new French();
-                break;
-            case GERMAN:
-                languageFooterRemover = new German();
-                break;
-            case CHINESE:
-                languageFooterRemover = new Chinese();
-                break;
-            case ENGLISH:
-                languageFooterRemover = new English();
-                break;
-            case ITALIAN:
-                languageFooterRemover = new Italian();
-                break;
-            case RUSSIAN:
-                languageFooterRemover = new Russian();
-                break;
-            case SPANISH:
-                languageFooterRemover = new Spanish();
-                break;
-        }
+    public void setLanguageFooterRemover(LanguageFooterRemover language){
+        languageFooterRemover = language;
     }
 
 }

@@ -2,7 +2,6 @@ package org.dbpedia.cli;
 
 import org.dbpedia.extractor.service.XmlDumpService;
 import org.dbpedia.extractor.service.remover.language.LanguageIdentifierBean;
-import org.dbpedia.extractor.service.remover.language.WikiLanguages;
 import org.dbpedia.extractor.writer.OutputFolderWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,8 +30,9 @@ public class XmlInput implements Callable<Integer> {
     private boolean cleanFiles;
 
     @CommandLine.Option(names = {"-l","--language"}, defaultValue = "ENGLISH",
-            description = "Xml dump language. Valid values: ${COMPLETION-CANDIDATES}")
-    private WikiLanguages language;
+            description = "Xml dump language. " +
+                    "Valid values are ENGLISH, CHINESE, FRENCH, GERMAN, ITALIAN, RUSSIAN, SPANISH, or any language added to configuration/language_list.xml")
+    private String language;
 
     public Integer call() throws Exception {
         //check if needed to remove file content
@@ -42,6 +42,7 @@ public class XmlInput implements Callable<Integer> {
         }
 
         // business logic here
+        languageIdentifierBean.readLanguageList();
         languageIdentifierBean.setLanguage(language);
         xmlDumpService.submitXml(xmlFile.getPath(), outputPath.getPath());
         return 0;

@@ -1,0 +1,19 @@
+<languageContainer>
+    <language>
+        <langName>ENGLISH</langName>
+        <categoryName>Category</categoryName>
+        <footer>See also</footer>
+        <footer>References</footer>
+        <footer>Further reading</footer>
+        <footer>External Links</footer>
+        <footer>Related pages</footer>
+    </language>
+    <language>
+        <langName>POLISH</langName>
+        <categoryName>Kategoria</categoryName>
+        <footer>Przypisy</footer>
+        <footer>Linki zewnętrzne</footer>
+        <footer>Uwagi</footer>
+        <footer>Zobacz też</footer>
+    </language>
+</languageContainer>

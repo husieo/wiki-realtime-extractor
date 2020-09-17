@@ -1,0 +1,19 @@
+I suggest following structure:
+
+1. Introduction (you are missing numbering for the intro chapter)
+- Motivation
+- Objectives
+
+2. Background and related work
+- Semantic Web
+- Linked Data
+- LOD and DBpedia
+**** you are missing here: NLP and NIF and also related works
+
+3. Analysis and Implementation
+* you need to describe here the: 1) requirements, 2) design and 3) implementation
+
+4. Testing
+
+5. Conclusions
+- Future work

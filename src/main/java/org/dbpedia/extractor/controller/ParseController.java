@@ -26,7 +26,7 @@ public class ParseController {
         this.pageStorage = pageStorage;
     }
 
-    @PostMapping(value = "submit",
+    @PostMapping(value = "articles",
             consumes = MediaType.APPLICATION_XML_VALUE)
     public String submitXml(@RequestBody String dump) throws IOException {
         return parser.parseXmlDump(dump).toString();

@@ -36,7 +36,10 @@ public class WikipediaPageParserTest {
     @Test
     public void parseParagraphsTest() throws IOException, ParsingException {
         Subdivision root = pageParser.buildPageStructure(wikiPage);
+        // check that the paragraphs are parsed
         assertTrue(root.getParagraphs().size() > 1);
+        // check that the page has a meaningful structure
+        assertTrue(root.getChildren().size() > 1);
     }
 
     @Test
