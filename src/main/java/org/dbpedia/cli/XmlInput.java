@@ -23,7 +23,8 @@ public class XmlInput implements Callable<Integer> {
     @CommandLine.Parameters(index = "0", description = "The XML Wiki dump")
     private File xmlFile;
 
-    @CommandLine.Option(names = {"-o", "--output"}, description = "The NIF output folder")
+    @CommandLine.Option(names = {"-o", "--output"}, defaultValue = "/output"
+            , description = "The NIF output folder")
     private File outputPath;
 
     @CommandLine.Option(names = {"-c","--clean"}, description = "Clean output files")

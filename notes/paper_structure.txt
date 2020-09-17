@@ -17,3 +17,43 @@ I suggest following structure:
 
 5. Conclusions
 - Future work
+
+
+LOD - Linked Open Data
+W3C - World Wide Web Consortium
+
+Title:
+
+Framework for Extraction of Wikipedia Articles Content
+Framework pro extrakci obsahu článků z Wikipedie
+
+Description:
+
+DBpedia is a crowd-sourced community effort that aims at extraction of information from Wikipedia. While much information has been already extracted from the semi-structured sources (infoboxes), still vast amounts of information can be found in the Wikipedia texts. The main goal of the thesis is to develop a framework for extraction of Wikipedia articles content, structure and annotations.
+
+Guidelines:
+
+- Get familiar with the Wikipedia dump structure.
+- Get familiar with the NIF data format which will be used to model the extracted data in a machine-readable format.
+- Develop a framework for extraction of Wikipedia articles content; preserving the content structure (sections, sub-sections and paragraphs) and annotations (links and titles). The framework should be generic and configurable to be run on all Wikipedia languages.
+- Run and validate the framework on English and at least 4 other selected Wikipedia languages.
+- Evaluate the quality and performance of the results.
+
+architecture of similar project
+https://d1wqtxts1xzle7.cloudfront.net/30791778/public.pdf?1362347486=&response-content-disposition=inline%3B+filename%3DDBpedia_and_the_live_extraction_of_struc.pdf&Expires=1599529328&Signature=K1IphSkVI~be9o4UM0kK0TAVSJ30i0BYM7HNCaplNcSXRvVn30EJ~B4Yh9orKcQB7z9YNd6or2nHzfPEb95Flf~WnaD1RPHNkyLUhWCCdaSlcBtyaVAu1S-yaXT43QENkrMA2xFqtYk0iJr9eV0YP7beLXDd1kBqBwT7VY6s~ZqmiHDeP4xlTMkyC8cV51pe5vTLI3Q6UCl-obtJwmc8RK03jAE--54CO8N1tsh7aobhmsTlBL5rsjYmAfUbfrjMETK-YspJudQ0n8YEGsaCeZlUXUhxniLtQ1r7cjCR7TC9hhVBkahUm6E-IsygUraLmPJHV79OOsK4UfQ3gQMM2w__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA
+
+do I need a separate
+
+<char=342,345> a nif:String, nif:RFC5147String;
+nif:oliaLink penn:NNP;
+nif:oliaCategory olia:Noun, olia:ProperNoun .
+# deducable by a reasoner :
+penn:NNP a olia:Noun, olia:ProperNoun .
+
+
+@CommandLine.Option(names = {"-l","--language"}, defaultValue = "ENGLISH",
+        description = "Xml dump language. " +
+                "Valid values are ENGLISH, CHINESE, FRENCH, GERMAN, ITALIAN, RUSSIAN, SPANISH, or any language added to configuration/language_list.xml")
+private String language;
+
+./parse_xml_dump.sh /Users/mac/Downloads/short_test_600k.xml --language=ENGLISH --clean -o=output

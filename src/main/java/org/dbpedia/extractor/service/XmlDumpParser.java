@@ -5,6 +5,7 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
+import org.apache.jena.rdf.model.Model;
 import org.dbpedia.exception.ParsingException;
 import org.dbpedia.extractor.entity.ParsedPage;
 import org.dbpedia.extractor.entity.WikiPage;
@@ -18,6 +19,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -76,6 +79,7 @@ public class XmlDumpParser {
         OutputFolderWriter outputFolderWriter = new OutputFolderWriter(outputFolder);
         File xmlDumpFile = new File(filePath);
         LineIterator it = FileUtils.lineIterator(xmlDumpFile, "UTF-8");
+        Instant parsingStart = Instant.now();
         int success = 0;
         int failure = 0;
         try {
@@ -92,14 +96,18 @@ public class XmlDumpParser {
                     pageString.append(line).append(System.lineSeparator());
                     Page page = deserializePage(pageString.toString());
                     Revision revision = page.getRevision();
+                    if(isPageRedirect(page)){ // skip if it is page redirect
+                        pageStarted = false;
+                        continue;
+                    }
                     WikiPage wikiPage = new WikiPage(page.getTitle(), revision.getText());
                     ParsedPage parsedPage = null;
                     try {
                         parsedPage = wikipediaPageParser.parsePage(wikiPage);
                         log.info("Parsed page: " + parsedPage.getTitle());
-                        String contextEntry = nifFormatter.generateContextEntry(parsedPage);
+                        Model contextEntry = nifFormatter.generateContextEntry(parsedPage);
                         outputFolderWriter.writeToFile(OutputFolderWriter.CONTEXT_FILENAME, contextEntry);
-                        String pageStructEntry = nifFormatter.generatePageStructureEntry(parsedPage);
+                        Model pageStructEntry = nifFormatter.generatePageStructureEntry(parsedPage);
                         outputFolderWriter.writeToFile(OutputFolderWriter.STRUCTURE_FILENAME, pageStructEntry);
                         String linksEntry = nifFormatter.generateLinksEntry(parsedPage);
                         outputFolderWriter.writeToFile(OutputFolderWriter.LINKS_FILENAME, linksEntry);
@@ -114,9 +122,12 @@ public class XmlDumpParser {
                     pageString.append(line).append(System.lineSeparator());
                 }
             }
+            Instant finish = Instant.now();
+            long timeElapsed = Duration.between(parsingStart, finish).toSeconds();
+
             int total = Math.max(success + failure, 1);
             double successRate = 100 * (success / (double) total);
-            log.info(String.format("Total pages parsed: %d. Success rate: %.2f%%", total, successRate));
+            log.info(String.format("Total pages parsed: %d. Success rate: %.2f%%. Seconds passed: %d", total, successRate, timeElapsed));
         } finally {
             LineIterator.closeQuietly(it);
         }
@@ -129,5 +140,9 @@ public class XmlDumpParser {
 
     private Page deserializePage(String pageString) throws IOException {
         return xmlMapper.readValue(pageString, Page.class);
+    }
+
+    private boolean isPageRedirect(Page page){
+        return page.getRevision().getText().contains("#REDIRECT");
     }
 }

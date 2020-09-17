@@ -28,14 +28,15 @@ public class XmlDumpService {
         parser.iterativeParseXmlDump(inputFilePath, outputFolder);
     }
 
-    public String getNifContext(){
-        Map<String, ParsedPage> pageMap = pageStorage.getPageMap();
-        StringBuilder output = new StringBuilder();
-        System.out.println(pageMap.size());
-        for(ParsedPage page : pageMap.values()) {
-            output.append(nifFormatter.generateContextEntry(page));
-        }
-        return output.toString();
-    }
+    // was used in the service previously
+//    public String getNifContext(){
+//        Map<String, ParsedPage> pageMap = pageStorage.getPageMap();
+//        StringBuilder output = new StringBuilder();
+//        System.out.println(pageMap.size());
+//        for(ParsedPage page : pageMap.values()) {
+//            output.append(nifFormatter.generateContextEntry(page));
+//        }
+//        return output.toString();
+//    }
 
 }

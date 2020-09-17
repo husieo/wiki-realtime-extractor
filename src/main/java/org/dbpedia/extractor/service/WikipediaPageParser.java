@@ -10,6 +10,9 @@ import org.dbpedia.extractor.service.transformer.XmlTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -42,6 +45,7 @@ public class WikipediaPageParser {
         tagsToRemove.add("{{");
         tagsToRemove.add("<!--");
         tagsToRemove.add("<ref>");
+        tagsToRemove.add("&lt;ref&gt;");
         tagsToRemove.add("{|");
         this.contextLanguageTransformer = contextLanguageTransformer;
     }
@@ -49,31 +53,35 @@ public class WikipediaPageParser {
     public ParsedPage parsePage(WikiPage page) throws ParsingException {
         ParsedPage parsedPage = new ParsedPage();
         String text = page.getText();
-        text = removeInfobox(text);
-        text = removeInfoObjects(text, "[[File");
-        text = removeInfoObjects(text, "[[Image");
-        text = removeInfoObjects(text, "[[Datei");
-        text = removeApostrophes(text);
-        wikiTagsRemover.setLanguageFooterRemover(languageIdentifierBean.getLanguage());
-        text = wikiTagsRemover.fixUnitConversion(text);
-        text = wikiTagsRemover.removeEmphasis(text);
-        text = wikiTagsRemover.removeGallery(text);
-        text = wikiTagsRemover.removeHtmlComments(text);
-        text = wikiTagsRemover.removeIndentation(text);
-        text = wikiTagsRemover.removeMath(text);
-        text = wikiTagsRemover.removeNoToc(text);
-        text = wikiTagsRemover.removeParentheticals(text);
-        text = wikiTagsRemover.removeFooter(text);
-        text = wikiTagsRemover.removeCategoryLinks(text);
-        text = wikiTagsRemover.removeCites(text);
-        // some HTML entities are doubly encoded.
-        text = StringEscapeUtils.unescapeHtml4(StringEscapeUtils.unescapeHtml4(text));
-        text = wikiTagsRemover.removeHtmlTags(text);
-        page.setText(text);
-        parsedPage.setWikiPage(page);
-        parsedPage.setStructureRoot(buildPageStructure(page));
-        Context context = new Context(createContext(parsedPage.getStructureRoot()));
-        parsedPage.setContext(context);
+        try {
+            text = removeInfobox(text);
+            text = removeInfoObjects(text, "[[File");
+            text = removeInfoObjects(text, "[[Image");
+            text = removeInfoObjects(text, "[[Datei");
+            text = removeApostrophes(text);
+            wikiTagsRemover.setLanguageFooterRemover(languageIdentifierBean.getLanguage());
+            text = wikiTagsRemover.fixUnitConversion(text);
+            text = wikiTagsRemover.removeEmphasis(text);
+            text = wikiTagsRemover.removeGallery(text);
+            text = wikiTagsRemover.removeHtmlComments(text);
+            text = wikiTagsRemover.removeIndentation(text);
+            text = wikiTagsRemover.removeMath(text);
+            text = wikiTagsRemover.removeNoToc(text);
+            text = wikiTagsRemover.removeParentheticals(text);
+            text = wikiTagsRemover.removeFooter(text);
+            text = wikiTagsRemover.removeCategoryLinks(text);
+            text = wikiTagsRemover.removeCites(text);
+            // some HTML entities are doubly encoded.
+            text = StringEscapeUtils.unescapeHtml4(StringEscapeUtils.unescapeHtml4(text));
+            text = wikiTagsRemover.removeHtmlTags(text);
+            page.setText(text);
+            parsedPage.setWikiPage(page);
+            parsedPage.setStructureRoot(buildPageStructure(page));
+            Context context = new Context(createContext(parsedPage.getStructureRoot()));
+            parsedPage.setContext(context);
+        } catch(StringIndexOutOfBoundsException e){
+            throw new ParsingException(e.getMessage());
+        }
         return parsedPage;
     }
 
@@ -174,8 +182,10 @@ public class WikipediaPageParser {
 
     private Link parseLink(String linkText) {
         LinkType linkType = determineLinkType(linkText);
+        String linkIdentRef = getLinkIdentRef(linkText);
         String linkAnchor = getLinkAnchor(linkText);
         Link link = new Link(linkType, linkAnchor);
+        link.setTaIdentRef(linkIdentRef);
         return link;
     }
 
@@ -188,6 +198,19 @@ public class WikipediaPageParser {
             linkType = LinkType.PHRASE;
         }
         return linkType;
+    }
+
+    private String getLinkIdentRef(String link) {
+        String result = link;
+        String[] linkArray = result.split("\\|");
+        result = String.format("%s", linkArray[0]);
+        result = result.replaceAll(" ","_");
+        try {
+            result = URLEncoder.encode(result, StandardCharsets.UTF_8.toString());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     private String getLinkAnchor(String link) {
@@ -225,7 +248,7 @@ public class WikipediaPageParser {
      * @param text input text
      * @return text with removed files
      */
-    private String removeInfoObjects(String text, String startPattern) {
+    private String removeInfoObjects(String text, String startPattern) throws ParsingException {
         String figureStart = "[[";
         String figureEnd = "]]";
         int i = 0;
@@ -235,6 +258,9 @@ public class WikipediaPageParser {
             i = fileStart;
             while (parenthesesCounter > 0) {
                 i++;
+                if(i + figureEnd.length() >= text.length()){
+                    throw  new ParsingException("Infobox ending not found");
+                }
                 String testSubStr = text.substring(i, i + figureEnd.length());
                 if (testSubStr.equals(figureStart)) {
                     parenthesesCounter++;

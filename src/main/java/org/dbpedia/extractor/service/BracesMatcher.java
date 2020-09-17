@@ -19,6 +19,7 @@ public class BracesMatcher {
         matchingBraces.put("{{", "}}");
         matchingBraces.put("<!--", "-->");
         matchingBraces.put("<ref>", "</ref>");
+        matchingBraces.put("&lt;ref&gt;", "&lt;/ref&gt;");
         matchingBraces.put("{|", "|}");
         matchingBraces.put("[[","]]");
     }

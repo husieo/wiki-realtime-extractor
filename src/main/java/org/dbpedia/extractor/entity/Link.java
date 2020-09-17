@@ -24,6 +24,9 @@ public class Link {
     private String anchorOf;
 
     @ToString.Exclude
+    private String taIdentRef;
+
+    @ToString.Exclude
     private Paragraph superString;
 
     public String getNifFormat(Context context){

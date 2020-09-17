@@ -3,7 +3,7 @@ Prerequisites: mvn and JDK 1.8 installed.
 Submit the XML dump to process via sh script(outputs to /output folder):
 
 ```
-   ./parse_xml_dump.sh documents/xml_test_page.xml --language=ENGLISH --clean
+   ./parse_xml_dump.sh documents/xml_test_page.xml --language=ENGLISH --clean -o=output
 ```
 
 Possible command line arguments:
@@ -15,6 +15,11 @@ Possible command line arguments:
                     FRENCH, ITALIAN, RUSSIAN, SPANISH
   -o, --output=<outputPath>
                   The NIF output folder
+```
+
+Larger xml dump example:
+```
+   ./parse_xml_dump.sh documents/short_test_100k.xml --language=ENGLISH --clean -o=output
 ```
 
 

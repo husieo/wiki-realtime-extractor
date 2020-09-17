@@ -93,7 +93,7 @@ public class WikiTagsRemover {
         while (s.contains(citesStart)) {
             int citeStartIndex = s.indexOf(citesStart);
             i = BracesMatcher.findMatchingBracesIndex(s,figureStart, citeStartIndex);
-            s = s.substring(0, citeStartIndex) + s.substring(i + figureEnd.length() + 1);
+            s = s.substring(0, citeStartIndex) + s.substring(i + figureEnd.length());
         }
         return s;
     }

@@ -1,5 +1,7 @@
 package org.dbpedia.extractor.writer;
 
+import org.apache.jena.rdf.model.Model;
+
 import java.io.*;
 import java.nio.file.Files;
 
@@ -49,6 +51,21 @@ public class OutputFolderWriter {
             fw = new FileWriter(fout.toPath().toString(), true);
             bw = new BufferedWriter(fw);
             bw.write(text);
+            bw.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeToFile(String fileName, Model model) {
+        File fout = new File(outputFolder + "/" + fileName);
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter(fout.toPath().toString(), true);
+            bw = new BufferedWriter(fw);
+            model.write(bw, "NTRIPLE");
             bw.close();
             fw.close();
         } catch (IOException e) {
