@@ -109,7 +109,7 @@ public class XmlDumpParser {
                         outputFolderWriter.writeToFile(OutputFolderWriter.CONTEXT_FILENAME, contextEntry);
                         Model pageStructEntry = nifFormatter.generatePageStructureEntry(parsedPage);
                         outputFolderWriter.writeToFile(OutputFolderWriter.STRUCTURE_FILENAME, pageStructEntry);
-                        String linksEntry = nifFormatter.generateLinksEntry(parsedPage);
+                        Model linksEntry = nifFormatter.generateLinksEntry(parsedPage);
                         outputFolderWriter.writeToFile(OutputFolderWriter.LINKS_FILENAME, linksEntry);
                         success++;
                     } catch (ParsingException e) {

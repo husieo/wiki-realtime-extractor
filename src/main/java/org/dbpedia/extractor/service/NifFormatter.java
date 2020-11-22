@@ -87,11 +87,11 @@ public class NifFormatter {
         return pageStructureEntry;
     }
 
-    public String generateLinksEntry(ParsedPage parsedPage) {
-        StringBuilder linksEntry = new StringBuilder();
+    public Model generateLinksEntry(ParsedPage parsedPage) {
+        Model linksEntry = ModelFactory.createDefaultModel();
         pageTitle = parsedPage.getTitle();
-        linksEntry.append(generateLinkNodeEntry(parsedPage));
-        return linksEntry.toString();
+        linksEntry.add(generateLinkNodeEntry(parsedPage));
+        return linksEntry;
     }
 
     private Model generateNodeEntry(Subdivision node) {
@@ -182,8 +182,8 @@ public class NifFormatter {
         return nodeEntry;
     }
 
-    public String generateLinkNodeEntry(ParsedPage parsedPage) {
-        StringBuilder nodeEntry = new StringBuilder();
+    public Model generateLinkNodeEntry(ParsedPage parsedPage) {
+        Model nodeEntry = ModelFactory.createDefaultModel();
         String articleTitle = parsedPage.getTitle();
         Stack<Subdivision> nodeStack = new Stack<>();
         nodeStack.push(parsedPage.getStructureRoot());
@@ -204,28 +204,33 @@ public class NifFormatter {
                     LinkType linkType = link.getLinkType();
                     String dbPediaLinkUrl = getDbpediaUrl(articleTitle, String.format("%s_%s_%s",
                             linkType.getTypeLabel(), linkBeginIndexString, linkEndIndexString));
+
+                    Resource dbPediaLinkResource = nodeEntry.createResource(dbPediaLinkUrl);
+                    Property rdfSyntaxProperty = nodeEntry.createProperty(RDF_SYNTAX_TYPE);
+
+
                     // Link Type NIF
-                    nodeEntry.append(String.format("%s <%s> <%s#%s> .%s",
-                            dbPediaLinkUrl, RDF_SYNTAX_TYPE, PERSISTENCE_ONTOLOGY_LINK,
-                            linkType.getCapitalizedTypeLabel(), System.lineSeparator()));
+                    dbPediaLinkResource.addProperty(rdfSyntaxProperty, getPersistenceOntologyUrl(linkType.getCapitalizedTypeLabel()));
+
                     // Reference Context
-                    nodeEntry.append(String.format("%s <%s> %s .%s",
-                            dbPediaLinkUrl, getPersistenceOntologyUrl(REFERENCE_CONTEXT), dbPediaContextUrl, System.lineSeparator()));
+                    Property referenceContextProperty = nodeEntry.createProperty(getPersistenceOntologyUrl(REFERENCE_CONTEXT));
+                    dbPediaLinkResource.addProperty(referenceContextProperty, dbPediaContextUrl);
                     //NIF Indexes
-                    nodeEntry.append(String.format("%s <%s> %s .%s",
-                            dbPediaLinkUrl, getPersistenceOntologyUrl(BEGIN_INDEX), getIndexValue(linkBeginIndex), System.lineSeparator()));
-                    nodeEntry.append(String.format("%s <%s> %s .%s",
-                            dbPediaLinkUrl, getPersistenceOntologyUrl(END_INDEX), getIndexValue(linkEndIndex), System.lineSeparator()));
+                    Property beginIndexProperty = nodeEntry.createProperty(getPersistenceOntologyUrl(BEGIN_INDEX));
+                    dbPediaLinkResource.addProperty(beginIndexProperty, nodeEntry.createTypedLiteral(linkBeginIndex, XSDDatatype.XSDnonNegativeInteger));
+
+                    Property endIndexProperty = nodeEntry.createProperty(getPersistenceOntologyUrl(END_INDEX));
+                    dbPediaLinkResource.addProperty(endIndexProperty, nodeEntry.createTypedLiteral(linkEndIndex, XSDDatatype.XSDnonNegativeInteger));
                     // Super String
-                    nodeEntry.append(String.format("%s <%s> %s .%s",
-                            dbPediaLinkUrl, getPersistenceOntologyUrl(SUPER_STRING), dbPediaParagraphUrl, System.lineSeparator()));
+                    Property superStringProperty = nodeEntry.createProperty(getPersistenceOntologyUrl(SUPER_STRING));
+                    dbPediaLinkResource.addProperty(superStringProperty, dbPediaParagraphUrl);
                     // taIdentRef
-                    String dbPediaIdentRef = String.format("<%s/%s>", DBPEDIA_LINK, link.getTaIdentRef());
-                    nodeEntry.append(String.format("%s <%s> %s .%s",
-                            dbPediaLinkUrl, TA_IDENT_REF, dbPediaIdentRef, System.lineSeparator()));
+                    String dbPediaIdentRef = String.format("%s/%s", DBPEDIA_LINK, link.getTaIdentRef());
+                    Property taIdentRefProperty = nodeEntry.createProperty(TA_IDENT_REF);
+                    dbPediaLinkResource.addProperty(taIdentRefProperty, dbPediaIdentRef);
                     // anchorOf
-                    nodeEntry.append(String.format("%s <%s> \"%s\" .%s",
-                            dbPediaLinkUrl, getPersistenceOntologyUrl("anchorOf"), link.getAnchorOf(), System.lineSeparator()));
+                    Property anchorOfProperty = nodeEntry.createProperty(getPersistenceOntologyUrl("anchorOf"));
+                    dbPediaLinkResource.addProperty(anchorOfProperty, link.getAnchorOf());
                 }
             }
 
@@ -236,7 +241,7 @@ public class NifFormatter {
             }
             Collections.reverse(children);
         }
-        return nodeEntry.toString();
+        return nodeEntry;
     }
 
     private String getDbpediaUrl(String title, String nifType) {
