@@ -16188,3 +16188,10 @@
 2020-11-21 16:36:25 INFO  XmlDumpParser:107 - Parsed page: Alan Smithee
 2020-11-21 16:36:26 INFO  XmlDumpParser:107 - Parsed page: Actinium
 2020-11-21 16:36:26 INFO  XmlDumpParser:130 - Total pages parsed: 2. Success rate: 100.00%. Seconds passed: 0
+2020-11-22 14:18:22 DEBUG SpringBootConfig:20 - Creating async executor
+2020-11-22 14:18:23 INFO  XmlDumpParser:107 - Parsed page: Alan Smithee
+2020-11-22 14:18:23 INFO  XmlDumpParser:107 - Parsed page: Actinium
+2020-11-22 14:18:23 INFO  XmlDumpParser:130 - Total pages parsed: 2. Success rate: 100.00%. Seconds passed: 0
+2020-11-23 23:41:45 DEBUG SpringBootConfig:20 - Creating async executor
+2020-11-23 23:41:46 INFO  XmlDumpParser:107 - Parsed page: Anarchism
+2020-11-23 23:41:46 INFO  XmlDumpParser:130 - Total pages parsed: 1. Success rate: 100.00%. Seconds passed: 0
