@@ -1,0 +1,70 @@
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: thesis_main.aux
+The style file: iso690.bst.bst
+Database file #1: ref.bib
+Warning--entry type for "dbpedia_live_extraction" isn't style-file defined
+--line 354 of file ref.bib
+Warning--I didn't find a database entry for "lst:olia-example"
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Name 1 in "Sebastian Hellmann, Jens Lehmann, Sören Auer, and Martin Brümmer" has a comma at the end for entry nlp_cite
+while executing---line 1550 of file iso690.bst.bst
+Warning--to sort, need author or key in nif_core_ontology
+Warning--to sort, need author or key in DBpedia_facts
+Warning--to sort, need author or key in picocli_library
+Warning--to sort, need author or key in intellij_link
+Warning--to sort, need author or key in java_dev_ecosystem
+Warning--to sort, need author or key in maven_project
+Warning--to sort, need author or key in dbpedia_url
+Warning--to sort, need author or key in ntriples_format
+Warning--to sort, need author or key in wikimedia_downloads
+Warning--to sort, need author or key in top_ten_wikis
+Warning--to sort, need author or key in rapper_utility
+Warning--empty pages in owl_reference
+Name 1 in "Sebastian Hellmann, Jens Lehmann, Sören Auer, and Martin Brümmer" has a comma at the end for entry nlp_cite
+while executing---line 1596 of file iso690.bst.bst
+Warning--empty pages in nlp_cite
+Warning--empty journal in nif_rdf
+Warning--empty year in nif_rdf
+You've used 19 entries,
+            3146 wiz_defined-function locations,
+            732 strings with 7552 characters,
+and the built_in function-call counts, 5203 in all, are:
+= -- 375
+> -- 74
+< -- 1
++ -- 40
+- -- 18
+* -- 222
+:= -- 525
+add.period$ -- 44
+call.type$ -- 19
+change.case$ -- 53
+chr.to.int$ -- 0
+cite$ -- 34
+duplicate$ -- 520
+empty$ -- 599
+format.name$ -- 19
+if$ -- 1160
+int.to.chr$ -- 0
+int.to.str$ -- 19
+missing$ -- 121
+newline$ -- 80
+num.names$ -- 16
+pop$ -- 368
+preamble$ -- 1
+purify$ -- 47
+quote$ -- 0
+skip$ -- 218
+stack$ -- 0
+substring$ -- 128
+swap$ -- 223
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 76
+warning$ -- 15
+while$ -- 19
+width$ -- 21
+write$ -- 147
+(There were 2 error messages)

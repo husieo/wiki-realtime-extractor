@@ -1,0 +1,86 @@
+\begin{thebibliography}{10}
+\providecommand{\biburl}[1]{\url{#1}}
+\providecommand{\urlprefix}{Available from: }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\eprint}[2][]{\biburl{#2}}
+
+\bibitem{Berners_QA}
+Berners-Lee, T. Q\&A with Tim Berners-Lee {[online]}. {April} {2007}.
+\urlprefix\biburl{https://www.bloomberg.com/news/articles/2007-04-09/q-and-a-with-tim-berners-leebusinessweek-business-news-stock-market-and-financial-advice}
+
+\bibitem{Berners_LinkedData}
+Berners-Lee, T. Linked Data {[online]}. {July} {2006}.
+\urlprefix\biburl{https://www.w3.org/DesignIssues/LinkedData.html}
+
+\bibitem{owl_reference}
+Sean~Bechofer, F. v.~H. OWL Web Ontology Language Reference. In \emph{W3C
+  Recommendation}, February 2004.
+
+\bibitem{rdf_query_lang_comparison}
+Peter~Haase, A.~E., Jeen~Broekstra. A Comparison of RDF Query Languages. In
+  \emph{AWSC: Asian Semantic Web Conference}, October 2004, pp. 502--517.
+
+\bibitem{nlp_cite}
+Sebastian~Hellmann, S.~A., Jens~Lehmann; Brümmer, M. Integrating NLP using
+  Linked Data. In \emph{12th International Semantic Web Conference}, Sydney,
+  Australia, October 2013.
+
+\bibitem{nif_rdf}
+E.~Wilde, M.~D. URI Fragment Identifiers for the text/plain Media Type.
+
+\bibitem{nif_core_ontology}
+NIF 2.0 Core Ontology {[online]}. {2020}.
+\urlprefix\biburl{https://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core/nif-core.html}
+
+\bibitem{DBpedia_facts}
+DBpedia Facts \& Figures {[online]}. {September} {2020}.
+\urlprefix\biburl{https://dbpediawww.informatik.uni-leipzig.de/about/facts-figures}
+
+\bibitem{dbpedia_live_extraction}
+Mohamed~Morsey, J.~L. DBpedia and the Live Extraction of Structured Data from
+  Wikipedia.
+
+\bibitem{REST_Design}
+Kapadnis, J. REST: Good Practices for API Design{[online]}. {March} {2018}.
+\urlprefix\biburl{https://medium.com/hashmapinc/rest-good-practices-for-api-design-881439796dc9}
+
+\bibitem{picocli_library}
+Picocli - command line interface library {[online]}. {2020}.
+\urlprefix\biburl{https://picocli.info/}
+
+\bibitem{intellij_link}
+IntelliJ IDEA - Capable and Ergonomic IDE {[online]}. {2020}.
+\urlprefix\biburl{https://www.jetbrains.com/idea/}
+
+\bibitem{java_dev_ecosystem}
+JetBrains Java development ecosystem research {[online]}. {2020}.
+\urlprefix\biburl{https://www.jetbrains.com/lp/devecosystem-2020}
+
+\bibitem{maven_project}
+Apache Maven Project {[online]}. {2020}.
+\urlprefix\biburl{https://maven.apache.org/pom.html}
+
+\bibitem{dbpedia_url}
+DBpedia Project Link {[online]}. {2020}.
+\urlprefix\biburl{https://wiki.dbpedia.org/}
+
+\bibitem{ntriples_format}
+N-Triples - a line-based syntax for an RDF graph {[online]}. {2020}.
+\urlprefix\biburl{https://www.w3.org/TR/n-triples/}
+
+\bibitem{wikimedia_downloads}
+Wikimedia Downloads {[online]}. {2020}.
+\urlprefix\biburl{https://www.w3.org/TR/n-triples/}
+
+\bibitem{top_ten_wikis}
+Top Ten Wikipedias {[online]}. {2020}.
+\urlprefix\biburl{https://meta.wikimedia.org/wiki/Top_Ten_Wikipedias}
+
+\bibitem{rapper_utility}
+Raptor RDF Syntax Library - Raptor RDF parser utility {[online]}. {2014}.
+\urlprefix\biburl{http://librdf.org/raptor/rapper.html}
+
+\end{thebibliography}

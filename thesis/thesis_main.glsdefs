@@ -1,0 +1,960 @@
+\ifglsentryexists{LOD}{}%
+{%
+\gls@defglossaryentry{LOD}%
+{%
+name={LOD},%
+sort={LOD},%
+type={acronym},%
+first={Linked Open Data\glsspace (LOD)},%
+firstplural={Linked Open Datas\glsspace (LODs)},%
+text={LOD},%
+plural={LODs},%
+description={Linked Open Data},%
+descriptionplural={Linked Open Data\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Linked Open Data},%
+longplural={Linked Open Datas},%
+short={LOD},%
+shortplural={LODs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{RAM}{}%
+{%
+\gls@defglossaryentry{RAM}%
+{%
+name={RAM},%
+sort={RAM},%
+type={acronym},%
+first={Random Access Memory\glsspace (RAM)},%
+firstplural={Random Access Memorys\glsspace (RAMs)},%
+text={RAM},%
+plural={RAMs},%
+description={Random Access Memory},%
+descriptionplural={Random Access Memory\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Random Access Memory},%
+longplural={Random Access Memorys},%
+short={RAM},%
+shortplural={RAMs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CLI}{}%
+{%
+\gls@defglossaryentry{CLI}%
+{%
+name={CLI},%
+sort={CLI},%
+type={acronym},%
+first={Command Line Interface\glsspace (CLI)},%
+firstplural={Command Line Interfaces\glsspace (CLIs)},%
+text={CLI},%
+plural={CLIs},%
+description={Command Line Interface},%
+descriptionplural={Command Line Interface\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Command Line Interface},%
+longplural={Command Line Interfaces},%
+short={CLI},%
+shortplural={CLIs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{W3C}{}%
+{%
+\gls@defglossaryentry{W3C}%
+{%
+name={W3C},%
+sort={W3C},%
+type={acronym},%
+first={World Wide Web Consortium\glsspace (W3C)},%
+firstplural={World Wide Web Consortiums\glsspace (W3Cs)},%
+text={W3C},%
+plural={W3Cs},%
+description={World Wide Web Consortium},%
+descriptionplural={World Wide Web Consortium\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={World Wide Web Consortium},%
+longplural={World Wide Web Consortiums},%
+short={W3C},%
+shortplural={W3Cs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{FR}{}%
+{%
+\gls@defglossaryentry{FR}%
+{%
+name={FR},%
+sort={FR},%
+type={acronym},%
+first={Functional Requirement\glsspace (FR)},%
+firstplural={Functional Requirements\glsspace (FRs)},%
+text={FR},%
+plural={FRs},%
+description={Functional Requirement},%
+descriptionplural={Functional Requirement\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Functional Requirement},%
+longplural={Functional Requirements},%
+short={FR},%
+shortplural={FRs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{XML}{}%
+{%
+\gls@defglossaryentry{XML}%
+{%
+name={XML},%
+sort={XML},%
+type={acronym},%
+first={Extensible Markup Language\glsspace (XML)},%
+firstplural={Extensible Markup Languages\glsspace (XMLs)},%
+text={XML},%
+plural={XMLs},%
+description={Extensible Markup Language},%
+descriptionplural={Extensible Markup Language\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Extensible Markup Language},%
+longplural={Extensible Markup Languages},%
+short={XML},%
+shortplural={XMLs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{NLP}{}%
+{%
+\gls@defglossaryentry{NLP}%
+{%
+name={NLP},%
+sort={NLP},%
+type={acronym},%
+first={Natural Language Processing\glsspace (NLP)},%
+firstplural={Natural Language Processings\glsspace (NLPs)},%
+text={NLP},%
+plural={NLPs},%
+description={Natural Language Processing},%
+descriptionplural={Natural Language Processing\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Natural Language Processing},%
+longplural={Natural Language Processings},%
+short={NLP},%
+shortplural={NLPs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{NIF}{}%
+{%
+\gls@defglossaryentry{NIF}%
+{%
+name={NIF},%
+sort={NIF},%
+type={acronym},%
+first={\gls {NLP} Interchange Format\glsspace (NIF)},%
+firstplural={\gls {NLP} Interchange Formats\glsspace (NIFs)},%
+text={NIF},%
+plural={NIFs},%
+description={\gls {NLP} Interchange Format},%
+descriptionplural={\gls {NLP} Interchange Format\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\gls {NLP} Interchange Format},%
+longplural={\gls {NLP} Interchange Formats},%
+short={NIF},%
+shortplural={NIFs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{RDF}{}%
+{%
+\gls@defglossaryentry{RDF}%
+{%
+name={RDF},%
+sort={RDF},%
+type={acronym},%
+first={Resource Description Framework\glsspace (RDF)},%
+firstplural={Resource Description Frameworks\glsspace (RDFs)},%
+text={RDF},%
+plural={RDFs},%
+description={Resource Description Framework},%
+descriptionplural={Resource Description Framework\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Resource Description Framework},%
+longplural={Resource Description Frameworks},%
+short={RDF},%
+shortplural={RDFs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{OWL}{}%
+{%
+\gls@defglossaryentry{OWL}%
+{%
+name={OWL},%
+sort={OWL},%
+type={acronym},%
+first={Web Ontology Language\glsspace (OWL)},%
+firstplural={Web Ontology Languages\glsspace (OWLs)},%
+text={OWL},%
+plural={OWLs},%
+description={Web Ontology Language},%
+descriptionplural={Web Ontology Language\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Web Ontology Language},%
+longplural={Web Ontology Languages},%
+short={OWL},%
+shortplural={OWLs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{SKOS}{}%
+{%
+\gls@defglossaryentry{SKOS}%
+{%
+name={SKOS},%
+sort={SKOS},%
+type={acronym},%
+first={Simple Knowledge Organization System\glsspace (SKOS)},%
+firstplural={Simple Knowledge Organization Systems\glsspace (SKOSs)},%
+text={SKOS},%
+plural={SKOSs},%
+description={Simple Knowledge Organization System},%
+descriptionplural={Simple Knowledge Organization System\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Simple Knowledge Organization System},%
+longplural={Simple Knowledge Organization Systems},%
+short={SKOS},%
+shortplural={SKOSs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{SPARQL}{}%
+{%
+\gls@defglossaryentry{SPARQL}%
+{%
+name={SPARQL},%
+sort={SPARQL},%
+type={acronym},%
+first={SPARQL Protocol and RDF Query Language)\glsspace (SPARQL)},%
+firstplural={SPARQL Protocol and RDF Query Language)s\glsspace (SPARQLs)},%
+text={SPARQL},%
+plural={SPARQLs},%
+description={SPARQL Protocol and RDF Query Language)},%
+descriptionplural={SPARQL Protocol and RDF Query Language)\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={SPARQL Protocol and RDF Query Language)},%
+longplural={SPARQL Protocol and RDF Query Language)s},%
+short={SPARQL},%
+shortplural={SPARQLs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{URI}{}%
+{%
+\gls@defglossaryentry{URI}%
+{%
+name={URI},%
+sort={URI},%
+type={acronym},%
+first={Uniform Resource Identifier\glsspace (URI)},%
+firstplural={Uniform Resource Identifiers\glsspace (URIs)},%
+text={URI},%
+plural={URIs},%
+description={Uniform Resource Identifier},%
+descriptionplural={Uniform Resource Identifier\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Uniform Resource Identifier},%
+longplural={Uniform Resource Identifiers},%
+short={URI},%
+shortplural={URIs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{HTTP}{}%
+{%
+\gls@defglossaryentry{HTTP}%
+{%
+name={HTTP},%
+sort={HTTP},%
+type={acronym},%
+first={Hypertext Transfer Protocol\glsspace (HTTP)},%
+firstplural={Hypertext Transfer Protocols\glsspace (HTTPs)},%
+text={HTTP},%
+plural={HTTPs},%
+description={Hypertext Transfer Protocol},%
+descriptionplural={Hypertext Transfer Protocol\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Hypertext Transfer Protocol},%
+longplural={Hypertext Transfer Protocols},%
+short={HTTP},%
+shortplural={HTTPs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{HTML}{}%
+{%
+\gls@defglossaryentry{HTML}%
+{%
+name={HTML},%
+sort={HTML},%
+type={acronym},%
+first={HyperText Markup Language\glsspace (HTML)},%
+firstplural={HyperText Markup Languages\glsspace (HTMLs)},%
+text={HTML},%
+plural={HTMLs},%
+description={HyperText Markup Language},%
+descriptionplural={HyperText Markup Language\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={HyperText Markup Language},%
+longplural={HyperText Markup Languages},%
+short={HTML},%
+shortplural={HTMLs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{WWW}{}%
+{%
+\gls@defglossaryentry{WWW}%
+{%
+name={WWW},%
+sort={WWW},%
+type={acronym},%
+first={World Wide Web\glsspace (WWW)},%
+firstplural={World Wide Webs\glsspace (WWWs)},%
+text={WWW},%
+plural={WWWs},%
+description={World Wide Web},%
+descriptionplural={World Wide Web\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={World Wide Web},%
+longplural={World Wide Webs},%
+short={WWW},%
+shortplural={WWWs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{DRY}{}%
+{%
+\gls@defglossaryentry{DRY}%
+{%
+name={DRY},%
+sort={DRY},%
+type={acronym},%
+first={Don't Repeat Yourself\glsspace (DRY)},%
+firstplural={Don't Repeat Yourselfs\glsspace (DRYs)},%
+text={DRY},%
+plural={DRYs},%
+description={Don't Repeat Yourself},%
+descriptionplural={Don't Repeat Yourself\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Don't Repeat Yourself},%
+longplural={Don't Repeat Yourselfs},%
+short={DRY},%
+shortplural={DRYs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{FOAF}{}%
+{%
+\gls@defglossaryentry{FOAF}%
+{%
+name={FOAF},%
+sort={FOAF},%
+type={acronym},%
+first={Friend Of A Friend\glsspace (FOAF)},%
+firstplural={Friend Of A Friends\glsspace (FOAFs)},%
+text={FOAF},%
+plural={FOAFs},%
+description={Friend Of A Friend},%
+descriptionplural={Friend Of A Friend\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Friend Of A Friend},%
+longplural={Friend Of A Friends},%
+short={FOAF},%
+shortplural={FOAFs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{RSS}{}%
+{%
+\gls@defglossaryentry{RSS}%
+{%
+name={RSS},%
+sort={RSS},%
+type={acronym},%
+first={\gls {RDF} Site Summary\glsspace (RSS)},%
+firstplural={\gls {RDF} Site Summarys\glsspace (RSSs)},%
+text={RSS},%
+plural={RSSs},%
+description={\gls {RDF} Site Summary},%
+descriptionplural={\gls {RDF} Site Summary\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\gls {RDF} Site Summary},%
+longplural={\gls {RDF} Site Summarys},%
+short={RSS},%
+shortplural={RSSs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CLI}{}%
+{%
+\gls@defglossaryentry{CLI}%
+{%
+name={CLI},%
+sort={CLI},%
+type={acronym},%
+first={Command Line Interface\glsspace (CLI)},%
+firstplural={Command Line Interfaces\glsspace (CLIs)},%
+text={CLI},%
+plural={CLIs},%
+description={Command Line Interface},%
+descriptionplural={Command Line Interface\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Command Line Interface},%
+longplural={Command Line Interfaces},%
+short={CLI},%
+shortplural={CLIs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{GUI}{}%
+{%
+\gls@defglossaryentry{GUI}%
+{%
+name={GUI},%
+sort={GUI},%
+type={acronym},%
+first={Graphic User Interface\glsspace (GUI)},%
+firstplural={Graphic User Interfaces\glsspace (GUIs)},%
+text={GUI},%
+plural={GUIs},%
+description={Graphic User Interface},%
+descriptionplural={Graphic User Interface\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Graphic User Interface},%
+longplural={Graphic User Interfaces},%
+short={GUI},%
+shortplural={GUIs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{REST}{}%
+{%
+\gls@defglossaryentry{REST}%
+{%
+name={REST},%
+sort={REST},%
+type={acronym},%
+first={Representational state transfer\glsspace (REST)},%
+firstplural={Representational state transfers\glsspace (RESTs)},%
+text={REST},%
+plural={RESTs},%
+description={Representational state transfer},%
+descriptionplural={Representational state transfer\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Representational state transfer},%
+longplural={Representational state transfers},%
+short={REST},%
+shortplural={RESTs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{API}{}%
+{%
+\gls@defglossaryentry{API}%
+{%
+name={API},%
+sort={API},%
+type={acronym},%
+first={Application Programming interface\glsspace (API)},%
+firstplural={Application Programming interfaces\glsspace (APIs)},%
+text={API},%
+plural={APIs},%
+description={Application Programming interface},%
+descriptionplural={Application Programming interface\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Application Programming interface},%
+longplural={Application Programming interfaces},%
+short={API},%
+shortplural={APIs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{NLP}{}%
+{%
+\gls@defglossaryentry{NLP}%
+{%
+name={NLP},%
+sort={NLP},%
+type={acronym},%
+first={Natural Language Processing\glsspace (NLP)},%
+firstplural={Natural Language Processings\glsspace (NLPs)},%
+text={NLP},%
+plural={NLPs},%
+description={Natural Language Processing},%
+descriptionplural={Natural Language Processing\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Natural Language Processing},%
+longplural={Natural Language Processings},%
+short={NLP},%
+shortplural={NLPs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{NIF}{}%
+{%
+\gls@defglossaryentry{NIF}%
+{%
+name={NIF},%
+sort={NIF},%
+type={acronym},%
+first={\gls {NLP} Interchange Format\glsspace (NIF)},%
+firstplural={\gls {NLP} Interchange Formats\glsspace (NIFs)},%
+text={NIF},%
+plural={NIFs},%
+description={\gls {NLP} Interchange Format},%
+descriptionplural={\gls {NLP} Interchange Format\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\gls {NLP} Interchange Format},%
+longplural={\gls {NLP} Interchange Formats},%
+short={NIF},%
+shortplural={NIFs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{JVM}{}%
+{%
+\gls@defglossaryentry{JVM}%
+{%
+name={JVM},%
+sort={JVM},%
+type={acronym},%
+first={Java Virtual Machine\glsspace (JVM)},%
+firstplural={Java Virtual Machines\glsspace (JVMs)},%
+text={JVM},%
+plural={JVMs},%
+description={Java Virtual Machine},%
+descriptionplural={Java Virtual Machine\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Java Virtual Machine},%
+longplural={Java Virtual Machines},%
+short={JVM},%
+shortplural={JVMs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{IDE}{}%
+{%
+\gls@defglossaryentry{IDE}%
+{%
+name={IDE},%
+sort={IDE},%
+type={acronym},%
+first={Integrated Development Environment\glsspace (IDE)},%
+firstplural={Integrated Development Environments\glsspace (IDEs)},%
+text={IDE},%
+plural={IDEs},%
+description={Integrated Development Environment},%
+descriptionplural={Integrated Development Environment\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Integrated Development Environment},%
+longplural={Integrated Development Environments},%
+short={IDE},%
+shortplural={IDEs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{POJO}{}%
+{%
+\gls@defglossaryentry{POJO}%
+{%
+name={POJO},%
+sort={POJO},%
+type={acronym},%
+first={Plain Old Java Object\glsspace (POJO)},%
+firstplural={Plain Old Java Objects\glsspace (POJOs)},%
+text={POJO},%
+plural={POJOs},%
+description={Plain Old Java Object},%
+descriptionplural={Plain Old Java Object\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Plain Old Java Object},%
+longplural={Plain Old Java Objects},%
+short={POJO},%
+shortplural={POJOs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{J2EE}{}%
+{%
+\gls@defglossaryentry{J2EE}%
+{%
+name={J2EE},%
+sort={J2EE},%
+type={acronym},%
+first={Java 2 Platform Enterprise Edition\glsspace (J2EE)},%
+firstplural={Java 2 Platform Enterprise Editions\glsspace (J2EEs)},%
+text={J2EE},%
+plural={J2EEs},%
+description={Java 2 Platform Enterprise Edition},%
+descriptionplural={Java 2 Platform Enterprise Edition\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Java 2 Platform Enterprise Edition},%
+longplural={Java 2 Platform Enterprise Editions},%
+short={J2EE},%
+shortplural={J2EEs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{JAXB}{}%
+{%
+\gls@defglossaryentry{JAXB}%
+{%
+name={JAXB},%
+sort={JAXB},%
+type={acronym},%
+first={Jakarta XML Binding\glsspace (JAXB)},%
+firstplural={Jakarta XML Bindings\glsspace (JAXBs)},%
+text={JAXB},%
+plural={JAXBs},%
+description={Jakarta XML Binding},%
+descriptionplural={Jakarta XML Binding\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Jakarta XML Binding},%
+longplural={Jakarta XML Bindings},%
+short={JAXB},%
+shortplural={JAXBs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CSV}{}%
+{%
+\gls@defglossaryentry{CSV}%
+{%
+name={CSV},%
+sort={CSV},%
+type={acronym},%
+first={Comma-separated values\glsspace (CSV)},%
+firstplural={Comma-separated valuess\glsspace (CSVs)},%
+text={CSV},%
+plural={CSVs},%
+description={Comma-separated values},%
+descriptionplural={Comma-separated values\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Comma-separated values},%
+longplural={Comma-separated valuess},%
+short={CSV},%
+shortplural={CSVs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{YAML}{}%
+{%
+\gls@defglossaryentry{YAML}%
+{%
+name={YAML},%
+sort={YAML},%
+type={acronym},%
+first={Yet ANother Markup Language\glsspace (YAML)},%
+firstplural={Yet ANother Markup Languages\glsspace (YAMLs)},%
+text={YAML},%
+plural={YAMLs},%
+description={Yet ANother Markup Language},%
+descriptionplural={Yet ANother Markup Language\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Yet ANother Markup Language},%
+longplural={Yet ANother Markup Languages},%
+short={YAML},%
+shortplural={YAMLs},%
+counter={page},%
+parent={},%
+%
+}%
+}%

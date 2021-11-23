@@ -1,0 +1,88 @@
+\glossarysection[\glossarytoctitle]{\glossarytitle}\glossarypreamble
+\begin{theglossary}\glossaryheader
+\glsgroupheading{A}\relax \glsresetentrylist %
+\glossentry{API}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{22\delimN 23}}}\glsgroupskip
+\glsgroupheading{C}\relax \glsresetentrylist %
+\glossentry{CLI}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{22}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{24\delimR 27}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{39}}}%
+\glossentry{CSV}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{32}}}\glsgroupskip
+\glsgroupheading{D}\relax \glsresetentrylist %
+\glossentry{DRY}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{7}}}\glsgroupskip
+\glsgroupheading{F}\relax \glsresetentrylist %
+\glossentry{FOAF}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{6}}}%
+\glossentry{FR}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{19}}}\glsgroupskip
+\glsgroupheading{G}\relax \glsresetentrylist %
+\glossentry{GUI}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{22}}}\glsgroupskip
+\glsgroupheading{H}\relax \glsresetentrylist %
+\glossentry{HTML}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{4}}}%
+\glossentry{HTTP}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{4}}}\glsgroupskip
+\glsgroupheading{I}\relax \glsresetentrylist %
+\glossentry{IDE}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{27}}}\glsgroupskip
+\glsgroupheading{J}\relax \glsresetentrylist %
+\glossentry{J2EE}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{29}}}%
+\glossentry{JAXB}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{32}}}%
+\glossentry{JVM}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{26}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{32}}}\glsgroupskip
+\glsgroupheading{N}\relax \glsresetentrylist %
+\glossentry{NIF}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{10\delimN 11}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{20}}}%
+\glossentry{NLP}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{10}}}\glsgroupskip
+\glsgroupheading{O}\relax \glsresetentrylist %
+\glossentry{OWL}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{3\delimN 4}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{10}}}\glsgroupskip
+\glsgroupheading{P}\relax \glsresetentrylist %
+\glossentry{POJO}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{29}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{32}}}\glsgroupskip
+\glsgroupheading{R}\relax \glsresetentrylist %
+\glossentry{RAM}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{24}}}%
+\glossentry{RDF}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{3\delimR 10}}}%
+\glossentry{REST}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{22\delimR 24}}}%
+\glossentry{RSS}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{6}}}\glsgroupskip
+\glsgroupheading{S}\relax \glsresetentrylist %
+\glossentry{SKOS}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{3}}}%
+\glossentry{SPARQL}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{3\delimN 4}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{9}}}\glsgroupskip
+\glsgroupheading{U}\relax \glsresetentrylist %
+\glossentry{URI}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{4}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{6\delimR 8}}}\glsgroupskip
+\glsgroupheading{W}\relax \glsresetentrylist %
+\glossentry{W3C}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{3}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{5}}}%
+\glossentry{WWW}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{7}}}\glsgroupskip
+\glsgroupheading{X}\relax \glsresetentrylist %
+\glossentry{XML}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{4}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{7}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{20}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{30}}}\glsgroupskip
+\glsgroupheading{Y}\relax \glsresetentrylist %
+\glossentry{YAML}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{32}}}%
+\end{theglossary}\glossarypostamble

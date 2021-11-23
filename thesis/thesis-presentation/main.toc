@@ -1,0 +1,8 @@
+\selectlanguage *{czech}
+\beamer@sectionintoc {1}{Thesis goals}{3}{0}{1}
+\beamer@sectionintoc {2}{Motivation}{4}{0}{2}
+\beamer@sectionintoc {3}{Sekce 1}{5}{0}{3}
+\beamer@sectionintoc {4}{Analýza}{7}{0}{4}
+\beamer@sectionintoc {5}{Realizace 1}{8}{0}{5}
+\beamer@sectionintoc {6}{Design neceho}{10}{0}{6}
+\beamer@sectionintoc {7}{Testování}{14}{0}{7}
