@@ -1,8 +1,11 @@
 \selectlanguage *{czech}
-\beamer@sectionintoc {1}{Thesis goals}{3}{0}{1}
-\beamer@sectionintoc {2}{Motivation}{4}{0}{2}
-\beamer@sectionintoc {3}{Sekce 1}{5}{0}{3}
-\beamer@sectionintoc {4}{Analýza}{7}{0}{4}
-\beamer@sectionintoc {5}{Realizace 1}{8}{0}{5}
-\beamer@sectionintoc {6}{Design neceho}{10}{0}{6}
-\beamer@sectionintoc {7}{Testování}{14}{0}{7}
+\beamer@sectionintoc {1}{Motivation}{3}{0}{1}
+\beamer@sectionintoc {2}{Thesis goals}{4}{0}{2}
+\beamer@sectionintoc {3}{Requirements}{5}{0}{3}
+\beamer@sectionintoc {4}{Implementation}{7}{0}{4}
+\beamer@sectionintoc {5}{Tools and Libraries}{9}{0}{5}
+\beamer@sectionintoc {6}{Dynamic Language Support}{10}{0}{6}
+\beamer@sectionintoc {7}{Testing}{11}{0}{7}
+\beamer@sectionintoc {8}{End-to-End Testing - Output validation}{12}{0}{8}
+\beamer@sectionintoc {9}{End-to-End Testing - Scale Testing}{13}{0}{9}
+\beamer@sectionintoc {10}{End-to-End Testing - Language Support}{14}{0}{10}

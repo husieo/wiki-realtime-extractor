@@ -1,0 +1,66 @@
+
+Motivations slide:
+
+DBpedia is a knowledge base  organized as an open
+    knowledge graph. DBpedia data is served as Linked Data, which opens a new
+    way to access the Web for applications: via browser, automated crawlers, or
+    complex SQL-like queries.
+For example, current technologies do not allow
+to combine information about cities, criminal rates, climate, and open job
+postings into one search. The goal of DBpedia is to enable such queries to
+happen.
+     Knowledge bases are growing up in importance as a Web and enterprise search
+engine. At the moment, knowledge bases cover only specific niches and are
+not useful outside of their primary purpose. As part of a broader DBpedia
+initiative, this thesis has an objective to structure information, store it
+in a machine-readable form, and provide better ways for information to be
+collected, organized, searched, and utilized.
+The creation of the Framework for Extraction of Wikipedia Articles Content
+is important as it will allow the DBpedia initiative to receive formatted
+article data from the Wikipedia on a regular basis.
+
+Thesis goals slide:
+
+
+DBpedia is a crowd-sourced community effort that aims at extraction of information from Wikipedia.
+Vast amounts of information are not yet extracted from the Wikipedia texts.
+The main goal of the thesis is to develop a framework for extraction of Wikipedia articles content
+, structure and annotations which can be further split into those subgoals:
+
+Total size of Wikipedia - only English XML dump takes up 16GB of space
+Incosistent structure of a general wiki page.
+A single article contains varying degree of information in different languages.
+
+The main problem, however, is the current size of Wikipedia. Only a full English
+Wikipedia dump containing only text and XML structures takes around
+16 GB of space. Therefore, a thesis should research the design and implementation
+of not only functional but an efficient parser with both horizontal and
+vertical scalability in mind.
+An additional challenge lies in the structure of a general wiki page. Not
+all pages and their components are structured in the same way. For example,
+some of the pages might have a line break in the middle of a citation link,
+that can be ambiguously interpreted as a new paragraph start. This can
+cause unexpected errors and exceptions during the parsing, and the goal of
+the project is also to minimize and gracefully handle such exceptions.
+
+General Workflow slide:
+The general data workflow of the Framework for Extraction of Wikipedia
+Articles is depicted on the slide:
+• Wikipedia: the main Wikipedia website is the primary sources of information.
+• Wikipedia XML dump: Wikipedia runs a daily database archivation
+process and releases all the archived data in the form of XML dumps.
+These dumps can then be downloaded, unpacked and fed to the framework.
+• Framework for Extraction of Wikipedia Articles: the framework processes
+the XML dump to get the context, structure and links and provide
+several options for the output.
+• N-Triples Dumps: one of the outputs is to write the processed information
+to text files as N-Triples
+• REST API endpoints: the other option is to provide the REST API
+endpoints for more convenient view of the output.
+
+Implementation:
+The framework is written as a Java project to allow it to be potentially integrated with other DBPedia tools. However, the framework does not rely on common DBPedia libraries as those are being actively developed and instead uses other public and popular libraries. Project is split in several layers:
+	 Interface Layer - used for CLI and REST interface
+	 Logic Layer - used for XML processing of the incoming data
+	 Output Layer - used for tuning parameters for file output.
+	Due to the limitations imposed by the size of XML dumps, project does not use any database management and instead appends processed data to files.

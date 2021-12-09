@@ -1,7 +1,10 @@
-\BOOKMARK [2][]{Outline0.1}{Thesis\040goals}{}% 1
-\BOOKMARK [2][]{Outline0.2}{Motivation}{}% 2
-\BOOKMARK [2][]{Outline0.3}{Sekce\0401}{}% 3
-\BOOKMARK [2][]{Outline0.4}{Analýza}{}% 4
-\BOOKMARK [2][]{Outline0.5}{Realizace\0401}{}% 5
-\BOOKMARK [2][]{Outline0.6}{Design\040neceho}{}% 6
-\BOOKMARK [2][]{Outline0.7}{Testování}{}% 7
+\BOOKMARK [2][]{Outline0.1}{Motivation}{}% 1
+\BOOKMARK [2][]{Outline0.2}{Thesis\040goals}{}% 2
+\BOOKMARK [2][]{Outline0.3}{Requirements}{}% 3
+\BOOKMARK [2][]{Outline0.4}{Implementation}{}% 4
+\BOOKMARK [2][]{Outline0.5}{Tools\040and\040Libraries}{}% 5
+\BOOKMARK [2][]{Outline0.6}{Dynamic\040Language\040Support}{}% 6
+\BOOKMARK [2][]{Outline0.7}{Testing}{}% 7
+\BOOKMARK [2][]{Outline0.8}{End-to-End\040Testing\040-\040Output\040validation}{}% 8
+\BOOKMARK [2][]{Outline0.9}{End-to-End\040Testing\040-\040Scale\040Testing}{}% 9
+\BOOKMARK [2][]{Outline0.10}{End-to-End\040Testing\040-\040Language\040Support}{}% 10
