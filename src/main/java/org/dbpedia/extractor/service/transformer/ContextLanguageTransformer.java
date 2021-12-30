@@ -40,7 +40,7 @@ public class ContextLanguageTransformer implements XmlTransformer {
         String figureStart = "{{";
         int figureLength = figureStart.length();
         String figureEnd = "}}";
-        int i = 0;
+        int i;
         while (text.contains(languageStartPattern)) {
             int langStartIndex = text.indexOf(languageStartPattern);
             int parenthesesCounter = 1;

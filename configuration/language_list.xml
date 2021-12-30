@@ -7,6 +7,7 @@
         <footer>Further reading</footer>
         <footer>External Links</footer>
         <footer>Related pages</footer>
+        <isoLangCode>eng</isoLangCode>
     </language>
     <language>
         <langName>POLISH</langName>
@@ -15,6 +16,7 @@
         <footer>Linki zewnętrzne</footer>
         <footer>Uwagi</footer>
         <footer>Zobacz też</footer>
+        <isoLangCode>pol</isoLangCode>
     </language>
     <language>
         <langName>GERMAN</langName>
@@ -25,5 +27,6 @@
         <footer>Einzelnachweise</footer>
         <footer>Siehe auch</footer>
         <footer>Quellen</footer>
+        <isoLangCode>deu</isoLangCode>
     </language>
 </languageContainer>

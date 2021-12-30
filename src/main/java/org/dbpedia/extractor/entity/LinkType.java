@@ -1,7 +1,7 @@
 package org.dbpedia.extractor.entity;
 
 public enum LinkType {
-    PHRASE("phrase"), WORD("word");
+    PHRASE("phrase"), WORD("word"), CONTEXT("context");
     String typeLabel;
     LinkType(String typeLabel){
         this.typeLabel = typeLabel;

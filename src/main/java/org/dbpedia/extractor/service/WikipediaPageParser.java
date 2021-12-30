@@ -38,6 +38,14 @@ public class WikipediaPageParser {
     @Autowired
     private LanguageIdentifierBean languageIdentifierBean;
 
+    public void setLanguageIdentifierBean(LanguageIdentifierBean languageIdentifierBean) {
+        this.languageIdentifierBean = languageIdentifierBean;
+    }
+
+    public void setWikiTagsRemover(WikiTagsRemover wikiTagsRemover) {
+        this.wikiTagsRemover = wikiTagsRemover;
+    }
+
     public WikipediaPageParser(ContextLanguageTransformer contextLanguageTransformer) {
 
         //initalize tags to remove
@@ -66,6 +74,7 @@ public class WikipediaPageParser {
             text = wikiTagsRemover.removeHtmlComments(text);
             text = wikiTagsRemover.removeIndentation(text);
             text = wikiTagsRemover.removeMath(text);
+            text = wikiTagsRemover.removeMathFormula(text);
             text = wikiTagsRemover.removeNoToc(text);
             text = wikiTagsRemover.removeParentheticals(text);
             text = wikiTagsRemover.removeFooter(text);
@@ -90,12 +99,16 @@ public class WikipediaPageParser {
      * @return list of paragraphs
      */
     private List<Paragraph> parseParagraphs(String text) throws ParsingException {
+        // need to remove xml tags before splitting into paragraphs as they can span over several paragraphs
+        text = removeXmlTags(text);
+
         Matcher paragraphBreakMatcher = paragraphBreakPattern.matcher(text);
         List<Paragraph> paragraphs = new ArrayList<>();
         int paragraphStart = 0;
         while (paragraphBreakMatcher.find()) {
             int newStart = paragraphBreakMatcher.start();
             String paragraphText = text.substring(paragraphStart, newStart);
+
             Paragraph paragraph = parseParagraph(paragraphText);
             paragraphs.add(paragraph);
             paragraphStart = newStart;
@@ -259,7 +272,8 @@ public class WikipediaPageParser {
             while (parenthesesCounter > 0) {
                 i++;
                 if(i + figureEnd.length() >= text.length()){
-                    throw  new ParsingException("Infobox ending not found");
+                    throw  new ParsingException(
+                            String.format("Infobox ending not found, infobox type %s\\*%s", figureStart, figureEnd));
                 }
                 String testSubStr = text.substring(i, i + figureEnd.length());
                 if (testSubStr.equals(figureStart)) {
@@ -292,25 +306,6 @@ public class WikipediaPageParser {
         //preprocess text for special xml entries
         text = contextLanguageTransformer.transformText(text);
         text = mirrorParentheses(text);
-
-        StringBuilder cleanedText = new StringBuilder();
-        for (String xmlTag : tagsToRemove) {
-            int index = text.indexOf(xmlTag);
-            if(index == -1){ // skip if there is no xml instances
-                continue;
-            }
-            int previousIndex = 0;
-            while (index >= 0) {
-                cleanedText.append(text, previousIndex, index);
-                int tagEndIndex = bracesMatcher.findMatchingBracesIndex(text, xmlTag, index);
-                int tagEndLength = BracesMatcher.matchingBraces.get(xmlTag).length();
-                previousIndex = tagEndIndex + tagEndLength;
-                index = text.indexOf(xmlTag, tagEndIndex + 1);
-            }
-            cleanedText.append(text, previousIndex, text.length());
-            text = cleanedText.toString();
-            cleanedText = new StringBuilder();
-        }
         text = trimParagraphText(text);
         text = removeLineBreaks(text);
 
@@ -318,6 +313,7 @@ public class WikipediaPageParser {
         int index = text.indexOf(LINK_START_PATTERN);
         int previousIndex = 0;
         int tagEndIndex = 0;
+        StringBuilder cleanedText = new StringBuilder();
         while (index >= 0) {
             cleanedText.append(text, previousIndex, index);
             tagEndIndex = bracesMatcher.findMatchingBracesIndex(text, LINK_START_PATTERN, index);
@@ -346,6 +342,29 @@ public class WikipediaPageParser {
         paragraph.setLinks(links);
         paragraph.setContext(text);
         return paragraph;
+    }
+
+
+    private String removeXmlTags(String text) throws ParsingException {
+        StringBuilder cleanedText = new StringBuilder();
+        for (String xmlTag : tagsToRemove) {
+            int index = text.indexOf(xmlTag);
+            if(index == -1){ // skip if there is no xml instances
+                continue;
+            }
+            int previousIndex = 0;
+            while (index >= 0) {
+                cleanedText.append(text, previousIndex, index);
+                int tagEndIndex = bracesMatcher.findMatchingBracesIndex(text, xmlTag, index);
+                int tagEndLength = BracesMatcher.matchingBraces.get(xmlTag).length();
+                previousIndex = tagEndIndex + tagEndLength;
+                index = text.indexOf(xmlTag, tagEndIndex + 1);
+            }
+            cleanedText.append(text, previousIndex, text.length());
+            text = cleanedText.toString();
+            cleanedText = new StringBuilder();
+        }
+        return cleanedText.toString();
     }
 
     /**

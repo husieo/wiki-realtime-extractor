@@ -19,6 +19,8 @@ public class DynamicLanguage extends LanguageFooterRemover {
 
     private String categoryName;
 
+    private String isoLangCode;
+
     @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "footer")
     private List<String> footers = new ArrayList<>();

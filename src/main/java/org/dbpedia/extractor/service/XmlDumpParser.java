@@ -24,6 +24,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.regex.Pattern;
 
 @Service
 @Log4j
@@ -54,7 +55,7 @@ public class XmlDumpParser {
         return CompletableFuture.completedFuture(parseXmlDump(xmlDump));
     }
 
-    ///// NOT USED (IN ITERATIVE PARSE)
+    ///// NOT USED (IN ITERATIVE PARSE). ONLY FOR REST API
     public List<ParsedPage> parseXmlDump(String xmlDump) throws IOException {
         Mediawiki mediawiki = deserializeXml(xmlDump);
         List<Page> pages = mediawiki.getPages();
@@ -75,9 +76,13 @@ public class XmlDumpParser {
         return parsedPages;
     }
 
-    public void iterativeParseXmlDump(String filePath, String outputFolder) throws IOException {
-        OutputFolderWriter outputFolderWriter = new OutputFolderWriter(outputFolder);
+    public void iterativeParseXmlDump(String filePath, String outputFolder) throws IOException{
         File xmlDumpFile = new File(filePath);
+        iterativeParseXmlDump(xmlDumpFile, outputFolder);
+    }
+
+    public void iterativeParseXmlDump(File xmlDumpFile, String outputFolder) throws IOException  {
+        OutputFolderWriter outputFolderWriter = new OutputFolderWriter(outputFolder);
         LineIterator it = FileUtils.lineIterator(xmlDumpFile, "UTF-8");
         Instant parsingStart = Instant.now();
         int success = 0;
@@ -142,7 +147,13 @@ public class XmlDumpParser {
         return xmlMapper.readValue(pageString, Page.class);
     }
 
-    private boolean isPageRedirect(Page page){
-        return page.getRevision().getText().contains("#REDIRECT");
+    /**
+     * Check if the page is a simple redirect and contains no data.
+     * @param page Page to be checked.
+     * @return True if page has #REDIRECT tag.
+     */
+    private boolean isPageRedirect(Page page) {
+        return Pattern.compile("#REDIRECT", Pattern.CASE_INSENSITIVE + Pattern.LITERAL)
+                .matcher(page.getRevision().getText()).find();
     }
 }

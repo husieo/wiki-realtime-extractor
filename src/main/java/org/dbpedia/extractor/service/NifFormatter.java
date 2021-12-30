@@ -6,8 +6,13 @@ import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.dbpedia.extractor.entity.*;
+import org.dbpedia.extractor.service.remover.language.LanguageIdentifierBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
@@ -26,7 +31,7 @@ public class NifFormatter {
     private static final String RDF_SYNTAX_TYPE = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
     private static final String NON_NEGATIVE_INTEGER = "http://www.w3.org/2001/XMLSchema#nonNegativeInteger";
     private static final String TA_IDENT_REF = "http://www.w3.org/2005/11/its/rdf#taIdentRef";
-    private static final String ENG_LANG_URL = "http://lexvo.org/id/iso639-3/eng";
+    private static final String LANG_URL = "http://lexvo.org/id/iso639-3/";
     private static final String BEGIN_INDEX = "beginIndex";
     private static final String END_INDEX = "endIndex";
     private static final String SOURCE_URL = "sourceUrl";
@@ -39,6 +44,9 @@ public class NifFormatter {
     private static final String PRED_LANG = "predLang";
     private static final String NIF_CONTEXT = "context";
 
+    @Autowired
+    private LanguageIdentifierBean languageIdentifierBean;
+
     private String currentDateString;
 
     public NifFormatter() {
@@ -46,57 +54,62 @@ public class NifFormatter {
     }
 
     //TODO create a recursion class
-    private String pageTitle;
 
+    private String pageTitle;
     public Model generateContextEntry(ParsedPage parsedPage) {
         Context context = parsedPage.getContext();
-        String title = parsedPage.getTitle();
+        String title = encodeSpaces(parsedPage.getTitle());
         int beginIndex = 0;
         int endIndex = context.getText().length();
         Model jenaModel =  ModelFactory.createDefaultModel();
 
-        String dbpediaUrl = getDbpediaUrl(parsedPage.getTitle(), NIF_CONTEXT);
+        String dbpediaUrl = getDbpediaUrl(title, NIF_CONTEXT);
         Resource dbPediaResource = jenaModel.createResource(dbpediaUrl);
-        Resource wordResource = jenaModel.createResource(PERSISTENCE_ONTOLOGY_LINK + "#" + LinkType.WORD.getCapitalizedTypeLabel());
+        Resource contextResource = jenaModel.createResource(PERSISTENCE_ONTOLOGY_LINK + "#" + LinkType.CONTEXT.getCapitalizedTypeLabel());
 
+        // Context NIF type
         Property rdfSyntaxProperty = jenaModel.createProperty(RDF_SYNTAX_TYPE);
-        dbPediaResource.addProperty(rdfSyntaxProperty, wordResource);
-
+        dbPediaResource.addProperty(rdfSyntaxProperty, contextResource);
+        // Context beginIndex
         Property beginIndexProperty = jenaModel.createProperty(PERSISTENCE_ONTOLOGY_LINK, "#"+BEGIN_INDEX);
         dbPediaResource.addProperty(beginIndexProperty, jenaModel.createTypedLiteral(beginIndex, XSDDatatype.XSDnonNegativeInteger));
-
+        //Context endIndex
         Property endIndexProperty = jenaModel.createProperty(PERSISTENCE_ONTOLOGY_LINK, "#"+END_INDEX);
         dbPediaResource.addProperty(endIndexProperty, jenaModel.createTypedLiteral(endIndex, XSDDatatype.XSDnonNegativeInteger));
-
+        // Context sourceUrl
         Property sourceUrlProperty = jenaModel.createProperty(PERSISTENCE_ONTOLOGY_LINK, "#"+SOURCE_URL);
         dbPediaResource.addProperty(sourceUrlProperty, WIKI_LINK+title);
-
+        // Context isString string corpus
         Property contextStringProperty = jenaModel.createProperty(PERSISTENCE_ONTOLOGY_LINK, "#"+IS_STRING);
         dbPediaResource.addProperty(contextStringProperty, context.getText());
-
+        // Context language
         Property predLangProperty = jenaModel.createProperty(PERSISTENCE_ONTOLOGY_LINK, "#"+PRED_LANG);
-        dbPediaResource.addProperty(predLangProperty, ENG_LANG_URL);
+        dbPediaResource.addProperty(predLangProperty, LANG_URL+languageIdentifierBean.getLanguage().getIsoLangCode());
 
         return jenaModel;
     }
 
+    public void setLanguageIdentifierBean(LanguageIdentifierBean languageIdentifierBean) {
+        this.languageIdentifierBean = languageIdentifierBean;
+    }
+
     public Model generatePageStructureEntry(ParsedPage parsedPage) {
         Model pageStructureEntry = ModelFactory.createDefaultModel();
-        pageTitle = parsedPage.getTitle();
+        pageTitle = encodeSpaces(parsedPage.getTitle());
         pageStructureEntry.add(generateNodeEntry(parsedPage.getStructureRoot()));
         return pageStructureEntry;
     }
 
     public Model generateLinksEntry(ParsedPage parsedPage) {
         Model linksEntry = ModelFactory.createDefaultModel();
-        pageTitle = parsedPage.getTitle();
+        pageTitle = encodeSpaces(parsedPage.getTitle());
         linksEntry.add(generateLinkNodeEntry(parsedPage));
         return linksEntry;
     }
 
     private Model generateNodeEntry(Subdivision node) {
         Model nodeEntry = ModelFactory.createDefaultModel();
-        String title = pageTitle;
+        String title = encodeSpaces(pageTitle);
         Position nodePosition = node.getPosition();
         int beginIndex = nodePosition.getStart();
         int endIndex = nodePosition.getEnd();
@@ -184,7 +197,7 @@ public class NifFormatter {
 
     public Model generateLinkNodeEntry(ParsedPage parsedPage) {
         Model nodeEntry = ModelFactory.createDefaultModel();
-        String articleTitle = parsedPage.getTitle();
+        String articleTitle = encodeSpaces(parsedPage.getTitle());
         Stack<Subdivision> nodeStack = new Stack<>();
         nodeStack.push(parsedPage.getStructureRoot());
         while(!nodeStack.empty()) {
@@ -210,7 +223,8 @@ public class NifFormatter {
 
 
                     // Link Type NIF
-                    dbPediaLinkResource.addProperty(rdfSyntaxProperty, getPersistenceOntologyUrl(linkType.getCapitalizedTypeLabel()));
+                    Resource contextResource = nodeEntry.createResource(getPersistenceOntologyUrl(linkType.getCapitalizedTypeLabel()));
+                    dbPediaLinkResource.addProperty(rdfSyntaxProperty, contextResource);
 
                     // Reference Context
                     Property referenceContextProperty = nodeEntry.createProperty(getPersistenceOntologyUrl(REFERENCE_CONTEXT));
@@ -226,8 +240,9 @@ public class NifFormatter {
                     dbPediaLinkResource.addProperty(superStringProperty, dbPediaParagraphUrl);
                     // taIdentRef
                     String dbPediaIdentRef = String.format("%s/%s", DBPEDIA_LINK, link.getTaIdentRef());
+                    Resource identRefResource = nodeEntry.createResource(dbPediaIdentRef);
                     Property taIdentRefProperty = nodeEntry.createProperty(TA_IDENT_REF);
-                    dbPediaLinkResource.addProperty(taIdentRefProperty, dbPediaIdentRef);
+                    dbPediaLinkResource.addProperty(taIdentRefProperty, identRefResource);
                     // anchorOf
                     Property anchorOfProperty = nodeEntry.createProperty(getPersistenceOntologyUrl("anchorOf"));
                     dbPediaLinkResource.addProperty(anchorOfProperty, link.getAnchorOf());
@@ -260,5 +275,15 @@ public class NifFormatter {
         Date currentDate = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
         return simpleDateFormat.format(currentDate);
+    }
+
+    private String encodeSpaces(String line) {
+        String encodedTitle = line;
+        try {
+            encodedTitle = URLEncoder.encode(line, StandardCharsets.UTF_8.toString());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return encodedTitle;
     }
 }

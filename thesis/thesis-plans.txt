@@ -1,0 +1,9 @@
+
+Thesis to-do list:
+- Improve work motivation
+- Add citations
+- Remove 1.2.1 Web Ontology Language section and 1.2.3 SPARQL section
+- Describe implementation and the process of parsing and modeling the extracted information
+- Add tests results(validation step (section 3.3.3), explain success rate in section 3.3.4)
+- Add future work directions.
+- Provide links and references for copied passages. Move copied passages to Chapter 1.
