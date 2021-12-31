@@ -1,11 +1,8 @@
 package org.dbpedia.integration;
 
-import com.google.common.io.Resources;
 import lombok.extern.log4j.Log4j;
 import org.apache.jena.datatypes.xsd.XSDDatatype;
 import org.apache.jena.rdf.model.*;
-import org.dbpedia.extractor.entity.LinkType;
-import org.dbpedia.extractor.entity.WikiPage;
 import org.dbpedia.extractor.service.NifFormatter;
 import org.dbpedia.extractor.service.WikipediaPageParser;
 import org.dbpedia.extractor.service.XmlDumpParser;
@@ -16,27 +13,22 @@ import org.dbpedia.extractor.service.transformer.ContextLanguageTransformer;
 import org.dbpedia.extractor.storage.PageStorage;
 import org.dbpedia.extractor.writer.OutputFolderWriter;
 import org.junit.Assert;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.Rule;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.TemporaryFolder;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-
-import static org.junit.Assert.assertTrue;
 
 @Log4j
-public class OutputValidationTest {
+public class OutputValidationTests {
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
 
@@ -106,7 +98,7 @@ public class OutputValidationTest {
         Assert.assertEquals(3073, jenaModel.size());
         jenaModel.removeAll();
         jenaModel.read(new FileInputStream(outputStructure), null, NTRIPLES);
-        Assert.assertEquals(544, jenaModel.size());
+        Assert.assertEquals(429, jenaModel.size());
         jenaModel.removeAll();
     }
 
@@ -134,7 +126,7 @@ public class OutputValidationTest {
         assertStatementContains(testSubject, testPredicate, testObjectLiteral);
 
         testPredicate = getPersistenceOntologyUrl("endIndex");
-        testObjectLiteral = createTypedLiteral("43364", XSDDatatype.XSDnonNegativeInteger);
+        testObjectLiteral = createTypedLiteral("43346", XSDDatatype.XSDnonNegativeInteger);
 
         // test endIndex
         assertStatementContains(testSubject, testPredicate, testObjectLiteral);
@@ -240,6 +232,67 @@ public class OutputValidationTest {
         jenaModel.removeAll();
     }
 
+    @Test
+    public void testGermanArticleGeneral() throws IOException {
+        loadArticle("xml_test_deutsch_one_page.xml", "GERMAN");
+
+        File outputContext = Paths.get(folder.getRoot().getAbsolutePath(), OutputFolderWriter.CONTEXT_FILENAME).toFile();
+        File outputLinks = Paths.get(folder.getRoot().getAbsolutePath(), OutputFolderWriter.LINKS_FILENAME).toFile();
+        File outputStructure = Paths.get(folder.getRoot().getAbsolutePath(), OutputFolderWriter.STRUCTURE_FILENAME).toFile();
+
+        jenaModel.read(new FileInputStream(outputContext), null, NTRIPLES);
+
+        // verify total context size is 6 triples
+        Assert.assertEquals(6, jenaModel.size());
+        jenaModel.removeAll();
+        jenaModel.read(new FileInputStream(outputLinks), null, NTRIPLES);
+        Assert.assertEquals(504, jenaModel.size());
+        jenaModel.removeAll();
+        jenaModel.read(new FileInputStream(outputStructure), null, NTRIPLES);
+        Assert.assertEquals(151, jenaModel.size());
+        jenaModel.removeAll();
+    }
+
+    @Test
+    public void testGermanArticleContext() throws IOException{
+        loadArticle("xml_test_deutsch_one_page.xml", "GERMAN");
+
+        File outputLinks = Paths.get(folder.getRoot().getAbsolutePath(), OutputFolderWriter.CONTEXT_FILENAME).toFile();
+
+        jenaModel.read(new FileInputStream(outputLinks), null, NTRIPLES);
+
+        String testSubject = String.format("http://dbpedia.org/resource/Actinium?dbpv=%s&nif=context", getCurrentDateString());
+        String testPredicate = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
+        String testObject = getPersistenceOntologyUrl("Context");
+
+        // test if type is Context
+        assertStatementContains(testSubject, testPredicate, testObject);
+
+        testPredicate = getPersistenceOntologyUrl("predLang");
+        Literal testObjectLiteral = createLiteral("http://lexvo.org/id/iso639-3/deu");
+
+        // test predLang
+        assertStatementContains(testSubject, testPredicate, testObjectLiteral);
+    }
+
+    @Test
+    public void testGermanArticleLinks() throws IOException {
+        loadArticle("xml_test_deutsch_one_page.xml", "GERMAN");
+
+        File outputLinks = Paths.get(folder.getRoot().getAbsolutePath(), OutputFolderWriter.LINKS_FILENAME).toFile();
+
+        jenaModel.read(new FileInputStream(outputLinks), null, NTRIPLES);
+
+        String dbPediaArticleLink = String.format("http://dbpedia.org/resource/Actinium?dbpv=%s", getCurrentDateString());
+
+        String testSubject = String.format("%s&nif=word_5165_5185", dbPediaArticleLink);
+        String testPredicate = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
+        String testObject = getPersistenceOntologyUrl("Word");
+
+        // test if word Aktivierungsanalysen is in the links
+        assertStatementContains(testSubject, testPredicate, testObject);
+    }
+
 
 
     /**
@@ -260,7 +313,8 @@ public class OutputValidationTest {
      * Test if statement is in the Apache Model
      */
     private void assertStatementContains(Statement statement) {
-        Assert.assertTrue(jenaModel.contains(statement));
+        Assert.assertTrue(String.format("Statement:\"%s\" not found in the model.",statement.toString())
+                , jenaModel.contains(statement));
     }
 
     /**

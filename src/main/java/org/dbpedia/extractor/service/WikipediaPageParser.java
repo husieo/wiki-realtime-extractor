@@ -364,7 +364,7 @@ public class WikipediaPageParser {
             text = cleanedText.toString();
             cleanedText = new StringBuilder();
         }
-        return cleanedText.toString();
+        return text;
     }
 
     /**

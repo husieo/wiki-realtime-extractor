@@ -7,7 +7,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
-public class DumpSplitServiceTest {
+public class DumpSplitServiceTests {
 
         DumpSplitService dumpSplitService = new DumpSplitService();
 

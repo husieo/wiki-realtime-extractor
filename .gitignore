@@ -4,6 +4,7 @@ output/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
+documents/large_documents/
 
 ### STS ###
 .apt_generated
