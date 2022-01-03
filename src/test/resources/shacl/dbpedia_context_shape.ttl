@@ -1,0 +1,101 @@
+# baseURI: http://datashapes.org/shasf/tests/rules/triple/context
+# imports: http://datashapes.org/dash
+# prefix: context
+
+@prefix ontology: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh:  <http://www.w3.org/ns/shacl#> .
+
+ontology:Context
+  rdf:type rdfs:Class ;
+  rdfs:label "Context" ;
+.
+ontology:isString
+  rdf:type rdf:Property ;
+  rdfs:domain ontology:Context ;
+  rdfs:label "context string" ;
+  rdfs:range xsd:string ;
+.
+ontology:sourceUrl
+  rdf:type rdf:Property ;
+  rdfs:domain ontology:Context ;
+  rdfs:label "source URL" ;
+  rdfs:range xsd:string ;
+.
+ontology:predLang
+  rdf:type rdf:Property ;
+  rdfs:domain ontology:Context ;
+  rdfs:label "context language" ;
+  rdfs:range xsd:string ;
+.
+ontology:beginIndex
+  rdf:type rdf:Property ;
+  rdfs:domain ontology:Context ;
+  rdfs:label "begin index" ;
+  rdfs:range xsd:nonNegativeInteger ;
+.
+ontology:endIndex
+  rdf:type rdf:Property ;
+  rdfs:domain ontology:Context ;
+  rdfs:label "end index" ;
+  rdfs:range xsd:nonNegativeInteger ;
+.
+
+ontology:ContextShape
+	a sh:NodeShape ;
+	sh:targetClass ontology:Context ;
+	sh:property ontology:isStringShape ;
+	sh:property ontology:sourceUrlShape ;
+	sh:property ontology:predLangShape ;
+	sh:property ontology:beginIndexShape ;
+	sh:property ontology:endIndexShape ;
+.
+
+ontology:isStringShape
+	a sh:isStringShape ;
+	sh:path ontology:isString ;
+	sh:minCount 1 ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation
+.
+
+ontology:sourceUrlShape
+	a sh:sourceUrlShape ;
+	sh:path ontology:sourceUrl ;
+	sh:minCount 1 ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation
+.
+
+ontology:predLangShape
+	a sh:predLangShape ;
+	sh:path ontology:predLang ;
+	sh:minCount 1 ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation
+.
+
+ontology:beginIndexShape
+	a sh:beginIndexShape ;
+	sh:path ontology:beginIndex ;
+	sh:minCount 1 ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:nonNegativeInteger ;
+	sh:minInclusive 0 ;
+	sh:maxInclusive 0 ;
+	sh:severity sh:Violation
+.
+
+ontology:endIndexShape
+	a sh:endIndexShape ;
+	sh:path ontology:endIndex ;
+	sh:minCount 1 ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:nonNegativeInteger ;
+	sh:severity sh:Violation
+.
