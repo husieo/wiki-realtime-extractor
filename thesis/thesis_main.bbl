@@ -19,10 +19,6 @@ Berners-Lee, T. Linked Data {[online]}. {July} {2006}.
 Sean~Bechofer, F. v.~H. OWL Web Ontology Language Reference. In \emph{W3C
   Recommendation}, February 2004.
 
-\bibitem{rdf_query_lang_comparison}
-Peter~Haase, A.~E., Jeen~Broekstra. A Comparison of RDF Query Languages. In
-  \emph{AWSC: Asian Semantic Web Conference}, October 2004, pp. 502--517.
-
 \bibitem{nlp_cite}
 Sebastian~Hellmann, S.~A., Jens~Lehmann; Brümmer, M. Integrating NLP using
   Linked Data. In \emph{12th International Semantic Web Conference}, Sydney,
@@ -43,6 +39,10 @@ DBpedia Facts \& Figures {[online]}. {September} {2020}.
 Mohamed~Morsey, J.~L. DBpedia and the Live Extraction of Structured Data from
   Wikipedia.
 
+\bibitem{NIF_Format}
+DBPedia Language Resources(NIF). {January} {2022}.
+\urlprefix\biburl{https://www.dbpedia.org/resources/nif/}
+
 \bibitem{REST_Design}
 Kapadnis, J. REST: Good Practices for API Design{[online]}. {March} {2018}.
 \urlprefix\biburl{https://medium.com/hashmapinc/rest-good-practices-for-api-design-881439796dc9}
@@ -62,6 +62,10 @@ JetBrains Java development ecosystem research {[online]}. {2020}.
 \bibitem{maven_project}
 Apache Maven Project {[online]}. {2020}.
 \urlprefix\biburl{https://maven.apache.org/pom.html}
+
+\bibitem{Wikipedia_Template}
+Wikipedia Help:Template.
+\urlprefix\biburl{https://en.wikipedia.org/wiki/Help:Template}
 
 \bibitem{dbpedia_url}
 DBpedia Project Link {[online]}. {2020}.

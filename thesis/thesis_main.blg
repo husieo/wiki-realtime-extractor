@@ -4,17 +4,21 @@ The top-level auxiliary file: thesis_main.aux
 The style file: iso690.bst.bst
 Database file #1: ref.bib
 Warning--entry type for "dbpedia_live_extraction" isn't style-file defined
---line 354 of file ref.bib
+--line 373 of file ref.bib
+Warning--entry type for "Wikipedia_Template" isn't style-file defined
+--line 407 of file ref.bib
 Warning--I didn't find a database entry for "lst:olia-example"
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Name 1 in "Sebastian Hellmann, Jens Lehmann, Sören Auer, and Martin Brümmer" has a comma at the end for entry nlp_cite
 while executing---line 1550 of file iso690.bst.bst
 Warning--to sort, need author or key in nif_core_ontology
 Warning--to sort, need author or key in DBpedia_facts
+Warning--to sort, need author or key in NIF_Format
 Warning--to sort, need author or key in picocli_library
 Warning--to sort, need author or key in intellij_link
 Warning--to sort, need author or key in java_dev_ecosystem
 Warning--to sort, need author or key in maven_project
+Warning--to sort, need author or key in Wikipedia_Template
 Warning--to sort, need author or key in dbpedia_url
 Warning--to sort, need author or key in ntriples_format
 Warning--to sort, need author or key in wikimedia_downloads
@@ -26,45 +30,45 @@ while executing---line 1596 of file iso690.bst.bst
 Warning--empty pages in nlp_cite
 Warning--empty journal in nif_rdf
 Warning--empty year in nif_rdf
-You've used 19 entries,
+You've used 20 entries,
             3146 wiz_defined-function locations,
-            732 strings with 7552 characters,
-and the built_in function-call counts, 5203 in all, are:
-= -- 375
-> -- 74
-< -- 1
-+ -- 40
-- -- 18
-* -- 222
-:= -- 525
+            737 strings with 7610 characters,
+and the built_in function-call counts, 5086 in all, are:
+= -- 361
+> -- 69
+< -- 0
++ -- 38
+- -- 16
+* -- 215
+:= -- 498
 add.period$ -- 44
-call.type$ -- 19
-change.case$ -- 53
+call.type$ -- 20
+change.case$ -- 52
 chr.to.int$ -- 0
-cite$ -- 34
-duplicate$ -- 520
-empty$ -- 599
-format.name$ -- 19
-if$ -- 1160
+cite$ -- 37
+duplicate$ -- 509
+empty$ -- 598
+format.name$ -- 17
+if$ -- 1135
 int.to.chr$ -- 0
-int.to.str$ -- 19
-missing$ -- 121
-newline$ -- 80
-num.names$ -- 16
-pop$ -- 368
+int.to.str$ -- 20
+missing$ -- 120
+newline$ -- 85
+num.names$ -- 14
+pop$ -- 379
 preamble$ -- 1
-purify$ -- 47
+purify$ -- 48
 quote$ -- 0
-skip$ -- 218
+skip$ -- 216
 stack$ -- 0
-substring$ -- 128
-swap$ -- 223
-text.length$ -- 1
+substring$ -- 100
+swap$ -- 210
+text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 76
-warning$ -- 15
-while$ -- 19
-width$ -- 21
-write$ -- 147
+type$ -- 80
+warning$ -- 17
+while$ -- 14
+width$ -- 22
+write$ -- 151
 (There were 2 error messages)

@@ -91,6 +91,7 @@ The main goal of this thesis was  to develop a framework for extraction of Wikip
 \newacronym{JAXB}{JAXB}{Jakarta XML Binding}
 \newacronym{CSV}{CSV}{Comma-separated values}
 \newacronym{YAML}{YAML}{Yet Another Markup Language}
+\newacronym{SHACL}{SHACL}{Shapes Constraint Language}
 
 
 \begin{introduction}
@@ -233,62 +234,6 @@ There are also the next limitations on such browseable data, mainly regarding da
 One of the solutions to this repetition problem is to have links of a certain property in a separate document.   A person's homepage doesn't list all their publications but instead puts a link to it a separate document listing them.
 
 In conclusion, linked data is essential for linking the Semantic Web. It is quite easy to implement linked data in both new and already existing applications or websites. Various common-sense considerations determine when to make a link and when not to.
-
-\subsection{SPARQL Query Language for RDF}
-
-As for querying the linked data, sometimes the data volume makes serving it in lots of files hard for efficient remote queries over the dataset.  In this scenario, it seems reasonable to provide a query service.  To make the data be effectively linked, someone who only has the  \gls{URI} of something must find their way. For that purpose, an \gls{RDF} query language specification was developed. An \gls{RDF} query language is a computer language, specifically a query language for databases, able to retrieve and manipulate data stored in \gls{RDF} format.
-
-Properties relevant to RDF query language design include support for the RDF format principles\cite{rdf_query_lang_comparison}:
-
-\begin{itemize}
-	\item Support for RDF data, which is a collection of triples that form the RDF graph.
-	\item Support for RDF semantics and inference that allows for entailment, the reasoning about the meaning of RDF graphs.
-	\item Support for schema data types, such as XML schema.
-\end{itemize}
-Also every RDF query language should have desirable language features:
-
-\begin{itemize}
-	\item \textbf{Expressiveness:} the power of query expression that may be constructed
-	\item \textbf{Closure:} data operations on an RDF graph should result in another RDF graph
-	\item \textbf{Orthogonality:} data operations are independent of the context in which they are used
-	\item \textbf{Safety:} every expression returns a finite set of results.
-\end{itemize}
-
-\gls{RDF} query languages can be grouped into language families, each family comprising a set of closely related languages.
-
-The \gls{SPARQL} family of languages includes several languages, including  SquishQL, RDQL, SPARQL, and TriQL. These languages treat RDF data stores as triplestores that do not necessarily have ontology or schema information associated. Members of the SPARQL family are considered relational query languages because they have relational(or pattern-based) operations.
-
-Aside from \gls{SPARQL}, there are also other variations of query languages. The RQL family of languages includes RQL, SeRQL, and eRQL. These languages support the querying of both data and schema. RQL, an acronym for RDF Query Language, is known for using types defined in RDF schemas (RDFS) to query the schema class hierarchy and to support data querying by type. RQL is considered more expressive than the SPARQL family of languages but has been criticized for too many features and unusual syntactic constructs. There is a family of RDF query languages inspired by XML query technology. XQuery for RDF uses the XML query language XQuery to query RDF data by serializing RDF into an XML format and then using XQuery on the result.
-
-To best show the capabilities of \gls{RDF}, it is easiest to study the example of a \gls{SPARQL} query. Continuing with the previous Rembrandt's painting, we should use the slightly extended triplestore, as shown in \ref{lst:triplestore-example}. A traditional relational database might split attributes about artworks and features about artists into separate tables. In an RDF/graph database, all these data points belong to the same interconnected graph, visualized in \ref{fig:sparqlexamplegraph}.
-
-\begin{lstlisting}[language=XML, caption=Example triplestore for SPARQL query, label = {lst:triplestore-example}]
-<The Nightwatch> <was created by> <Rembrandt van Rijn> .
-<The Nightwatch> <was created in> <1642> .
-<The Nightwatch> <has medium> <oil on canvas> .
-<Rembrandt van Rijn> <was born in> <1606> .
-<Rembrandt van Rijn> <has nationality> <Dutch> .
-<Johannes Vermeer> <has nationality> <Dutch> .
-<The Nightwatch> <was created by> <Johannes Vermeer> .
-<Woman with a Balance> <has medium> <oil on canvas> .
-\end{lstlisting}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{sparql_example_graph}
-	\caption{A network visualization of the triplestore}
-	\label{fig:sparqlexamplegraph}
-\end{figure}
-
-\begin{lstlisting}[language=XML, caption=Example triplestore for SPARQL query, label = {lst:sparql-query-example}]
-SELECT ?painting
-WHERE {
-	?painting <has medium> <oil on canvas> .
-}
-\end{lstlisting}
-
-\lstinline{?painting} in this query stands in for the node (or nodes) that the database will return. On receiving this query, the database will search for all values of ?painting that properly complete the RDF statement \textless has medium\textgreater oil on \textless canvas\textgreater . When the query runs against the full database, it looks for the subjects, predicates, and objects that match this statement, and finds paintings: The Nightwatch and Woman with a Balance.
-
 
 \section{NLP Interchange Format}
 
@@ -473,6 +418,85 @@ The list of functional requirements for the Framework for Extraction of Wikipedi
 \end{enumerate} 
 
 While functional requirements are the most important part of the project, there can be other, less specific requirements that go along with the functional requirements, commonly known as non-functional requirements. For this project, the non-functional requirements included the research of Wikipedia \gls{XML} Dump Structure, \gls{NIF} data format and the ways to facilitate the goals of the DBpedia project.
+
+\subsection{Desired Output}
+
+The output that is required is defined below\cite{NIF_Format}, split into context, links and page structure. 
+
+
+\subsubsection{Context}
+
+For the context resource, we need next values:
+
+\begin{itemize}
+	\item \textbf{Predicate Language - predLang.} The main language of the context. 
+	\item \textbf{Context String - isString.} The context's text.
+	\item \textbf{Source URL - sourceUrl} Link to the Wikipedia article.
+	\item \textbf{Context's Index at the start - beginIndex} Starting index of the context - always starts at zero.
+	\item \textbf{Context's Index at the end - endIndex} The context's length.
+\end{itemize}
+
+\begin{lstlisting}[caption=Example of an output for context in NIF format,frame=tlrb,  label = {lst:nif-context}]{Name}
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#predLang> "http://lexvo.org/id/iso639-3/eng" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#isString> "Anarchism is an anti-authoritarian political and social philosophy that rejects ..." .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#sourceUrl> "http://en.wikipedia.org/wiki/Anarchism" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "43346"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Context> .
+\end{lstlisting}
+
+\subsubsection{Links}
+
+For the links resource, we need to pick all the internal, or Wikipedia links, as well as external links that lead to other websites from Wikipedia. Note that this does not include references, only links that are part of the text. Links can be either of type Word, which is a single word, or Phrase, which is includes several words that have the same link. Links should have next properties:
+
+\begin{itemize}
+	\item \textbf{Reference Context - referenceContext.} The context resource to where this link belongs.
+	\item \textbf{Identity Reference - taIdentRef.} Resource's identity reference in DPBpedia
+	\item \textbf{Super string - superString.} Parent paragraph of the link.
+	\item \textbf{Anchor - anchorOf} Link's word or phrase in the text.
+	\item \textbf{Context's Index at the start - beginIndex} Starting index of the link, as related to the context's text.
+	\item \textbf{Context's Index at the end - endIndex} The link's end index.
+\end{itemize}
+
+
+\begin{lstlisting}[caption=Example of an output for a Word link in NIF format,frame=tlrb,  label = {lst:nif-links}]{Name}
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Word> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#referenceContext> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex> "157"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "170"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#superString> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_0_550" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://www.w3.org/2005/11/its/rdf#taIdentRef> <http://dbpedia.org/resource/Self-governance> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#anchorOf> "self-governed" .
+\end{lstlisting}
+
+\subsubsection{Page Structure}
+
+Page structure describes the structure of the article, with sections and paragraphs organize into a tree. Page structure has two types of resources, sections that are separated by titles in the article, and paragraphs that are part of the section.
+
+\begin{itemize}
+	\item \textbf{Reference Context - referenceContext.} The context resource to where the page structure belongs.
+	\item \textbf{Has Section - hasSection.} Section's children subsections.
+	\item \textbf{Has Paragraph - hasParagraph.} Section's paragraphs.
+	\item \textbf{First Paragraph - firstParagraph} First paragraph of the section
+	\item \textbf{Last Paragraph - lastParagraph} Last Paragraph of the section.
+	\item \textbf{Context's Index at the start - beginIndex} Starting index of the section, as related to the context's text.
+	\item \textbf{Context's Index at the end - endIndex} The section's end index.
+\end{itemize}
+
+\begin{lstlisting}[caption=Example of an output for a Section,frame=tlrb,  label = {lst:nif-links}]{Name}
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Section> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#referenceContext> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasSection> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_1231_3745" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "1231"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+...
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasParagraph> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_0_550" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasParagraph> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_550_1227" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#firstParagraph> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_0_550" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#lastParagraph> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_550_1227" .
+\end{lstlisting}
+
+
 
 \section{Design}
 
@@ -743,7 +767,7 @@ public class Store {
 }
 \end{lstlisting}
 
-\subsection{Java Jackson XML Library}
+\subsection{Java Jackson XML Library}\label{jackson_library}
 
 The Jackson project is a collection of data processing tools for the Java language and the \gls{JVM} platform. It supports a wide range of data formats such as \gls{CSV}, Java Properties, XML, and \gls{YAML} through extension components that support the specific language.
 
@@ -766,6 +790,46 @@ An example of deserialization can be seen in Listing \ref{lst:xml-deserializatio
 	}
 
 \end{lstlisting}
+
+\subsection{Article Parsing}\label{article_parsing}
+
+The most important part of the Framework is a parsing component. While the code utilizes Jackson XML Library \ref{jackson_library} to deserialize XML, the article text is processed in a WikipediaPageParser class. First, we need to clean up the text from many tags used by Wikipedia\cite{Wikipedia_Template}.  Tags and patterns listed above utilize regular expressions to match and remove patterns in the text. The exact list of tags removed is described in the next list:
+
+\begin{itemize}
+	\item \textbf{Gallery.} Both tags(<gallery/>) and their contents are removed. 
+	\item \textbf{Unit Conversion.}  For this tag, the Framework extracts 2nd and 3rd parts and separates them by a space, i.e. for "\{\{convert|2|km|mi\}\}" output is "2 km"
+	\item \textbf{Emphasis.} Removes single-quote tags from text(''' or '') while keeping its contents intact.
+	\item \textbf{No Table of Contents.} Remove technical "\_\_NOTOC\_\_" tags that hide table of contents.
+	\item \textbf{Indentation.} Replaces excessive line breaks with simple \\n.
+	\item \textbf{Math formula.} Remove all math formulas(<math>) and their contents.
+	\item \textbf{IPA.} Removes all International Phonetic Alphabet(IPA) tags.
+\end{itemize}
+
+Regular expression is done using Java's Pattern class. In the example of a regular expression \ref{lst:code-regex} that is used  to remove gallery, the regular expression checks for a pattern <gallery>...</gallery>, ignoring cases and including line breaks as part of the .* regular expression, passing Pattern.DOTALL parameter.
+
+\begin{lstlisting}[caption=Example of a regular expression,frame=tlrb,  label = {lst:code-regex}]{Name}
+	private static final Pattern GALLERY = Pattern.compile("&lt;gallery&gt;.*?&lt;/gallery&gt;[\\n]?",
+		Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+\end{lstlisting}
+
+The result of the article parsing is returned as a ParsedPage object that contains context, initial Wikipedia's page data and page structure with links.
+
+\subsection{NIF Formatting}
+
+After the article is parsed, the ParsedPage object is passed to the NifFormatter generator class methods to format output lines. This class utilizes Apache Jena modelling to create \gls{RDF} models, resources and properties. In the code listing \ref{lst:nif-format-context}, we can find the code that generates \gls{RDF} resources for DBPedia and context resourse, and then proceeds to create context's type property(http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core\#Context) and its starting index("0"\^\^<http://www.w3.org/2001/XMLSchema\#nonNegativeInteger>).
+
+\begin{lstlisting}[caption=Generating Apache Jena context model,frame=tlrb,  label = {lst:nif-format-context}]{Name}
+Resource dbPediaResource = jenaModel.createResource(dbpediaUrl);
+Resource contextResource = jenaModel.createResource(PERSISTENCE_ONTOLOGY_LINK + "#" + LinkType.CONTEXT.getCapitalizedTypeLabel());
+
+// Context NIF type
+Property rdfSyntaxProperty = jenaModel.createProperty(RDF_SYNTAX_TYPE);
+dbPediaResource.addProperty(rdfSyntaxProperty, contextResource);
+// Context beginIndex
+Property beginIndexProperty = jenaModel.createProperty(PERSISTENCE_ONTOLOGY_LINK, "#"+BEGIN_INDEX);
+dbPediaResource.addProperty(beginIndexProperty, jenaModel.createTypedLiteral(beginIndex, XSDDatatype.XSDnonNegativeInteger));
+\end{lstlisting}
+
 
 \subsection{Dynamic Language Support}\label{dynamic_lang_support}
 
@@ -948,6 +1012,46 @@ public class WikipediaPageParserTest {
 	\item [Optional] Because parsing of the whole XML dump is time-consuming, I have used a way to reduce the amount of articles that is processed. To do it, it is possible to execute this command \lstinline{head -n 100000 enwiki-20191101-pages-articles-multistream1.xml > short_test_100k.xml}, and then properly close off the XML by removing the last article and close the XML brackets.
 	\item Build the framework and pass the input parameters to a file. I have created a script \lstinline{parse_xml_dump.sh} that will build the framework if necessary and run the executable with the XML dump path as the parameter.
 \end{enumerate}
+
+
+\subsection{SHACL Shape Validation}
+
+To ensure that \gls{RDF} resources produced are not malformed, \gls{SHACL} forms were utilized. \gls{SHACL} shapes allow to define certain classes for \gls{RDF} resources and then to validate any \gls{RDF} resources against those shapes, making it possible to run the tests on any output.
+In the Listing \ref{{lst:shacl-class} a definition for a Context class is shown. 
+\begin{lstlisting}[caption=SHACL Context Class definition,frame=tlrb,  label = {lst:shacl-class}]{Name}]
+ontology:Context
+rdf:type rdfs:Class ;
+rdfs:label "Context" ;
+.
+
+ontology:isString
+rdf:type rdf:Property ;
+rdfs:domain ontology:Context ;
+rdfs:label "Context string" ;
+rdfs:range xsd:string ;
+.
+...
+ontology:ContextShape
+a sh:NodeShape ;
+sh:targetClass ontology:Context ;
+sh:property ontology:isStringShape ;
+sh:property ontology:sourceUrlShape ;
+sh:property ontology:predLangShape ;
+sh:property ontology:beginIndexShape ;
+sh:property ontology:endIndexShape ;
+.
+
+ontology:isStringShape
+a sh:isStringShape ;
+sh:path ontology:isString ;
+sh:minCount 1 ;
+sh:maxCount 1 ;
+sh:datatype xsd:string ;
+sh:severity sh:Violation
+.
+\end{lstlisting}
+
+To validate output against SHACL shapes, various tools can be used, notably an open-source validator to test shapes and data: https://shacl.org/playground/.
 
 \subsection{English language parsing}
 

@@ -98,7 +98,7 @@ public class OutputValidationTests {
         Assert.assertEquals(3073, jenaModel.size());
         jenaModel.removeAll();
         jenaModel.read(new FileInputStream(outputStructure), null, NTRIPLES);
-        Assert.assertEquals(429, jenaModel.size());
+        Assert.assertEquals(588, jenaModel.size());
         jenaModel.removeAll();
     }
 
@@ -249,7 +249,7 @@ public class OutputValidationTests {
         Assert.assertEquals(504, jenaModel.size());
         jenaModel.removeAll();
         jenaModel.read(new FileInputStream(outputStructure), null, NTRIPLES);
-        Assert.assertEquals(151, jenaModel.size());
+        Assert.assertEquals(200, jenaModel.size());
         jenaModel.removeAll();
     }
 

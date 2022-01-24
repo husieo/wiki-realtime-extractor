@@ -1,0 +1,114 @@
+# baseURI: http://datashapes.org/shasf/tests/rules/triple/context
+# imports: http://datashapes.org/dash
+# prefix: links
+
+@prefix ontology: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh:  <http://www.w3.org/ns/shacl#> .
+@prefix itsRdf: <http://www.w3.org/2005/11/its/rdf> .
+
+ontology:Section
+    rdf:type rdfs:Class ;
+    rdfs:label "Section" ;
+.
+ontology:beginIndex
+    rdf:type rdf:Property ;
+    rdfs:domain ontology:Section ;
+    rdfs:label "Begin index" ;
+    rdfs:range xsd:nonNegativeInteger ;
+.
+ontology:endIndex
+    rdf:type rdf:Property ;
+    rdfs:domain ontology:Section ;
+    rdfs:label "End index" ;
+    rdfs:range xsd:nonNegativeInteger ;
+.
+ontology:firstParagraph
+    rdf:type rdf:Property ;
+    rdfs:domain ontology:Section ;
+    rdfs:label "First paragraph" ;
+    rdfs:range xsd:string ;
+.
+ontology:referenceContext
+    rdf:type rdf:Property ;
+    rdfs:domain ontology:Section ;
+    rdfs:label "Reference context" ;
+    rdfs:range xsd:string ;
+.
+ontology:hasParagraph
+    rdf:type rdf:Property ;
+    rdfs:domain ontology:Section ;
+    rdfs:label "Has Paragraph" ;
+    rdfs:range xsd:string ;
+.
+ontology:firstParagraph
+    rdf:type rdf:Property ;
+    rdfs:domain ontology:Section ;
+    rdfs:label "First paragraph" ;
+    rdfs:range xsd:string ;
+.
+ontology:lastParagraph
+    rdf:type rdf:Property ;
+    rdfs:domain ontology:Section ;
+    rdfs:label "Last paragraph" ;
+    rdfs:range xsd:string ;
+.
+
+ontology:SectionShape
+    a sh:NodeShape ;
+    sh:targetClass ontology:Section ;
+    sh:property ontology:referenceContextShape ;
+    sh:property ontology:hasParagraphShape ;
+    sh:property ontology:firstParagraphShape ;
+    sh:property ontology:lastParagraphShape ;
+    sh:property ontology:beginIndexShape ;
+    sh:property ontology:endIndexShape ;
+.
+
+ontology:referenceContextShape
+    a sh:referenceContextShape ;
+    sh:path ontology:referenceContext ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:severity sh:Violation
+.
+ontology:beginIndexShape
+    a sh:beginIndexShape ;
+    sh:path ontology:beginIndex ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:nonNegativeInteger ;
+    sh:minInclusive 0 ;
+    sh:severity sh:Violation
+.
+ontology:endIndexShape
+    a sh:endIndexShape ;
+    sh:path ontology:endIndex ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:nonNegativeInteger ;
+    sh:severity sh:Violation
+.
+ontology:firstParagraphShape
+    a sh:firstParagraphShape ;
+    sh:path ontology:firstParagraph ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:severity sh:Violation
+.
+ontology:lastParagraphShape
+    a sh:lastParagraphShape ;
+    sh:path ontology:lastParagraph ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:severity sh:Violation
+.
+ontology:hasParagraphShape
+    a sh:hasParagraphShape ;
+    sh:path ontology:hasParagraph ;
+    sh:datatype xsd:string ;
+    sh:severity sh:Violation
+.

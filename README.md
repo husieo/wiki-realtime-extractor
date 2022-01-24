@@ -69,3 +69,7 @@ Output validation can be done via rapper tool(output to file in output_examples 
     rapper --input ntriples --output rdfxml output/nif\_links.nt >> output\_examples/rapper_links.rdf
     rapper --input ntriples --output rdfxml output/nif\_structure.nt >> output\_examples/rapper_structure.rdf
 ```
+
+SHACL shapes are also defined in \shacl folder, and tested via https://shacl.org/playground/
+SHACL properties are defined in https://www.w3.org/TR/shacl/.
+To convert N-Triples, use https://www.easyrdf.org/converter/.

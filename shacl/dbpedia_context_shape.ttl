@@ -12,34 +12,36 @@ ontology:Context
   rdf:type rdfs:Class ;
   rdfs:label "Context" ;
 .
+
 ontology:isString
-  rdf:type rdf:Property ;
-  rdfs:domain ontology:Context ;
-  rdfs:label "context string" ;
-  rdfs:range xsd:string ;
+	rdf:type rdf:Property ;
+	rdfs:domain ontology:Context ;
+	rdfs:label "Context string" ;
+	rdfs:range xsd:string ;
 .
+
 ontology:sourceUrl
   rdf:type rdf:Property ;
   rdfs:domain ontology:Context ;
-  rdfs:label "source URL" ;
+  rdfs:label "Source URL" ;
   rdfs:range xsd:string ;
 .
 ontology:predLang
   rdf:type rdf:Property ;
   rdfs:domain ontology:Context ;
-  rdfs:label "context language" ;
+  rdfs:label "Context language" ;
   rdfs:range xsd:string ;
 .
 ontology:beginIndex
   rdf:type rdf:Property ;
   rdfs:domain ontology:Context ;
-  rdfs:label "begin index" ;
+  rdfs:label "Begin index" ;
   rdfs:range xsd:nonNegativeInteger ;
 .
 ontology:endIndex
   rdf:type rdf:Property ;
   rdfs:domain ontology:Context ;
-  rdfs:label "end index" ;
+  rdfs:label "End index" ;
   rdfs:range xsd:nonNegativeInteger ;
 .
 

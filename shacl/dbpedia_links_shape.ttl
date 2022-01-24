@@ -1,0 +1,102 @@
+# baseURI: http://datashapes.org/shasf/tests/rules/triple/context
+# imports: http://datashapes.org/dash
+# prefix: links
+
+@prefix ontology: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh:  <http://www.w3.org/ns/shacl#> .
+@prefix itsRdf: <http://www.w3.org/2005/11/its/rdf> .
+
+ontology:Word
+    rdf:type rdfs:Class ;
+    rdfs:label "Word" ;
+.
+
+ontology:referenceContext
+    rdf:type rdf:Property ;
+    rdfs:domain ontology:Word ;
+    rdfs:label "Reference context" ;
+    rdfs:range xsd:string ;
+.
+ontology:beginIndex
+    rdf:type rdf:Property ;
+    rdfs:domain ontology:Word ;
+    rdfs:label "Begin index" ;
+    rdfs:range xsd:nonNegativeInteger ;
+.
+ontology:endIndex
+    rdf:type rdf:Property ;
+    rdfs:domain ontology:Word ;
+    rdfs:label "End index" ;
+    rdfs:range xsd:nonNegativeInteger ;
+.
+ontology:superString
+    rdf:type rdf:Property ;
+    rdfs:domain ontology:Word ;
+    rdfs:label "Super string" ;
+    rdfs:range xsd:string ;
+.
+ontology:taIdentRef
+    rdf:type rdf:Property ;
+    rdfs:domain ontology:Word ;
+    rdfs:label "Identity Reference" ;
+    rdfs:range xsd:string ;
+.
+ontology:WordsShape
+    a sh:NodeShape ;
+    sh:targetClass ontology:Word ;
+    sh:property ontology:referenceContextShape ;
+    sh:property ontology:superStringShape ;
+    sh:property ontology:taIdentRefShape ;
+    sh:property ontology:beginIndexShape ;
+    sh:property ontology:endIndexShape ;
+.
+
+ontology:referenceContextShape
+    a sh:referenceContextShape ;
+    sh:path ontology:referenceContext ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:severity sh:Violation
+.
+
+ontology:superStringShape
+    a sh:superStringShape ;
+    sh:path ontology:superString ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:severity sh:Violation
+.
+
+ontology:taIdentRefShape
+    a sh:taIdentRefShape ;
+    sh:path ontology:taIdentRef ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:severity sh:Violation
+.
+
+ontology:beginIndexShape
+    a sh:beginIndexShape ;
+    sh:path ontology:beginIndex ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:nonNegativeInteger ;
+    sh:minInclusive 0 ;
+    sh:severity sh:Violation
+.
+
+ontology:endIndexShape
+    a sh:endIndexShape ;
+    sh:path ontology:endIndex ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:nonNegativeInteger ;
+    sh:severity sh:Violation
+.
+

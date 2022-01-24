@@ -1,0 +1,38 @@
+# prefix: context
+
+@prefix ontology: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh:  <http://www.w3.org/ns/shacl#> .
+
+
+ontology:GenericContext
+  rdf:type ontology:Context ;
+  ontology:isString "Anarchism" ;
+  ontology:sourceUrl "http://en.wikipedia.org/wiki/Anarchism" ;
+  ontology:beginIndex "0"^^xsd:nonNegativeInteger ;
+  ontology:endIndex  "9"^^xsd:nonNegativeInteger ;
+  ontology:predLang "http://lexvo.org/id/iso639-3/eng" ;
+  rdfs:label "Anarchism context" ;
+.
+ontology:GenericWord
+  rdf:type ontology:Word ;
+  ontology:taIdentRef "ttp://dbpedia.org/resource/transphobia" ;
+  ontology:referenceContext "http://dbpedia.org/resource/Anarchism?dbpv=2021-12&nif=context" ;
+  ontology:beginIndex "30768"^^xsd:nonNegativeInteger ;
+  ontology:endIndex  "30779"^^xsd:nonNegativeInteger ;
+  ontology:superString "http://dbpedia.org/resource/Anarchism?dbpv=2021-12&nif=paragraph_30621_30903" ;
+  rdfs:label "Anarchism context" ;
+.
+ontology:GenericSection
+  rdf:type ontology:Section ;
+  ontology:referenceContext "http://dbpedia.org/resource/Anarchism?dbpv=2021-12&nif=context" ;
+  ontology:firstParagraph "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_0_550" ;
+  ontology:hasParagraph "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_0_550" ;
+  ontology:hasParagraph "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_550_1227" ;
+  ontology:lastParagraph "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_550_1227" ;
+  ontology:beginIndex "0"^^xsd:nonNegativeInteger ;
+  ontology:endIndex  "1227"^^xsd:nonNegativeInteger ;
+  rdfs:label "Anarchism context" ;
+.

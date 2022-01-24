@@ -958,3 +958,33 @@ parent={},%
 %
 }%
 }%
+\ifglsentryexists{SHACL}{}%
+{%
+\gls@defglossaryentry{SHACL}%
+{%
+name={SHACL},%
+sort={SHACL},%
+type={acronym},%
+first={Shapes Constraint Language\glsspace (SHACL)},%
+firstplural={Shapes Constraint Languages\glsspace (SHACLs)},%
+text={SHACL},%
+plural={SHACLs},%
+description={Shapes Constraint Language},%
+descriptionplural={Shapes Constraint Language\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Shapes Constraint Language},%
+longplural={Shapes Constraint Languages},%
+short={SHACL},%
+shortplural={SHACLs},%
+counter={page},%
+parent={},%
+%
+}%
+}%

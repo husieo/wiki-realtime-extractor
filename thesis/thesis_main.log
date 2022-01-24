@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.6.27)  17 SEP 2020 08:41
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.27)  23 JAN 2022 20:04
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -13,8 +13,8 @@ ment class
 \onelineskip=\skip47
 \lxvchars=\skip48
 \xlvchars=\skip49
-\@memcnta=\count167
-\c@@memmarkcntra=\count168
+\@memcnta=\count163
+\c@@memmarkcntra=\count164
 LaTeX Info: Redefining \InputIfFileExists on input line 140.
 (/usr/local/texlive/2020/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
@@ -37,20 +37,20 @@ File: mem11.clo 2008/01/30 v0.3 memoir class 11pt size option
 \mem@maxheadheight=\skip61
 \mem@maxfootheight=\skip62
 \headwidth=\skip63
-\c@storedpagenumber=\count169
+\c@storedpagenumber=\count165
 \memPD=\dimen134
 \m@mabparskip=\skip64
 \thanksmarkwidth=\skip65
 \thanksmarksep=\skip66
 \droptitle=\skip67
-\c@book=\count170
-\c@part=\count171
-\c@chapter=\count172
-\c@section=\count173
-\c@subsection=\count174
-\c@subsubsection=\count175
-\c@paragraph=\count176
-\c@subparagraph=\count177
+\c@book=\count166
+\c@part=\count167
+\c@chapter=\count168
+\c@section=\count169
+\c@subsection=\count170
+\c@subsubsection=\count171
+\c@paragraph=\count172
+\c@subparagraph=\count173
 \beforechapskip=\skip68
 \midchapskip=\skip69
 \afterchapskip=\skip70
@@ -72,8 +72,8 @@ File: mem11.clo 2008/01/30 v0.3 memoir class 11pt size option
 \beforesubparaskip=\skip86
 \aftersubparaskip=\skip87
 \pfbreakskip=\skip88
-\c@@ppsavesec=\count178
-\c@@ppsaveapp=\count179
+\c@@ppsavesec=\count174
+\c@@ppsaveapp=\count175
 \ragrparindent=\dimen135
 \everylistparindent=\dimen136
 \parsepi=\skip89
@@ -95,10 +95,10 @@ File: mem11.clo 2008/01/30 v0.3 memoir class 11pt size option
 \absrightindent=\skip103
 \absparindent=\skip104
 \absparsep=\skip105
-\c@vslineno=\count180
-\c@poemline=\count181
-\c@modulo@vs=\count182
-\c@memfvsline=\count183
+\c@vslineno=\count176
+\c@poemline=\count177
+\c@modulo@vs=\count178
+\c@memfvsline=\count179
 \vleftskip=\skip106
 \vrightskip=\skip107
 \stanzaskip=\skip108
@@ -106,11 +106,11 @@ File: mem11.clo 2008/01/30 v0.3 memoir class 11pt size option
 \vgap=\skip110
 \vindent=\skip111
 \vleftmargin=\dimen138
-\c@verse=\count184
-\c@chrsinstr=\count185
+\c@verse=\count180
+\c@chrsinstr=\count181
 \beforepoemtitleskip=\skip112
 \afterpoemtitleskip=\skip113
-\c@poem=\count186
+\c@poem=\count182
 \beforePoemTitleskip=\skip114
 \midPoemTitleskip=\skip115
 \afterPoemTitleskip=\skip116
@@ -138,7 +138,7 @@ Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
 \TX@old@col=\dimen143
 \TX@target=\dimen144
 \TX@delta=\dimen145
-\TX@cols=\count187
+\TX@cols=\count183
 \TX@ftn=\toks17
 )
 \heavyrulewidth=\dimen146
@@ -151,22 +151,22 @@ Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
 \cmidrulesep=\dimen153
 \cmidrulekern=\dimen154
 \defaultaddspace=\dimen155
-\@cmidla=\count188
-\@cmidlb=\count189
+\@cmidla=\count184
+\@cmidlb=\count185
 \@aboverulesep=\dimen156
 \@belowrulesep=\dimen157
-\@thisruleclass=\count190
-\@lastruleclass=\count191
+\@thisruleclass=\count186
+\@lastruleclass=\count187
 \@thisrulewidth=\dimen158
 \ctableftskip=\skip119
 \ctabrightskip=\skip120
-\abovecolumnspenalty=\count192
-\@linestogo=\count193
-\@cellstogo=\count194
-\@cellsincolumn=\count195
+\abovecolumnspenalty=\count188
+\@linestogo=\count189
+\@cellstogo=\count190
+\@cellsincolumn=\count191
 \crtok=\toks18
 \@mincolumnwidth=\dimen159
-\c@newflo@tctr=\count196
+\c@newflo@tctr=\count192
 \mem@margin@floatbox=\box47
 \@contcwidth=\skip121
 \@contindw=\skip122
@@ -178,7 +178,7 @@ Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
 \subfloatbottomskip=\skip128
 \subfloatlabelskip=\skip129
 \subfloatcapmargin=\dimen160
-\c@@contsubnum=\count197
+\c@@contsubnum=\count193
 \m@mscap@capbox=\box48
 \m@mscap@fbox=\box49
 \sidecapsep=\dimen161
@@ -222,7 +222,7 @@ LaTeX Info: Redefining \emph on input line 7672.
 \cftsubparagraphindent=\skip157
 \cftsubparagraphnumwidth=\skip158
 \prechapterprecisshift=\dimen170
-\c@maxsecnumdepth=\count198
+\c@maxsecnumdepth=\count194
 \bibindent=\dimen171
 \bibitemsep=\skip159
 \indexcolsep=\skip160
@@ -232,7 +232,7 @@ LaTeX Info: Redefining \emph on input line 7672.
 \glossarycolsep=\dimen172
 \glossaryrule=\dimen173
 \sideparvshift=\skip162
-\sideins=\insert252
+\sideins=\insert198
 \sidebartopsep=\skip163
 \sidebarhsep=\skip164
 \sidebarvsep=\skip165
@@ -241,68 +241,68 @@ LaTeX Info: Redefining \emph on input line 7672.
 \footmarksep=\skip168
 \footparindent=\skip169
 \footinsdim=\skip170
-\footinsv@r=\insert251
-\@mpfootinsv@r=\insert250
-\m@m@k=\count266
+\footinsv@r=\insert197
+\@mpfootinsv@r=\insert196
+\m@m@k=\count195
 \m@m@h=\dimen174
 \m@mipn@skip=\skip171
-\sidefootins=\insert249
+\sidefootins=\insert252
 \sidefootadjust=\skip172
 \sidefootheight=\skip173
 \sidefoothsep=\skip174
 \sidefootvsep=\skip175
 \sidefootwidth=\skip176
 \m@mdownsf=\skip177
-\c@sidefootnote=\count267
+\c@sidefootnote=\count266
 \sidefootmarkwidth=\skip178
 \sidefootmarksep=\skip179
 \sidefootparindent=\skip180
-\c@pagenote=\count268
-\c@pagenoteshadow=\count269
+\c@pagenote=\count267
+\c@pagenoteshadow=\count268
 \mem@pn@lastkern=\skip181
 \every@verbatim=\toks20
 \afterevery@verbatim=\toks21
 \verbatim@line=\toks22
-\tab@position=\count270
+\tab@position=\count269
 \verbatim@in@stream=\read2
 \verbatimindent=\skip182
 \verbatim@out=\write3
 \bvboxsep=\skip183
-\c@memfbvline=\count271
-\c@bvlinectr=\count272
+\c@memfbvline=\count270
+\c@bvlinectr=\count271
 \bvnumlength=\skip184
 \fb@frw=\dimen175
 \fb@frh=\dimen176
 \FrameRule=\dimen177
 \FrameSep=\dimen178
-\c@cp@cntr=\count273
+\c@cp@cntr=\count272
 LaTeX Info: Redefining \: on input line 12191.
 LaTeX Info: Redefining \! on input line 12193.
-\c@ism@mctr=\count274
-\c@xsm@mctr=\count275
-\c@csm@mctr=\count276
-\c@ksm@mctr=\count277
-\c@xksm@mctr=\count278
-\c@cksm@mctr=\count279
-\c@msm@mctr=\count280
-\c@xmsm@mctr=\count281
-\c@cmsm@mctr=\count282
-\c@bsm@mctr=\count283
-\c@workm@mctr=\count284
-\c@sheetsequence=\count285
-\c@lastsheet=\count286
-\c@lastpage=\count287
+\c@ism@mctr=\count273
+\c@xsm@mctr=\count274
+\c@csm@mctr=\count275
+\c@ksm@mctr=\count276
+\c@xksm@mctr=\count277
+\c@cksm@mctr=\count278
+\c@msm@mctr=\count279
+\c@xmsm@mctr=\count280
+\c@cmsm@mctr=\count281
+\c@bsm@mctr=\count282
+\c@workm@mctr=\count283
+\c@sheetsequence=\count284
+\c@lastsheet=\count285
+\c@lastpage=\count286
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/textcase/textcase.sty
 Package: textcase 2019/09/14 v1.00 Text only upper/lower case changing (DPC)
 )
-\c@figure=\count288
-\c@lofdepth=\count289
+\c@figure=\count287
+\c@lofdepth=\count288
 \cftbeforefigureskip=\skip185
 \cftfigureindent=\skip186
 \cftfigurenumwidth=\skip187
-\c@table=\count290
-\c@lotdepth=\count291
+\c@table=\count289
+\c@lotdepth=\count290
 \cftbeforetableskip=\skip188
 \cfttableindent=\skip189
 \cfttablenumwidth=\skip190
@@ -349,15 +349,16 @@ Language: czech 2008/07/06 v3.1a Czech support from the babel system
 
 (/usr/local/texlive/2020/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2020/03/22 3.42 Babel common definitions
-\babel@savecnt=\count292
+\babel@savecnt=\count291
 \U@D=\dimen179
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/babel/txtbabel.def)
+(/usr/local/texlive/2020/texmf-dist/tex/generic/babel/xebabel.def
+(/usr/local/texlive/2020/texmf-dist/tex/generic/babel/txtbabel.def))
 \bbl@readstream=\read3
-\bbl@dirlevel=\count293
+\bbl@dirlevel=\count292
 )
 Package babel Info: Making " an active character on input line 172.
-\cs@wordlen=\count294
+\cs@wordlen=\count293
 Package babel Info: Making - an active character on input line 226.
 )
 (/usr/local/texlive/2020/texmf-dist/tex/generic/babel-english/english.ldf
@@ -387,7 +388,7 @@ Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
+Package pdftexcmds Info: \pdfdraftmode not found.
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
@@ -415,13 +416,11 @@ Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
 )
 \@linkdim=\dimen180
-\Hy@linkcounter=\count295
-\Hy@pagecounter=\count296
+\Hy@linkcounter=\count294
+\Hy@pagecounter=\count295
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2020/01/14 v7.00d Hyperref: PDFDocEncoding definition (HO)
-Now handling font encoding PD1 ...
-... no UTF-8 mapping file for font encoding PD1
 )
 (/usr/local/texlive/2020/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
@@ -429,13 +428,11 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 (/usr/local/texlive/2020/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count297
+\Hy@SavedSpaceFactor=\count296
 Package hyperref Info: Option `unicode' set `true' on input line 4421.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2020/01/14 v7.00d Hyperref: PDF Unicode definition (HO)
-Now handling font encoding PU ...
-... no UTF-8 mapping file for font encoding PU
 )
 Package hyperref Info: Option `pdfusetitle' set `true' on input line 4421.
 Package hyperref Info: Hyper figures OFF on input line 4547.
@@ -445,7 +442,7 @@ Package hyperref Info: Plain pages OFF on input line 4562.
 Package hyperref Info: Backreferencing OFF on input line 4567.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4800.
-\c@Hy@tempcnt=\count298
+\c@Hy@tempcnt=\count297
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip16
@@ -461,7 +458,7 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count299
+\Fld@menulength=\count298
 \Field@Width=\dimen182
 \Fld@charsize=\dimen183
 Package hyperref Info: Hyper figures OFF on input line 6430.
@@ -477,31 +474,37 @@ LaTeX Info: Redefining \pageref on input line 6504.
 (/usr/local/texlive/2020/texmf-dist/tex/generic/atbegshi/atbegshi.sty
 Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
 )
-\Hy@abspage=\count300
-\c@Item=\count301
-\c@Hfootnote=\count302
+\Hy@abspage=\count299
+\c@Item=\count300
+\c@Hfootnote=\count301
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/memoir/memhfixc.sty
 Package: memhfixc 2019/10/24 v1.18 nameref/hyperref package fixes for memoir cl
 ass
-\c@memhycontfloat=\count303
-\c@Hpagenote=\count304
+\c@memhycontfloat=\count302
+\c@Hpagenote=\count303
 )
-Package hyperref Info: Driver (autodetected): hpdftex.
+Package hyperref Info: Driver (autodetected): hxetex.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2020/01/14 v7.00d Hyperref driver for pdfTeX
+(/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/hxetex.def
+File: hxetex.def 2020/01/14 v7.00d Hyperref driver for XeTeX
 
+(/usr/local/texlive/2020/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\pdfm@box=\box50
+\c@Hy@AnnotLevel=\count304
+\HyField@AnnotCount=\count305
+\Fld@listcount=\count306
+\c@bookmark@seq@number=\count307
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
 (/usr/local/texlive/2020/texmf-dist/tex/latex/atveryend/atveryend.sty
 Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
 Package atveryend Info: \enddocument detected (standard20110627).
 )
-\Fld@listcount=\count305
-\c@bookmark@seq@number=\count306
-
-(/usr/local/texlive/2020/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
-Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
-
 (/usr/local/texlive/2020/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
@@ -562,17 +565,17 @@ Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 (/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 105.
+Package graphics Info: Driver file: xetex.def on input line 105.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-def/xetex.def
+File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
 ))
 \Gin@req@height=\dimen184
 \Gin@req@width=\dimen185
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count307
+\etb@tempcnta=\count308
 )
 
 ******************************************************
@@ -598,8 +601,11 @@ Sidefootvsep and sidefootheight: 13.6pt and 594.32022pt
 Package: inputenc 2018/08/11 v1.3c Input encoding file
 \inpenc@prehook=\toks24
 \inpenc@posthook=\toks25
-)
-(/usr/local/texlive/2020/texmf-dist/tex/generic/dirtree/dirtree.sty
+
+
+Package inputenc Warning: inputenc package ignored with utf8 based engines.
+
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/dirtree/dirtree.sty
 Package: dirtree 2012/12/11 v0.32 package wrapper for dirtree
 
 (/usr/local/texlive/2020/texmf-dist/tex/generic/dirtree/dirtree.tex
@@ -611,10 +617,10 @@ Package: dirtree 2012/12/11 v0.32 package wrapper for dirtree
 \DT@rulewidth=\dimen190
 \DT@dotwidth=\dimen191
 \DTbaselineskip=\dimen192
-\DT@counti=\count308
-\DT@countii=\count309
-\DT@countiii=\count310
-\DT@countiv=\count311
+\DT@counti=\count309
+\DT@countii=\count310
+\DT@countiii=\count311
+\DT@countiv=\count312
 \DT@indent=\dimen193
 \DT@parskip=\dimen194
 \DT@baselineskip=\dimen195
@@ -622,24 +628,24 @@ Package: dirtree 2012/12/11 v0.32 package wrapper for dirtree
 File: dirtree.tex 2012/12/11 v0.32 `dirtree' (jcc)
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count312
-\lst@gtempboxa=\box50
+\lst@mode=\count313
+\lst@gtempboxa=\box51
 \lst@token=\toks26
-\lst@length=\count313
-\lst@currlwidth=\dimen196
-\lst@column=\count314
-\lst@pos=\count315
-\lst@lostspace=\dimen197
-\lst@width=\dimen198
-\lst@newlines=\count316
-\lst@lineno=\count317
-\lst@maxwidth=\dimen256
+\lst@length=\count314
+\lst@currlwidth=\dimen256
+\lst@column=\count315
+\lst@pos=\count316
+\lst@lostspace=\dimen257
+\lst@width=\dimen258
+\lst@newlines=\count317
+\lst@lineno=\count318
+\lst@maxwidth=\dimen259
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-\c@lstnumber=\count318
-\lst@skipnumbers=\count319
-\lst@framebox=\box51
+\c@lstnumber=\count319
+\lst@skipnumbers=\count320
+\lst@framebox=\box52
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2020/03/24 1.8d listings configuration
@@ -660,7 +666,7 @@ Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 \XKV@toks=\toks27
 \XKV@tempa@toks=\toks28
 )
-\XKV@depth=\count320
+\XKV@depth=\count321
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 (/usr/local/texlive/2020/texmf-dist/tex/latex/mfirstuc/mfirstuc.sty
@@ -685,46 +691,46 @@ Package: amstext 2000/06/29 v2.01 AMS text
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks31
-\ex@=\dimen257
+\ex@=\dimen260
 ))
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen258
+\pmbraise@=\dimen261
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count321
+\inf@bad=\count322
 LaTeX Info: Redefining \frac on input line 227.
-\uproot@=\count322
-\leftroot@=\count323
+\uproot@=\count323
+\leftroot@=\count324
 LaTeX Info: Redefining \overline on input line 389.
-\classnum@=\count324
-\DOTSCASE@=\count325
+\classnum@=\count325
+\DOTSCASE@=\count326
 LaTeX Info: Redefining \ldots on input line 486.
 LaTeX Info: Redefining \dots on input line 489.
 LaTeX Info: Redefining \cdots on input line 610.
-\Mathstrutbox@=\box52
-\strutbox@=\box53
-\big@size=\dimen259
+\Mathstrutbox@=\box53
+\strutbox@=\box54
+\big@size=\dimen262
 LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
-\macc@depth=\count326
-\c@MaxMatrixCols=\count327
+\macc@depth=\count327
+\c@MaxMatrixCols=\count328
 \dotsspace@=\muskip17
-\c@parentequation=\count328
-\dspbrk@lvl=\count329
+\c@parentequation=\count329
+\dspbrk@lvl=\count330
 \tag@help=\toks32
-\row@=\count330
-\column@=\count331
-\maxfields@=\count332
+\row@=\count331
+\column@=\count332
+\maxfields@=\count333
 \andhelp@=\toks33
-\eqnshift@=\dimen260
-\alignsep@=\dimen261
-\tagshift@=\dimen262
-\tagwidth@=\dimen263
-\totwidth@=\dimen264
-\lineht@=\dimen265
+\eqnshift@=\dimen263
+\alignsep@=\dimen264
+\tagshift@=\dimen265
+\tagwidth@=\dimen266
+\totwidth@=\dimen267
+\lineht@=\dimen268
 \@envbody=\toks34
 \multlinegap=\skip193
 \multlinetaggap=\skip194
@@ -734,7 +740,7 @@ LaTeX Info: Redefining \] on input line 2860.
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/substr/substr.sty
 Package: substr 2009/10/20 v1.2 Handle substrings
-\c@su@anzahl=\count333
+\c@su@anzahl=\count334
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/datatool/datatool-fp.sty
 Package: datatool-fp 2019/09/27 v2.32 (NLCT)
@@ -745,19 +751,19 @@ Package: fp 1995/04/02
 `Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich
 (/usr/local/texlive/2020/texmf-dist/tex/latex/fp/defpattern.sty
 Package: defpattern 1994/10/12
-\actioncount=\count334
+\actioncount=\count335
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/fp/fp-basic.sty
 Package: fp-basic 1996/05/13
-\FP@xs=\count335
-\FP@xia=\count336
-\FP@xib=\count337
-\FP@xfa=\count338
-\FP@xfb=\count339
-\FP@rega=\count340
-\FP@regb=\count341
-\FP@regs=\count342
-\FP@times=\count343
+\FP@xs=\count336
+\FP@xia=\count337
+\FP@xib=\count338
+\FP@xfa=\count339
+\FP@xfb=\count340
+\FP@rega=\count341
+\FP@regb=\count342
+\FP@regs=\count343
+\FP@times=\count344
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/fp/fp-addons.sty
 Package: fp-addons 1995/03/15
@@ -776,7 +782,7 @@ Package: fp-pas 1994/08/29
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/fp/fp-random.sty
 Package: fp-random 1995/02/23
-\FPseed=\count344
+\FPseed=\count345
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/fp/fp-eqn.sty
 Package: fp-eqn 1995/04/03
@@ -788,14 +794,14 @@ Package: fp-upn 1996/10/21
 Package: fp-eval 1995/04/03
 )))
 \@dtl@toks=\toks36
-\@dtl@tmpcount=\count345
+\@dtl@tmpcount=\count346
 \dtl@tmplength=\skip195
-\dtl@sortresult=\count346
-\@dtl@numgrpsepcount=\count347
-\@dtl@datatype=\count348
-\dtl@codeA=\count349
-\dtl@codeB=\count350
-\@dtl@foreach@level=\count351
+\dtl@sortresult=\count347
+\@dtl@numgrpsepcount=\count348
+\@dtl@datatype=\count349
+\dtl@codeA=\count350
+\dtl@codeB=\count351
+\@dtl@foreach@level=\count352
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/glossaries/base/glossaries-compat
 ible-307.sty
@@ -812,9 +818,9 @@ Package: translator 2019-05-31 v1.12a Easy translation of strings in LaTeX
 lish.ldf
 File: glossaries-english.ldf 2014/11/23 v1.0
 )
-\gls@level=\count352
+\gls@level=\count353
 \@gls@tmpb=\toks37
-\gls@tmplen=\skip196
+\gls@tmplen=\skip256
 
 
 Package glossaries Warning: Overriding \printglossary on input line 5939.
@@ -835,57 +841,57 @@ Package: glossary-hypernav 2020/03/19 v4.46 (NLCT)
 (/usr/local/texlive/2020/texmf-dist/tex/latex/glossaries/styles/glossary-list.s
 ty
 Package: glossary-list 2020/03/19 v4.46 (NLCT)
-\glslistdottedwidth=\skip197
+\glslistdottedwidth=\skip257
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/glossaries/styles/glossary-long.s
 ty
 Package: glossary-long 2020/03/19 v4.46 (NLCT)
  (/usr/local/texlive/2020/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
-\LTleft=\skip198
-\LTright=\skip256
-\LTpre=\skip257
-\LTpost=\skip258
-\LTchunksize=\count353
-\LTcapwidth=\dimen266
-\LT@head=\box54
-\LT@firsthead=\box55
-\LT@foot=\box56
-\LT@lastfoot=\box57
-\LT@cols=\count354
-\LT@rows=\count355
-\c@LT@tables=\count356
-\c@LT@chunks=\count357
+\LTleft=\skip258
+\LTright=\skip259
+\LTpre=\skip260
+\LTpost=\skip261
+\LTchunksize=\count354
+\LTcapwidth=\dimen269
+\LT@head=\box55
+\LT@firsthead=\box56
+\LT@foot=\box57
+\LT@lastfoot=\box58
+\LT@cols=\count355
+\LT@rows=\count356
+\c@LT@tables=\count357
+\c@LT@chunks=\count358
 \LT@p@ftn=\toks42
 )
-\glsdescwidth=\skip259
-\glspagelistwidth=\skip260
+\glsdescwidth=\skip262
+\glspagelistwidth=\skip263
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/glossaries/styles/glossary-super.
 sty
 Package: glossary-super 2020/03/19 v4.46 (NLCT)
  (/usr/local/texlive/2020/texmf-dist/tex/latex/supertabular/supertabular.sty
 Package: supertabular 2020/02/02 v4.1g the supertabular environment
-\c@tracingst=\count358
-\ST@wd=\dimen267
-\ST@rightskip=\skip261
-\ST@leftskip=\skip262
-\ST@parfillskip=\skip263
-\ST@pageleft=\dimen268
-\ST@headht=\dimen269
-\ST@tailht=\dimen270
-\ST@pagesofar=\dimen271
-\ST@pboxht=\dimen272
-\ST@lineht=\dimen273
-\ST@prevht=\dimen274
-\ST@toadd=\dimen275
-\ST@dimen=\dimen276
-\ST@pbox=\box58
+\c@tracingst=\count359
+\ST@wd=\dimen270
+\ST@rightskip=\skip264
+\ST@leftskip=\skip265
+\ST@parfillskip=\skip266
+\ST@pageleft=\dimen271
+\ST@headht=\dimen272
+\ST@tailht=\dimen273
+\ST@pagesofar=\dimen274
+\ST@pboxht=\dimen275
+\ST@lineht=\dimen276
+\ST@prevht=\dimen277
+\ST@toadd=\dimen278
+\ST@dimen=\dimen279
+\ST@pbox=\box59
 ))
 (/usr/local/texlive/2020/texmf-dist/tex/latex/glossaries/styles/glossary-tree.s
 ty
 Package: glossary-tree 2020/03/19 v4.46 (NLCT)
-\glstreeindent=\skip264
+\glstreeindent=\skip267
 ))
 \glswrite=\write4
 \glo@acronym@file=\write5
@@ -894,12 +900,13 @@ Package: glossary-tree 2020/03/19 v4.46 (NLCT)
 Package glossaries Info: Writing glossary file thesis_main.acn on input line 36
 .
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
-File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count359
-\l__pdf_internal_box=\box59
-)
-(./thesis_main.aux)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-xdvipdfmx.def
+File: l3backend-xdvipdfmx.def 2020-03-12 L3 backend support: xdvipdfmx
+\g__graphics_track_int=\count360
+\l__pdf_internal_box=\box60
+\g__pdf_backend_object_int=\count361
+\g__pdf_backend_annotation_int=\count362
+) (./thesis_main.aux)
 \openout1 = `thesis_main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 60.
@@ -911,6 +918,14 @@ LaTeX Font Info:    ... okay on input line 60.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 60.
 LaTeX Font Info:    ... okay on input line 60.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 60.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 6
+0.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 60.
 LaTeX Font Info:    ... okay on input line 60.
 LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 60.
 LaTeX Font Info:    ... okay on input line 60.
@@ -920,13 +935,9 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 60.
 LaTeX Font Info:    ... okay on input line 60.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 60.
 LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 6
-0.
- (/usr/local/texlive/2020/texmf-dist/tex/latex/lm/ot1lmr.fd
-File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-\AtBeginShipoutBox=\box60
+\AtBeginShipoutBox=\box61
 Package hyperref Info: Link coloring OFF on input line 60.
+
 (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
@@ -937,7 +948,7 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count360
+\c@section@level=\count363
 )
 Redoing nameref's sectioning
 Redoing nameref's label
@@ -950,78 +961,45 @@ LaTeX Info: Redefining \nameref on input line 60.
 \openout6 = `thesis_main.out'.
 
 LaTeX Info: Redefining \dots on input line 60.
-
-(/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count361
-\scratchdimen=\dimen277
-\scratchbox=\box61
-\nofMPsegments=\count362
-\nofMParguments=\count363
-\everyMPshowfont=\toks43
-\MPscratchCnt=\count364
-\MPscratchDim=\dimen278
-\MPnumerator=\count365
-\makeMPintoPDFobject=\count366
-\everyMPtoPDFconversion=\toks44
-) (/usr/local/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-85.
-
-(/usr/local/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
-))
-\c@lstlisting=\count367
-
-(./thesis_main.glsdefs) [1
+\c@lstlisting=\count364
+ (./thesis_main.glsdefs) [1
 
 \openout4 = `thesis_main.ist'.
 
-{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
+] [2
 
 ]
-<cvut-logo-bw-en.pdf, id=207, 591.64943pt x 193.23091pt>
 File: cvut-logo-bw-en.pdf Graphic file (type pdf)
 <use cvut-logo-bw-en.pdf>
-Package pdftex.def Info: cvut-logo-bw-en.pdf  used on input line 60.
-(pdftex.def)             Requested size: 184.5pt x 60.25772pt.
- [1
 
- <./cvut-logo-bw-en.pdf>] [2
+[1
+
+] [2
 
 ]
 
-LaTeX Font Warning: Font shape `OT1/lmr/bx/sc' undefined
-(Font)              using `OT1/lmr/bx/n' instead on input line 60.
+LaTeX Font Warning: Font shape `TU/lmr/bx/sc' undefined
+(Font)              using `TU/lmr/bx/n' instead on input line 60.
 
-LaTeX Font Info:    Trying to load font information for OT1+lmss on input line 
-60.
-(/usr/local/texlive/2020/texmf-dist/tex/latex/lm/ot1lmss.fd
-File: ot1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
 
-LaTeX Font Warning: Font shape `OT1/lmss/bx/sc' undefined
-(Font)              using `OT1/lmss/bx/n' instead on input line 60.
+LaTeX Font Warning: Font shape `TU/lmss/bx/sc' undefined
+(Font)              using `TU/lmss/bx/n' instead on input line 60.
 
 [3
 
 ] [4
 
-] [5]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 6
-0.
- (/usr/local/texlive/2020/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-[6
+] [5] [6
 
 ] [7
 
-] [8
+] [8] (./thesis_main.toc
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 8
+.
 
-] (./thesis_main.toc
+(/usr/local/texlive/2020/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 8
 .
 
@@ -1046,7 +1024,9 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 8.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 8.
- [9]) [10]
+ [9
+
+]) [10]
 (./thesis_main.lof) [11
 
 ] [12
@@ -1055,289 +1035,239 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 \@gls@deffile=\write7
 \openout7 = `thesis_main.glsdefs'.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.112 	\item E
-              xtract page structure. [1
+ [1
 
 
-]pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
- been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.126 \chapter
-              {Background and related works} [2] [3
+] [2] [3
 
 ] [4]
-<owl2_structure.png, id=398, 602.25pt x 414.79968pt>
-File: owl2_structure.png Graphic file (type png)
-<use owl2_structure.png>
-Package pdftex.def Info: owl2_structure.png  used on input line 165.
-(pdftex.def)             Requested size: 369.0pt x 254.16039pt.
-<basic_rdf_graph.png, id=405, 2569.6pt x 513.92pt>
-File: basic_rdf_graph.png Graphic file (type png)
-<use basic_rdf_graph.png>
-Package pdftex.def Info: basic_rdf_graph.png  used on input line 178.
-(pdftex.def)             Requested size: 258.29887pt x 51.65378pt.
-LaTeX Font Info:    Trying to load font information for OML+lmr on input line 1
-84.
+File: owl2_structure.png Graphic file (type bmp)
+<owl2_structure.png>
+File: basic_rdf_graph.png Graphic file (type bmp)
+<basic_rdf_graph.png>
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/lm/omllmr.fd
-File: omllmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Font shape `OML/lmr/m/n' in size <10.95> not available
-(Font)              Font shape `OML/lmm/m/it' tried instead on input line 184.
- [5 <./owl2_structure.png>] (/usr/local/texlive/2020/texmf-dist/tex/latex/listi
-ngs/lstlang1.sty
+Overfull \hbox (0.7696pt too wide) in paragraph at lines 185--186
+[]\TU/lmr/m/n/10.95 In the statement[]1.1[], the subject is <The Nightwatch>, t
+he object is <Rem-
+ []
+
+[5] (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 186.
-LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 
-186.
-
-(/usr/local/texlive/2020/texmf-dist/tex/latex/lm/ot1lmtt.fd
-File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [6 <./basic_rdf_graph.png>]
-Overfull \hbox (33.28688pt too wide) in paragraph at lines 207--208
-[]\OT1/lmr/m/n/10.95 For ex-am-ple, it is re-quired to write an [][]RDF[] file,
- say \OML/lmm/m/it/10.95 <\OT1/lmr/m/n/10.95 http://example.org/smith\OML/lmm/m
-/it/10.95 >\OT1/lmr/m/n/10.95 ,
+nput line 187.
+ [6]
+Overfull \hbox (33.31177pt too wide) in paragraph at lines 208--209
+[]\TU/lmr/m/n/10.95 For example, it is required to write an [][]RDF[] file, say
+ <http://example.org/smith>,
  []
 
-[7]
-Overfull \hbox (1.7937pt too wide) in paragraph at lines 251--252
-[]\OT1/lmr/bx/n/10.95 Expressiveness: \OT1/lmr/m/n/10.95 the power of query ex-
-pres-sion that may be con-structed 
- []
-
-[8]
-<sparql_example_graph.png, id=481, 550.055pt x 265.99374pt>
-File: sparql_example_graph.png Graphic file (type png)
-<use sparql_example_graph.png>
-Package pdftex.def Info: sparql_example_graph.png  used on input line 278.
-(pdftex.def)             Requested size: 258.29887pt x 124.91154pt.
- [9 <./sparql_example_graph.png>]
-Underfull \vbox (badness 1895) has occurred while \output is active []
-
- [10]
-Overfull \hbox (0.54872pt too wide) in paragraph at lines 330--331
-[]\OT1/lmr/bx/n/10.95 Internationalization Tag Set[] \OT1/lmr/m/n/10.95 The \OT
-1/lmr/m/it/10.95 In-ter-na-tion-al-iza-tion Tag Set (ITS) \OT1/lmr/m/n/10.95 Ve
-r-
- []
-
-[11] (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
+[7] [8] [9] (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
-LaTeX Font Info:    Font shape `OT1/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/lmtt/b/n' tried instead on input line 335.
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 280.
 
 
-LaTeX Warning: Citation `lst:olia-example' on page 12 undefined on input line 3
-49.
+LaTeX Warning: Citation `lst:olia-example' on page 10 undefined on input line 2
+94.
 
-[12]
-Overfull \hbox (1.71814pt too wide) in paragraph at lines 372--374
-\OT1/lmr/m/n/10.95 fur-ther re-search into in-for-ma-tion ex-trac-tion, clus-te
-r-ing, un-cer-tainty man-
+[10]
+Overfull \hbox (1.76038pt too wide) in paragraph at lines 317--319
+\TU/lmr/m/n/10.95 further research into information extraction, clustering, unc
+ertainty man-
  []
 
-[13] [14] [15] [16] [17] [18
+[11] [12] [13] [14] [15] [16
 
-] [19]
-Overfull \hbox (3.6859pt too wide) in paragraph at lines 465--466
-[]\OT1/lmr/bx/n/10.95 Accept in-put data: \OT1/lmr/m/n/10.95 The frame-work sho
-uld ac-cept the of-fi-cial Wikipedia
+] [17]
+Overfull \hbox (3.66313pt too wide) in paragraph at lines 410--411
+[]\TU/lmr/bx/n/10.95 Accept input data: \TU/lmr/m/n/10.95 The framework should 
+accept the official Wikipedia
  []
 
-<general_architecture.png, id=612, 625.33624pt x 241.90375pt>
-File: general_architecture.png Graphic file (type png)
-<use general_architecture.png>
-Package pdftex.def Info: general_architecture.png  used on input line 485.
-(pdftex.def)             Requested size: 369.0pt x 142.7478pt.
-[20] [21 <./general_architecture.png>]
-Overfull \hbox (14.9592pt too wide) in paragraph at lines 513--514
-[]\OT1/lmr/m/n/10.95 Standard HTTP meth-ods (e.g., GET, POST, PUT, PATCH and DE
-LETE); 
+[18] [19] [20] [21]
+File: general_architecture.png Graphic file (type bmp)
+<general_architecture.png>
+ [22] [23]
+Overfull \hbox (15.0272pt too wide) in paragraph at lines 537--538
+[]\TU/lmr/m/n/10.95 Standard HTTP methods (e.g., GET, POST, PUT, PATCH and DELE
+TE); 
  []
 
-[22] [23]
-LaTeX Font Info:    Trying to load font information for OMS+lmr on input line 5
-54.
- (/usr/local/texlive/2020/texmf-dist/tex/latex/lm/omslmr.fd
-File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Font shape `OMS/lmr/bx/n' in size <10.95> not available
-(Font)              Font shape `OMS/lmsy/b/n' tried instead on input line 554.
- [24]
-LaTeX Font Info:    Font shape `OML/lmr/bx/n' in size <10.95> not available
-(Font)              Font shape `OML/lmm/b/it' tried instead on input line 587.
-
-[25]
-Overfull \hbox (6.93324pt too wide) in paragraph at lines 615--616
-[]\OT1/lmr/bx/n/10.95 ExtractionApplicationCLI \OT1/lmr/m/n/10.95 - main ex-e-c
-utable class that con-tains Java's
+[24] [25] [26] [27]
+Overfull \hbox (6.89034pt too wide) in paragraph at lines 639--640
+[]\TU/lmr/bx/n/10.95 ExtractionApplicationCLI \TU/lmr/m/n/10.95 - main executab
+le class that contains Java’s
  []
 
-[26]
-<framework_class_diagram.png, id=693, 629.35126pt x 558.085pt>
-File: framework_class_diagram.png Graphic file (type png)
-<use framework_class_diagram.png>
-Package pdftex.def Info: framework_class_diagram.png  used on input line 626.
-(pdftex.def)             Requested size: 369.0pt x 327.21503pt.
-<ide_poll_results.png, id=701, 476.78125pt x 230.8625pt>
-File: ide_poll_results.png Graphic file (type png)
-<use ide_poll_results.png>
-Package pdftex.def Info: ide_poll_results.png  used on input line 642.
-(pdftex.def)             Requested size: 258.29887pt x 125.07603pt.
- [27] [28 <./framework_class_diagram.png> <./ide_poll_results.png>]
-Overfull \hbox (4.54562pt too wide) in paragraph at lines 666--667
-[]\OT1/lmr/m/n/10.95 Testing an ap-pli-ca-tion writ-ten with Spring is sim-ple 
-be-cause environment-
+[28]
+File: framework_class_diagram.png Graphic file (type bmp)
+<framework_class_diagram.png>
+ [29]
+File: ide_poll_results.png Graphic file (type bmp)
+<ide_poll_results.png>
+ [30]
+Overfull \hbox (4.57019pt too wide) in paragraph at lines 690--691
+[]\TU/lmr/m/n/10.95 Testing an application written with Spring is simple becaus
+e environment-
  []
 
-[29]
-Overfull \hbox (1.19559pt too wide) in paragraph at lines 679--680
-[]\OT1/lmr/m/n/10.95 An In-ver-sion of Con-trol(IoC) con-tainer is a com-mon ch
-ar-ac-ter-is-tic of frame-
+[31] [32] [33] [34]
+Overfull \hbox (18.9365pt too wide) in paragraph at lines 819--820
+\TU/lmr/m/n/10.95 property(http://persistence.uni-leipzig.org/nlp2rdf/ontologie
+s/nif-core#Context)
  []
 
-[30] [31] [32] [33] [34
 
-] [35] [36] [37] [38] [39] [40] [41]
-Overfull \hbox (10.14276pt too wide) in paragraph at lines 948--949
-[][][][][][][][][][][][][][][][][][][][][][][][][][][]\OT1/lmr/m/n/10.95 , and 
-then
+Overfull \hbox (63.9191pt too wide) in paragraph at lines 819--820
+\TU/lmr/m/n/10.95 and its starting index(”0”̂̂<http://www.w3.org/2001/XMLSchema
+#nonNegativeInteger>). 
  []
 
-[42] [43] [44
+[35] [36] [37] [38
 
-] (./thesis_main.acr [45] [46
+] [39] [40] [41] [42] [43] [44] [45]
+Overfull \hbox (10.15681pt too wide) in paragraph at lines 1012--1013
+[][][][][][][][][][][][][][][][][][][][][][][][][][][]\TU/lmr/m/n/10.95 , and t
+hen
+ []
 
-] [47
+Runaway argument?
+{{lst:shacl-class} a definition for a Context class is shown. 
+! Paragraph ended before \T@ref was complete.
+<to be read again> 
+                   \par 
+l.1021 
+       
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
 
-]) (./thesis_main.bbl [48]
+
+Package Listings Warning: Text dropped after begin of listing on input line 102
+2.
+
+[46]
+Overfull \hbox (38.81628pt too wide) in paragraph at lines 1055--1056
+\TU/lmr/m/n/10.95 tably an open-source validator to test shapes and data: https
+://shacl.org/playground/. 
+ []
+
+[47] [48] (./thesis_main.acr [49
+
+] [50
+
+] [51
+
+]) (./thesis_main.bbl [52]
 bibitemlist
 
-Underfull \hbox (badness 6220) in paragraph at lines 11--13
-\OT1/lmr/m/n/10.95 able from: []$\OT1/lmtt/m/n/10.95 https : / / www\OML/lmm/m/
-it/10.95 :\OT1/lmtt/m/n/10.95 bloomberg\OML/lmm/m/it/10.95 :\OT1/lmtt/m/n/10.95
- com / news / articles / 2007 -[] 04 -[]
+Underfull \hbox (badness 6236) in paragraph at lines 11--13
+\TU/lmr/m/n/10.95 able from: []$[][][][][] [] [] [] [][][]\OML/lmm/m/it/10.95 :
+[][][][][][][][][]:[][][] [] [][][][] [] [][][][][][][][] [] [][][][] [][] [][]
+ [][]
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 11--13
-\OT1/lmtt/m/n/10.95 09 / q -[] and -[] a -[] with -[] tim -[] berners -[] leebu
-sinessweek -[] business -[] news -[]
+[][] [] [] [][] [][][] [][] [] [][] [][][][] [][] [][][] [][] [][][][][][][] []
+[] [][][][][][][][][][][][][][][] [][] [][][][][][][][] [][] [][][][] [][]
  []
 
 
-Underfull \hbox (badness 2951) in paragraph at lines 35--37
-[]\OT1/lmr/m/n/10.95 NIF 2.0 Core On-tol-ogy [on-line]. 2020. Avail-able from: 
-[]$\OT1/lmtt/m/n/10.95 https :
+Underfull \hbox (badness 2961) in paragraph at lines 31--33
+[]\TU/lmr/m/n/10.95 NIF 2.0 Core Ontology [online]. 2020. Available from: []$[]
+[][][][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--33
+[] [] [][][][][][][][][][][]\OML/lmm/m/it/10.95 :[][][] [][] [][][][][][][]:[][
+][] [] [][][][][][][] [] [][][][][][][][][][] [] [][][] [][] [][][][] []
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 35--37
-\OT1/lmtt/m/n/10.95 / / persistence\OML/lmm/m/it/10.95 :\OT1/lmtt/m/n/10.95 uni
- -[] leipzig\OML/lmm/m/it/10.95 :\OT1/lmtt/m/n/10.95 org / nlp2rdf / ontologies
- / nif -[] core /
+[]$[][][][][] [] [] [] [][][][][][][][][][]\OML/lmm/m/it/10.95 :[][][][][][][][
+][][]:[][][] [][] [][][][][][][]:[][] [] [][][][][] [] [][][][][] [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 39--41
-[]$\OT1/lmtt/m/n/10.95 https : / / dbpediawww\OML/lmm/m/it/10.95 :\OT1/lmtt/m/n
-/10.95 informatik\OML/lmm/m/it/10.95 :\OT1/lmtt/m/n/10.95 uni -[] leipzig\OML/l
-mm/m/it/10.95 :\OT1/lmtt/m/n/10.95 de / about / facts -[]
+Underfull \hbox (badness 1360) in paragraph at lines 43--45
+[]\TU/lmr/m/n/10.95 DBPedia Language Resources(NIF). January 2022. Available fr
+om:
  []
 
-[49
+[53
 
 ]
-Underfull \hbox (badness 2181) in paragraph at lines 63--65
-[]\OT1/lmr/m/n/10.95 Apache Maven Project [on-line]. 2020. Avail-able from: []$
-\OT1/lmtt/m/n/10.95 https : / /
+Underfull \hbox (badness 2189) in paragraph at lines 63--65
+[]\TU/lmr/m/n/10.95 Apache Maven Project [online]. 2020. Available from: []$[][
+][][][] [] [] []
  []
 
 
-Underfull \hbox (badness 2735) in paragraph at lines 67--69
-[]\OT1/lmr/m/n/10.95 DBpedia Project Link [on-line]. 2020. Avail-able from: []$
-\OT1/lmtt/m/n/10.95 https : / /
+Underfull \hbox (badness 2735) in paragraph at lines 71--73
+[]\TU/lmr/m/n/10.95 DBpedia Project Link [online]. 2020. Available from: []$[][
+][][][] [] [] []
  []
 
 
-Underfull \hbox (badness 3713) in paragraph at lines 75--77
-[]\OT1/lmr/m/n/10.95 Wikimedia Down-loads [on-line]. 2020. Avail-able from: []$
-\OT1/lmtt/m/n/10.95 https : / /
+Underfull \hbox (badness 3713) in paragraph at lines 79--81
+[]\TU/lmr/m/n/10.95 Wikimedia Downloads [online]. 2020. Available from: []$[][]
+[][][] [] [] []
  []
 
 
-Underfull \hbox (badness 4726) in paragraph at lines 79--81
-[]\OT1/lmr/m/n/10.95 Top Ten Wikipedias [on-line]. 2020. Avail-able from: []$\O
-T1/lmtt/m/n/10.95 https : / /
+Underfull \hbox (badness 4726) in paragraph at lines 83--85
+[]\TU/lmr/m/n/10.95 Top Ten Wikipedias [online]. 2020. Available from: []$[][][
+][][] [] [] []
  []
 
-) [50]
+) [54]
 \tf@toc=\write8
 \openout8 = `thesis_main.toc'.
 
 \tf@lof=\write9
 \openout9 = `thesis_main.lof'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1007.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1007.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1112.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1112.
  (./thesis_main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1007.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1007.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1112.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1112.
 
-Package rerunfilecheck Info: File `thesis_main.out' has not changed.
-(rerunfilecheck)             Checksum: 1567862B4FE14F400AE3DFE9C3DFF900;7670.
 
+
+Package rerunfilecheck Warning: File `thesis_main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `thesis_main.out':
+(rerunfilecheck)             Before: 67AC619F98CAA14D51866F373C3B99C4;8039
+(rerunfilecheck)             After:  C25030CD4D7954A7A8751D9984FDA41C;8388.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1007.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1112.
  ) 
 Here is how much of TeX's memory you used:
- 23327 strings out of 480608
- 359217 string characters out of 5903630
- 1002836 words of memory out of 5000000
- 38523 multiletter control sequences out of 15000+600000
- 588562 words of font info for 55 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 51i,11n,74p,1581b,1943s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/lo
-cal/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texliv
-e/2020/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/local/texlive/2020/texmf
--dist/fonts/enc/dvips/lm/lm-rmsc.enc}{/usr/local/texlive/2020/texmf-dist/fonts/
-enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/lm/l
-m-ts1.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/lm/lmbsy10.pfb
-></usr/local/texlive/2020/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/loc
-al/texlive/2020/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive
-/2020/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/local/texlive/2020/tex
-mf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2020/texmf-dist/f
-onts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1
-/public/lm/lmmi8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/lm/
-lmmib10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr10.pfb
-></usr/local/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/loca
-l/texlive/2020/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/
-2020/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2020/tex
-mf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2020/texmf-dist/fon
-ts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/p
-ublic/lm/lmtt10.pfb>
-Output written on thesis_main.pdf (64 pages, 639320 bytes).
-PDF statistics:
- 1112 PDF objects out of 1200 (max. 8388607)
- 1007 compressed objects within 11 object streams
- 347 named destinations out of 1000 (max. 500000)
- 420 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 22336 strings out of 479418
+ 349345 string characters out of 5884585
+ 995190 words of memory out of 5000000
+ 39505 multiletter control sequences out of 15000+600000
+ 543871 words of font info for 54 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 51i,11n,74p,1581b,1773s stack positions out of 5000i,500n,10000p,200000b,80000s
 
+Output written on thesis_main.pdf (68 pages).
