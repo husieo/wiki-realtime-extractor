@@ -585,3 +585,4 @@
 <http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_28006_28855> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "28855"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 <http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_28006_28855> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#referenceContext> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context" .
 <http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_28006_28855> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#superString> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_25321_31788" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasSection> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_43346" .
