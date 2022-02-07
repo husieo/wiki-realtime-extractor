@@ -42,6 +42,8 @@ Larger xml dump example:
    ./parse_xml_dump.sh documents/short_test_100k.xml --language=ENGLISH --clean -o=output
 ```
 
+Dumps can be obtained at https://dumps.wikimedia.org/wikidatawiki/.
+
 ###### Custom Configuration
 You can add more supported languages by adding them to configuration/language_list.xml. The file already contains examples for a few languages, and you can add by following next pattern:
 ```

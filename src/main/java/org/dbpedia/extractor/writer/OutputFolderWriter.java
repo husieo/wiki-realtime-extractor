@@ -13,6 +13,7 @@ public class OutputFolderWriter {
 
     private String outputFolder;
 
+
     public OutputFolderWriter(String folderName) {
         this.outputFolder = folderName;
         createOutputFolder(folderName);

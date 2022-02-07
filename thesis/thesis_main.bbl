@@ -17,12 +17,44 @@ Berners-Lee, T. Linked Data {[online]}. {July} {2006}.
 
 \bibitem{owl_reference}
 Sean~Bechofer, F. v.~H. OWL Web Ontology Language Reference. In \emph{W3C
-  Recommendation}, February 2004.
+  Recommendation - OWL Web Ontology Language Reference}, February 2004.
+
+\bibitem{owl_overview}
+Ivan~Herman, I.~H. OWL 2 Web Ontology Language Overview. In \emph{W3C
+  Recommendation - OWL 2 Web Ontology Language Overview}, December 2012.
+
+\bibitem{roussey2011}
+Roussey, C.; Pinet, F.; et al. \emph{An Introduction to Ontologies and Ontology
+  Engineering}. London: Springer London, 2011, ISBN 978-0-85729-724-2, pp.
+  9--38, \doi{10.1007/978-0-85729-724-2_2}.
+\urlprefix\biburl{https://doi.org/10.1007/978-0-85729-724-2_2}
+
+\bibitem{rdf_syntax}
+Beckett, D. RDF/XML Syntax Specification. In \emph{W3C Recommendation - RDF/XML
+  Syntax Specification}, February 2004.
+
+\bibitem{rdf_concepts}
+Klyne, G. RDF Concepts and Abstract Syntax. In \emph{W3C Recommendation - RDF
+  Concepts and Abstract Syntax}, February 2004.
+
+\bibitem{rfc2396}
+Berners-Lee, T. Uniform Resource Identifiers (URI): Generic Syntax. {RFC} 2396,
+  {RFC Editor}, August 1998.
+\urlprefix\biburl{https://www.ietf.org/rfc/rfc2396.txt}
 
 \bibitem{nlp_cite}
 Sebastian~Hellmann, S.~A., Jens~Lehmann; Brümmer, M. Integrating NLP using
   Linked Data. In \emph{12th International Semantic Web Conference}, Sydney,
   Australia, October 2013.
+
+\bibitem{linked_data_uri}
+Hellmann, S.; Lehmann, J.; et al. Linked-Data Aware URI Schemes for Referencing
+  Text Fragments. 10 2012, ISBN 978-3-642-33875-5, pp. 2--4,
+  \doi{10.1007/978-3-642-16438-5_10}.
+
+\bibitem{workflow_modularity}
+Hellmann, S.; Lehmann, J.; et al. Integrating NLP using Linked Data. 10 2013,
+  ISBN 978-3-642-38708-1, \doi{10.1007/978-3-642-41338-4_7}.
 
 \bibitem{nif_rdf}
 E.~Wilde, M.~D. URI Fragment Identifiers for the text/plain Media Type.
@@ -31,17 +63,30 @@ E.~Wilde, M.~D. URI Fragment Identifiers for the text/plain Media Type.
 NIF 2.0 Core Ontology {[online]}. {2020}.
 \urlprefix\biburl{https://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core/nif-core.html}
 
+\bibitem{dbpedia_nucleus}
+Auer, S.; Bizer, C.; et al. DBpedia: A Nucleus for a Web of Open Data. 01 2007,
+  ISBN 978-3-540-76297-3, pp. 722--735, \doi{10.1007/978-3-540-76298-0_52}.
+
 \bibitem{DBpedia_facts}
 DBpedia Facts \& Figures {[online]}. {September} {2020}.
 \urlprefix\biburl{https://dbpediawww.informatik.uni-leipzig.de/about/facts-figures}
 
+\bibitem{dbpedia_live_sparql}
+Morsey, M.; Lehmann, J.; et al. DBpedia and the live extraction of structured
+  data from Wikipedia. \emph{Program: electronic library and information
+  systems}, volume~46, 04 2012: pp. 157--181, \doi{10.1108/00330331211221828}.
+
 \bibitem{dbpedia_live_extraction}
-Mohamed~Morsey, J.~L. DBpedia and the Live Extraction of Structured Data from
-  Wikipedia.
+Hellmann, S.; Stadler, C.; et al. DBpedia Live Extraction. 11 2009, ISBN
+  978-3-642-05150-0, pp. 1209--1223, \doi{10.1007/978-3-642-05151-7_33}.
 
 \bibitem{NIF_Format}
 DBPedia Language Resources(NIF). {January} {2022}.
 \urlprefix\biburl{https://www.dbpedia.org/resources/nif/}
+
+\bibitem{rest_proposal}
+Fielding, R.~T. Architectural Styles and the Design of Network-based Software
+  Architectures.
 
 \bibitem{REST_Design}
 Kapadnis, J. REST: Good Practices for API Design{[online]}. {March} {2018}.
@@ -59,6 +104,10 @@ IntelliJ IDEA - Capable and Ergonomic IDE {[online]}. {2020}.
 JetBrains Java development ecosystem research {[online]}. {2020}.
 \urlprefix\biburl{https://www.jetbrains.com/lp/devecosystem-2020}
 
+\bibitem{spring_ref}
+Spring Framework Reference Documentation.
+\urlprefix\biburl{https://docs.spring.io/spring-framework/docs/4.3.12.RELEASE/spring-framework-reference/htmlsingle/}
+
 \bibitem{maven_project}
 Apache Maven Project {[online]}. {2020}.
 \urlprefix\biburl{https://maven.apache.org/pom.html}
@@ -74,6 +123,41 @@ DBpedia Project Link {[online]}. {2020}.
 \bibitem{ntriples_format}
 N-Triples - a line-based syntax for an RDF graph {[online]}. {2020}.
 \urlprefix\biburl{https://www.w3.org/TR/n-triples/}
+
+\bibitem{smoke_testing}
+Smoke Testing.
+\urlprefix\biburl{https://softwaretestingfundamentals.com/smoke-testing/}
+
+\bibitem{kh07}
+Kolawa, A.; Huizinga, D. \emph{Automated Defect Prevention: Best Practices in
+  Software Management}. IEEE Computer Society Press. p. 75. -0-470-04212-0,
+  2007, ISBN 978.
+
+\bibitem{bp88}
+Boehm, B.~W.; Papaccio, P.~N. Understanding and Controlling Software Costs.
+  \emph{IEEE Transactions on Software Engineering}, volume~14, no.~10, May
+  2016: pp. 1462--1477, \doi{10.1109/32.6191}.
+
+\bibitem{test_early}
+Test Early And Often.
+\urlprefix\biburl{https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2012/ee330950(v=vs.110)?redirectedfrom=MSDN}
+
+\bibitem{prove_it_works}
+Prove It Works: Using the Unit Test Framework for Software Testing and
+  Validation.
+\urlprefix\biburl{https://www.ni.com/en-us/innovations/white-papers/09/prove-it-works--using-the-unit-test-framework-for-software-testi.html}
+
+\bibitem{junit_framework}
+JUnit 5 User Guide.
+\urlprefix\biburl{https://junit.org/junit5/docs/current/user-guide/}
+
+\bibitem{integration_test1}
+Standard - Systems and software engineering. \emph{ISO/IEC/IEEE}, volume~15,
+  December 2010: pp. 1--418.
+
+\bibitem{integration_test2}
+Ould, M.~A.; (ed), C.~U. Testing in Software Development, BCS (1986), p71.
+  \emph{Accessed}, volume~31, October 2014.
 
 \bibitem{wikimedia_downloads}
 Wikimedia Downloads {[online]}. {2020}.

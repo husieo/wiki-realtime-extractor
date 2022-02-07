@@ -128,8 +128,7 @@ The main goal of this thesis was  to develop a framework for extraction of Wikip
 
 \section{The Concept of Semantic Web}
 
-The Semantic Web is essentially a Web of Data, an extension to the Web that links the related data. The collection of Semantic Web technologies (such as \gls{RDF}, \gls{OWL}, \gls{SKOS}, \gls{SPARQL}, etc.) provides an environment where application can query that data, draw inferences using vocabularies, etc. The goal of the Semantic Web is to transform current Internet data and eventually make it machine-readable. The term "Semantic Web" was initially coined by Tim Berners-Lee\cite{Berners_QA} for a web of data where not simply text, but also meaning, or logical connections can be processed by machines.
-
+The Semantic Web is a Web of Data, an extension to the Web that links the related data. The collection of Semantic Web technologies (such as \gls{RDF}, \gls{OWL}, \gls{SKOS}, \gls{SPARQL}, etc.) provides an environment where application can query that data, draw inferences using vocabularies, etc. The goal of the Semantic Web is to transform current Internet data and eventually make it machine-readable.  "Semantic Web" is a term that Tim Berners-Lee has initially coined\cite{Berners_QA} for a web of data where not simply text, but also meaning, or logical connections that machines can process.
 The Semantic Web is an extension of the current World Wide Web, defined by standards set by the \gls{W3C}.
 
 Although Semantic Web is a term that has often been criticized as confusing, opaque, and academic, it does nonetheless capture two of the most critical aspects of these technologies:
@@ -159,7 +158,7 @@ While these four rules are the basis of Linked Data and related developments, th
 
 There is a long history of ontological development in philosophy and computer science. Since the 1990s, several research efforts have explored how the idea of knowledge representation (KR) from artificial intelligence (AI) could be made useful on the World Wide Web. These included languages based on HTML (called SHOE), based on XML (called XOL, later OIL), and various frame-based languages and knowledge acquisition approaches.
 
-The \gls{OWL} is a family of knowledge representation languages for authoring ontologies\cite{owl_reference}. Ontologies are a formal way to describe taxonomies and classification networks, essentially defining the structure of knowledge for various domains: the nouns representing classes of objects and the verbs representing relations between the objects. Ontologies resemble class hierarchies in object-oriented programming, but there are several critical differences. Class hierarchies represent structures used in source code that evolve fairly slowly (typically monthly revisions), whereas ontologies are meant to represent information on the Internet and are expected to be evolving almost constantly. Similarly, ontologies are typically far more flexible as they are meant to represent information on the Internet coming from all sorts of heterogeneous data sources. On the other hand, class hierarchies are meant to be fairly static and rely on far less diverse and more structured sources of data such as corporate databases. The OWL family contains many species, serializations, syntaxes, and specifications with similar names. OWL and OWL 2 are used to refer to the 2004 and 2009 specifications, respectively. Full OWL 2 Ontology Structure is shown on \ref{fig:owl2structure}. Most users of OWL 2 will need only one syntax and one semantics; for them, this diagram would be much simpler, with only their one syntax at the top, their one semantics at the bottom, and rarely a need to see what's inside the ellipse in the center.
+The \gls{OWL} Web Ontology Language 2, informally \gls{OWL} 2, is an ontology language for the Semantic Web with formally defined meaning. \gls{OWL} 2 ontologies provide classes, properties, individuals, and data values and are stored as Semantic Web documents. OWL 2 ontologies can be used along with information written in RDF, and \gls{OWL} 2 ontologies themselves are primarily exchanged as RDF documents. Ontologies are formalized vocabularies of terms, often covering a specific domain and shared by a community of users. They specify the definitions of terms by describing their relationships with other terms in the ontology. \gls{OWL} 2 is an extension and revision of the original OWL Web Ontology Language developed by the W3C Web Ontology Working Group and published in 2004 (referred to hereafter as “OWL 1”)\cite{owl_reference}. OWL 2 is being developed (and this document was written) by a follow-on group, the W3C OWL Working Group. \gls{OWL} 2 is designed to facilitate ontology development and sharing via the Web, with the ultimate goal of making Web content more accessible to machines. Full OWL 2 Ontology Structure is shown on \ref{fig:owl2structure}. Most users of OWL 2 will need only one syntax and one semantics; for them, this diagram would be much simpler, with only their one syntax at the top, their one semantics at the bottom, and rarely a need to see what's inside the ellipse in the center.\cite{owl_overview}
 
 \begin{figure}
 	\centering
@@ -172,7 +171,9 @@ The OWL languages are characterized by formal semantics. They are built upon the
 
 \subsection{RDF Description}\label{rdf-description}
 
-The \gls{RDF} is a family of \gls{W3C} specifications initially designed as a metadata data model. The \gls{RDF} data model is similar to classical conceptual modeling approaches, such as entity-relationship or class diagrams. It is based on the idea of making statements about the resource in expressions of the form subject–predicate–object, also known as triples. The subject denotes the resource, and the predicate denotes traits or aspects of the resource, and expresses a relationship between the subject and the object.
+The Resource Definition Framework(RDF) is a general-purpose language for representing information in the Web\cite{roussey2011}.The \gls{RDF} data model is similar to classical conceptual modeling approaches, such as entity-relationship or class diagrams. It is based on the idea of making statements about the resource in expressions of the form subject–predicate–object, also known as triples. The subject denotes the resource, and the predicate denotes traits or aspects of the resource, and expresses a relationship between the subject and the object.\cite{rdf_syntax}.
+
+The underlying structure of any expression in RDF is a collection of triples, each consisting of a subject, a predicate and an object. A set of such triples is called an RDF graph. Each triple represents a statement of a relationship between the things denoted by the nodes that it links. Each triple has three parts - subject, predicate and object\cite{rdf_concepts}. Subject and object are graph nodes, while a predicate defines a relation between them, pointing from subject to an object. On \ref{fig:basicrdfgraph}, for a triple <http://www.w3.org/TR/rdf-syntax-grammar> is a subject, <http://purl.org/de/elements/1.1/title> is a predicate and "RDF/XML Syntax Specification (Revised)" is an object.
 
 \begin{figure}
 	\centering
@@ -181,20 +182,36 @@ The \gls{RDF} is a family of \gls{W3C} specifications initially designed as a me
 	\label{fig:basicrdfgraph}
 \end{figure}
 
+To define what a subject is, we need to define an \gls{RDF} \gls{URI} Reference.
 
-In the statement\ref{lst:rdf-statement}, the subject is \textless The Nightwatch\textgreater, the object is \textless Rembrandt van Rijn\textgreater , and a predicate \textless was created by\textgreater  defines a relation between the subject and the object.
+\textbf{\gls{RDF} \gls{URI} Reference} - is a Unicode string that:
 
-\begin{lstlisting}[language=XML, caption=Example of an RDF statement, label = {lst:rdf-statement}]
-<The Nightwatch> <was created by> <Rembrandt van Rijn> .
-\end{lstlisting}
+\begin{itemize}
+	\item does not contain any control characters ( \#x00 - \#x1F, \#x7F-\#x9F)
+	\item and would produce a valid URI character sequence (per RFC2396\cite{rfc2396}, sections 2.1) representing an absolute URI with optional fragment identifier when subjected to the encoding described below.
+\end{itemize}
 
-The subject of an \gls{RDF}statement is either a uniform resource identifier (\gls{URI}) or a blank node, both of which denote resources. Resources indicated by blank nodes are called anonymous resources. They are not directly identifiable from the RDF statement. The predicate is a \gls{URI}, which also shows a resource representing a relationship. The object is a \gls{URI}, blank node, or a Unicode string literal. 
+\textbf{Blank node} is a special case for \gls{RDF} graph nodes that do not have a \gls{URI} Reference, usually represented as "\_". Those blank nodes represent all nodes for which graph only has partial information in a form of this node's objects.
+
+\textbf{Literal} is a node that is used to identify values such as numbers, strings or dates by means of a lexical representation. Literal can be either plain or typed. For plain literals, they represented by a text and an optional language tag. For typed literals, they are represented by a string and a type tag, for example in <xsd:boolean, "false"> xsd:boolean is a type and  "false" is a string of a type boolean.
+
+Subject can be either an \gls{RDF} \gls{URI} Reference or a blank node. 
+Predicate is an \gls{RDF} \gls{URI} Reference.
+Object can be an \gls{RDF} \gls{URI} Reference, Literal or a blank node.
+
+
 
 In Semantic Web applications and relatively popular applications of \gls{RDF} like \gls{RSS} and \gls{FOAF}, resources tend to be represented by URIs that intentionally denote, and can be used to access, actual data on the World Wide Web. But \gls{RDF}, in general, is not limited to the description of Internet-based resources.
 
 An \gls{RDF} database, also called triplestore contains triples of  interrelated statements that can be visualized with a network graph. A traditional relational database might split attributes about artworks and features about artists into separate tables. In an RDF/graph database, all these data points belong to the same interconnected graph, allowing users maximum flexibility in deciding how they wish to query it.
 
-\gls{RDF} is an abstract model with several serialization formats (i.e., file formats), so the particular encoding for resources or triples varies from format to format. Complete list of \gls{RDF} serialization formats includes:
+RDF graphs can also be represented in many text serialization formats. In the statement \ref{lst:rdf-statement}, the subject is \textless The Nightwatch\textgreater, the object is \textless Rembrandt van Rijn\textgreater , and a predicate \textless was created by\textgreater  defines a relation between the subject and the object.
+
+\begin{lstlisting}[language=XML, caption=Example of an RDF statement, label = {lst:rdf-statement}]
+<The Nightwatch> <was created by> <Rembrandt van Rijn> .
+\end{lstlisting}
+
+The particular encoding for resources or triples varies from format to format. Complete list of \gls{RDF} serialization formats includes:
 \begin{itemize}
 	\item \textbf{Turtle} - a compact human-friendly format.
 	\item \textbf{N3} - format that is similar to Turtle, but allows for additional features like inference, or transformation rules.
@@ -248,7 +265,7 @@ that a NIF wrapper has to be only created once for a particular tool, but enable
 
 \paragraph{URI Schemes}
 
-The idea behind NIF is to allow NLP tools to exchange annotations about text in RDF. Hence, the main prerequisite is that text becomes referenceable by URIs, so that they can be used as resources in RDF statements. In NIF, there is a distinction between the document $d$, the text $t$ contained in the document and possible substrings $s_{t}$ of this text.  We call an algorithm to systematically create identifiers for $t$ and $s_{t}$ a \textit{URI Scheme}.  The canonical URI scheme of NIF is based on RFC 5147\cite{nif_rdf}, which standardizes fragment ids for the text/plain media type. According to RFC 5147, the following URI can address the first occurrence of the substring “Semantic Web” in the
+The idea behind NIF is to allow NLP tools to exchange annotations about text in RDF. Hence, the main prerequisite is that text becomes referenceable by URIs, so that they can be used as resources in RDF statements\cite{linked_data_uri}\cite{workflow_modularity}. In NIF, there is a distinction between the document $d$, the text $t$ contained in the document and possible substrings $s_{t}$ of this text.  We call an algorithm to systematically create identifiers for $t$ and $s_{t}$ a \textit{URI Scheme}.  The canonical URI scheme of NIF is based on RFC 5147\cite{nif_rdf}, which standardizes fragment ids for the text/plain media type. According to RFC 5147, the following URI can address the first occurrence of the substring “Semantic Web” in the
 text (26610 characters) of the document \url{http://www.w3.org/DesignIssues/LinkedData.html} with the separator \#: \url{http://www.w3.org/DesignIssues/LinkedData.html\#char=717,729}.
 
 \paragraph{NIF Core Ontology}
@@ -263,7 +280,7 @@ Another important to the Framework for Extraction of Wikipedia Articles Content 
 
 \paragraph{Workflows and Modularity of NIF}
 
-Workflows: NIF web services are loosely coupled and can receive either text or RDF. To allow seamless NLP integration, clients should create work flows where the text is normalized (Unicode) at the beginning and tokenization is provided.
+Workflows: NIF web services are loosely coupled and can receive either text or RDF. To allow seamless NLP integration, clients should create work flows where the text is normalized (Unicode) at the beginning and tokenization is provided.\cite{workflow_modularity}
 
 Modularity: The NIF ontology is split in three parts: The terminological model is lightweight in terms of expressivity and contains the core classes
 and properties. Overall, it has 125 axioms, 28 classes, 16 data properties and 28 object properties. The inference model contains further axioms, which are typically used to infer additional knowledge, such as transitive property axioms. The validation model contains axioms, which are usually relevant for consistency checking or constraint validation. Depending on the use case, the inference and validation model can
@@ -304,7 +321,7 @@ penn:NNP a olia:Noun, olia:ProperNoun .
 
 \section{Linked Open Data and DBpedia}
 
-A typical example of a large Linked Dataset is DBpedia. DBpedia and related tools are supported by the Leipzig University research group. As stated in the related article, is a community effort to extract structured information from Wikipedia and to make this information available on the Web. DBpedia allows internet users to ask sophisticated queries against datasets derived from Wikipedia and to link other datasets on the Web to Wikipedia data. This section will describe the extraction of the DBpedia datasets, and how the resulting information is published on the Web for human and machine consumption.
+A typical example of a large Linked Dataset is DBpedia. DBpedia and related tools are supported by the Leipzig University research group. As stated in the related article, is a community effort to extract structured information from Wikipedia and to make this information available on the Web. DBpedia allows internet users to ask sophisticated queries against datasets derived from Wikipedia and to link other datasets on the Web to Wikipedia data. This section will describe the extraction of the DBpedia datasets, and how the resulting information is published on the Web for human and machine consumption\cite{dbpedia_nucleus}.
 
 The most effective way of spurring synergistic research along these directions is to provide a rich corpus of diverse data. This would enable researchers to develop, compare, and evaluate different extraction, reasoning, and uncertainty management techniques, and to deploy operational systems on the Web. The DBpedia project has derived such a data corpus from the Wikipedia encyclopedia.
 
@@ -351,7 +368,7 @@ A triplestore is a software program capable of storing and indexing RDF data, in
 
 \subsection{DBpedia Dataset Web Endpoints}
 
-DBpedia website provides three access mechanisms to the DBpedia dataset: Linked Data, the SPARQL protocol, and downloadable RDF dumps. Royalty-free access to these interfaces is granted under the terms of the GNU Free Documentation License.
+DBpedia website provides three access mechanisms to the DBpedia dataset: Linked Data, the SPARQL protocol, and downloadable RDF dumps. Royalty-free access to these interfaces is granted under the terms of the GNU Free Documentation License\cite{dbpedia_live_sparql}.
 
 \textit{Linked Data.} DBpedia resource identifiers, are set up to return RDF descriptions when accessed by Semantic Web agents, and a simple HTML view of the same information to traditional web browsers. HTTP content negotiation is used to deliver the appropriate format.
 
@@ -365,7 +382,7 @@ endpoint at http://dbpedia.org/sparql. This interface is appropriate when the cl
 \subsection{DBpedia Information Extraction Framework}\label{dbpedia_in_extraction_framework}
 Prior to the current project, a few projects have already been made in order to facilitate DBpedia's need for extracting information from Wikipedia and related resources, namely \textbf{DBpedia Information Extraction Framework}\cite{dbpedia_live_extraction}. 
 
-DBpedia Information Extraction Framework focuses on the main disadvantage of DBpedia: heavy-weight release process. Producing a DBpedia dataset release through the traditional dump-based extraction requires manual effort and – since dumps of the Wikipedia database are created on a monthly basis – DBpedia has never reflected the current state of Wikipedia. Hence, this prokect extended the DBpedia extraction framework to support a \textit{live extraction}, which works on a continuous stream of updates from Wikipedia and processes that stream on the fly. More importantly, the extraction framework focuses on other parts of the Wikipeida articles. The framework has 19 extractors that process the following Wikipedia content, most important of which are list below:
+DBpedia Information Extraction Framework focuses on the main disadvantage of DBpedia: heavy-weight release process. Producing a DBpedia dataset release through the traditional dump-based extraction requires manual effort and – since dumps of the Wikipedia database are created on a monthly basis – DBpedia has never reflected the current state of Wikipedia. Hence, this project extended the DBpedia extraction framework to support a \textit{live extraction}, which works on a continuous stream of updates from Wikipedia and processes that stream on the fly. More importantly, the extraction framework focuses on other parts of the Wikipeida articles. The framework has 19 extractors that process the following Wikipedia content, most important of which are list below:
 \begin{itemize}
 	\item \textit{Labels.} All Wikipedia articles have a title, which is used as an rdfs:label for the
 	corresponding DBpedia resource.
@@ -388,23 +405,7 @@ DBpedia Information Extraction Framework focuses on the main disadvantage of DBp
 
 Before starting to design the project, it is beneficial to specify the requirements. There several ways to layout the requirements, mainly writing down formal requirements or use cases. Because the project is oriented on delivering results to a smaller group of developers, it will be better to use formal requirements, as opposed to user-oriented use cases.
 
-A \gls{FR} is a description of the service that the software, specifically the Extraction Framework, must offer to the user. It describes a software system or its component.  Functional requirements should include the following things:
-\begin{enumerate}
-	\item Details of operations conducted in the system;
-	\item Description of system inputs and outputs or other reports;
-	\item Information about the workflows performed by the system.
-\end{enumerate}
-
-Functional requirements have next advantages:
-\begin{itemize}
-	\item Helps to check whether the application is providing all the functionalities that were mentioned;
-	\item A functional requirement document helps you to define the functionality of a system or one of its subsystems;
-	\item Functional requirements along with requirement analysis help identify missing requirements. They help clearly define the expected system service and behavior;
-	\item Errors caught in the Functional requirement gathering stage are the cheapest to fix;
-	\item Support user goals, tasks, or activities.
-\end{itemize}
-
-The list of functional requirements for the Framework for Extraction of Wikipedia Articles Content:
+The list of requirements for the Framework for Extraction of Wikipedia Articles Content:
 
 \begin{enumerate}
 	\item \textbf{Accept input data:} The framework should accept the official  Wikipedia dumps in the \gls{XML} format, provided by the Wikipedia. The dumps can contain an amount of information up to 20 GB of text data. The framework should be able to parse dumps in English and at least 4 other popular Wikipedia languages.
@@ -526,35 +527,13 @@ One of the goals of the application is to make it easy to use, both by researche
 
 \subsection{REST API}
 
-\gls{REST} is a software architectural style that defines a set of constraints to be used for creating Web services. Web services that conform to the REST architectural style, called RESTful Web services, provide interoperability between computer systems on the internet. RESTful Web services allow the requesting systems to access and manipulate textual representations of Web resources by using a uniform and predefined set of stateless operations.
+\gls{REST} is a software architecture that defines a set of constraints to be used for creating Web services. The Representational State Transfer (REST) style is an abstraction of the architectural elements within a distributed hypermedia system. REST ignores the details of component implementation and protocol syntax in order to focus on the roles of components, the constraints upon their interaction with other components, and their interpretation of significant data elements. It encompasses the fundamental constraints upon components, connectors, and data that define the basis of the Web architecture, and thus the essence of its behavior as a network-based application\cite{rest_proposal}. Web services that implement the REST architecture provide a way to communicate between different internet actors.
 
-An \gls{API} is a computing interface which defines interactions between multiple software intermediaries. It defines the kinds of calls or requests that can be made, how to make them, the data formats that should be used, the conventions to follow, etc.
+An \gls{API} is a client-server interface which defines a contract between clients and servers.
 
-In a RESTful Web service, requests made to a resource's URI will elicit a response with a payload formatted in HTML, XML, JSON, or some other format. The response can confirm that some alteration has been made to the resource state, and the response can provide hypertext links to other related resources. When HTTP is used, as is most common, the operations (HTTP methods) available are GET, HEAD, POST, PUT, PATCH, DELETE, CONNECT, OPTIONS and TRACE. Therefore, HTTP-based RESTful APIs are defined with the following aspects:
+In a RESTful Web service, requests made to a server's API Endpoint will elicit a response with a payload formatted in HTML, XML, JSON, or some other format.
 
-\begin{itemize}
-	\item A base URI, such as http://api.example.com/collection/;
-	\item Standard HTTP methods (e.g., GET, POST, PUT, PATCH and DELETE);
-	\item A media type that defines state transition data elements (e.g., Atom, microformats, application/vnd.collection+json, xml, etc.). The current representation tells the client how to compose requests for transitions to all the next available application states. This could be as simple as a URI or as complex as a Java applet.
-\end{itemize}
-
-
-The framework gives an option to use REST API endpoints over the CLI interface. To understand the reasoning of why to include an API in the application, it is best to start with its pros and cons in the context of this project.
-
-\paragraph{Using REST API Pros}
-\begin{itemize}
-	\item REST is a defined way of communication between machines
-	\item REST API will allow users to retrieve information in chunks rather than having a complete output at once
-	\item REST API can be easily tested by using applications tools Postman or curl to produce automated and granulated integration tests
-\end{itemize}
-
-\paragraph{Cons}
-\begin{itemize}
-	\item REST API is not cut out to transfer large amounts of data, and is usually limited by the machine's RAM, making it unsuitable for serving the amounts produced by this project.
-	\item REST API is not a user-friendly out-of-the-box solution, as navigating it will require either some special tools or an additional development of the client interface.
-\end{itemize}
-
-Considering these points, it can be concluded that while \gls{REST} \gls{API} is useful for some particular tasks, it is better to use it as a secondary interface. 
+The framework gives an option to use REST API endpoints over the CLI interface. While REST API is a tool used for client-server communication, DBPedia and this Framework also focus on application-based development, where no server communication is needed and all the data and tools are already downloaded and on the client side. This allows for an offline processing, as compared to constant online communication that is required if the parsing tool is only available as a server. WIth this in mind, we can conclude that while \gls{REST} \gls{API} is useful for some particular tasks, it is better to use it as a secondary interface for the Framework.
 
 \subsubsection{REST API Endpoints}
 
@@ -589,19 +568,7 @@ Furthermore, modern internet communication is better built around frequent excha
 
 Considering the limitations described above, it was decided to use \gls{CLI} as the main way to use the application. 
 
-\subsection{CLI Design Principles}
-
-Developers can get a lot more done by using a well-designed CLI. Usability and discovery are paramount in a CLI application. There are next important points to consider when designing a good CLI:
-\begin{enumerate}
-	\item \textbf{Provide a Help Screen} Getting started with a CLI is unlike using other software for the first time. There is not always a welcome screen, no confirmation email with a link to documentation. Only through the command itself can developers explore what’s possible. That experience begins in the help screen, accessible via a command in your CLI application, usually via runing command with a \textit{help} parameter.
-	\item \textbf{Consider following already created CLI} For example, there a few general parameters that are included in every CLI: 
-	\subitem -h or --help Display the help screen
-	\subitem -v or --verbose: Show less succinct output of the command, usually for debugging purposes. This one may be contentious, as some CLIs use -v for version.
-	\subitem -V or --version: It’s important to know which version of the CLI you’re using, but not as often as you want verbose output.
-	\item \textbf{Allow Developers to Customize Their CLI Experience.} This one usually achieved via providing profiles. In this project's case, it was simplified by using an existing CLI library.
-\end{enumerate}
-
-To simplify further development process, it was decided to use an existing picocli library for simple CLI implementation.
+To simplify further development process, it was decided to use an existing picocli library for simple CLI implementation, as it reduces the development time by encapsulating most of the CLI-related code, allowing the developer to control only the commands needed for CLI.
 
 \subsection{Command Line Input Options}
 
@@ -610,10 +577,10 @@ The library used to create a \gls{CLI} provides a good mechanisms to generate he
 \begin{itemize}
 	\item  \textbf{\textless xmlFile\textgreater} - The relative path to the XML Wiki dump.
 	\item \textbf{-c, --clean} - The optional argument to clear output files of content before writing a new information. Useful option for testing the framework.
-	\item \textbf{-h, --help} - Show this help message and exit.
+	\item \textbf{-h, --help} - Show this help message and exit. Help Screen is an important part of the CLI that lists all other commands.
 	\item \textbf{-l, --language=\textless language\textgreater} - Provide the language of the XML dump that is being parsed. Default language is English.
 	\item \textbf{-o, --output=\textless outputPath\textgreater} - The NIF files output folder.
-	\item \textbf{-V, --version} - Print framework version information.
+	\item \textbf{-V, --version} - Print framework version information. This is important as different versions of the Framework can provide known bugs. Printing the version allows user to track those bugs.
 \end{itemize}
 
 \section{Project Architecture}
@@ -670,70 +637,30 @@ The project was developed using an IntelliJ IDEA\cite{intellij_link}, a modern  
 
 \subsection{Spring Framework}
 
-Spring framework is an open source Java platform. It was initially written by Rod Johnson and was first released under the Apache 2.0 license in June 2003.
 
-The core features of the Spring Framework can be used in developing any Java application, but there are extensions for building web applications on top of the Java Enterprise Edition platform. Spring framework targets to make \gls{J2EE} development easier to use and promotes good programming practices by enabling a \gls{POJO}-based programming model.
 
-The Spring Framework provides a comprehensive programming and configuration model for modern Java-based enterprise applications - on any kind of deployment platform.
+The Spring Framework is a Java platform that provides comprehensive infrastructure support for developing Java applications. Spring handles the infrastructure so you can focus on your application.Spring enables you to build applications from "plain old Java objects" (\gls{POJO}) and to apply enterprise services non-invasively. This capability applies to the Java Standard Edition programming model and to full and partial Java Enterprise Edition\cite{spring_ref}.
 
-A key element of Spring is infrastructural support at the application level: Spring focuses on the "plumbing" of enterprise applications so that teams can focus on application-level business logic, without unnecessary ties to specific deployment environments.
-
-Following is the list of few of the great benefits of using Spring Framework:
-
-\begin{itemize}
-	\item Spring enables developers to develop enterprise-class applications using POJOs. The benefit of using only POJOs is that you do not need an EJB container product such as an application server but you have the option of using only a robust servlet container such as Tomcat or some commercial product.
-	
-	\item Spring is organized in a modular fashion. Even though the number of packages and classes are substantial, you have to worry only about the ones you need and ignore the rest.
-	
-	\item Spring makes use of some of the existing technologies like several ORM frameworks, logging frameworks, JEE, Quartz and JDK timers, and other view technologies.
-	
-	\item Testing an application written with Spring is simple because environment-dependent code is moved into this framework. Furthermore, by using JavaBeanstyle POJOs, it becomes easier to use dependency injection for injecting test data.
-	
-	\item Spring's web framework is a well-designed web MVC framework, which provides a great alternative to web frameworks such as Struts or other over-engineered or less popular web frameworks.
-	
-	\item Spring provides a convenient API to translate technology-specific exceptions (thrown by JDBC, Hibernate, or JDO, for example) into consistent, unchecked exceptions.
-	
-	\item Lightweight IoC containers tend to be lightweight, especially when compared to EJB containers, for example. This is beneficial for developing and deploying applications on computers with limited memory and CPU resources.
-	
-	\item Spring provides a consistent transaction management interface that can scale down to a local transaction (using a single database, for example) and scale up to global transactions (using JTA, for example).
-\end{itemize}
-
-There is a several versions of Spring Framework, namely the original Spring and a newer version called Spring Boot. The difference between those two is that the original Spring leverages the use of \gls{XML} configurations, while Spring Boot instead uses Java Configuration classes.
-
-An Inversion of Control(IoC) container is a common characteristic of frameworks that implement IoC.
-
-In the Spring framework, the IoC container is represented by the interface \textit{ApplicationContext}. The Spring container is responsible for instantiating, configuring and assembling objects known as beans, as well as managing their lifecycle.
-
-One of the important aspects of the Spring Framework is a \textbf{Bean}. Beans are the objects that form the backbone of your application and that are managed by the Spring Inversion of Control container. A bean is an object that is instantiated, assembled, and otherwise managed by a Spring IoC container. These beans are created with the configuration metadata that supplied to the container.
-
-Beans have so-called Spring Bean Scopes, that allow developers to have more granular control of the bean lifecycles. There are 5 maing Bean scopes in Spring:
-
-\begin{itemize}
-	\item singleton – only one instance of the spring bean will be created for the spring container. This is the default spring bean scope. While using this scope, make sure bean doesn’t have shared instance variables otherwise it might lead to data inconsistency issues.
-	\item prototype – A new instance will be created every time the bean is requested from the spring container.
-	\item request – This is same as prototype scope, however it’s meant to be used for web applications. A new instance of the bean will be created for each HTTP request.
-	\item session – A new bean will be created for each HTTP session by the container.
-	\item global-session – This is used to create global session beans for Portlet applications.
-\end{itemize}
+There is a several versions of Spring Framework, namely the original Spring and a newer version called Spring Boot. The difference between those two is that the original Spring leverages the use of \gls{XML} configurations, while Spring Boot instead uses Java Configuration classes. For the development, Spring Boot is used.
 
 For this project, mostly prototype and singleton Bean scopes were used, with singleton being a default one.
 
 \subsubsection{Spring Dependency Injection}\label{spring}
 
 \paragraph{Inversion of Control}
-\textbf{Inversion of Control} is a principle in software engineering by which the control of objects or portions of a program is transferred to a container or framework. It's most often used in the context of object-oriented programming.
+\textbf{Inversion of Control} is a principle in software engineering by which the control of objects or portions of a program is transferred to a container or framework. The Spring Framework Inversion of Control (IoC) component addresses this concern by providing a formalized means of composing disparate components into a fully working application ready for use. The Spring Framework codifies formalized design patterns as first-class objects that you can integrate into your own application(s). Numerous organizations and institutions use the Spring Framework in this manner to engineer robust, maintainable applications\cite{spring_ref}.
 
-By contrast with traditional programming, in which our custom code makes calls to a library, IoC enables a framework to take control of the flow of a program and make calls to our custom code. To enable this, frameworks use abstractions with additional behavior built in. If we want to add our own behavior, we need to extend the classes of the framework or plugin our own classes.
+One of the important aspects of the Spring Framework is a \textbf{Bean}. Beans are the objects that form the backbone of your application and that are managed by the Spring Inversion of Control container. A bean is an object that is instantiated, assembled, and otherwise managed by a Spring IoC container. These beans are created with the configuration metadata that supplied to the container.
 
-The advantages of this architecture are:
+Beans have so-called Spring Bean Scopes, that allow developers to have more granular control of the bean lifecycles. There are 5 main Bean scopes in Spring:
 
 \begin{itemize}
-	\item Decoupling the execution of a task from its implementation.
-	\item Making it easier to switch between different implementations.
-	\item Greater modularity of a program.
-	\item Greater ease in testing a program by isolating a component or mocking its dependencies and allowing components to communicate through contracts.
+	\item singleton – Scopes a single bean definition to a single object instance per Spring IoC container.
+	\item prototype –	Scopes a single bean definition to any number of object instances.
+	\item request – Scopes a single bean definition to the lifecycle of a single HTTP request; that is, each HTTP request has its own instance of a bean created off the back of a single bean definition. 
+	\item session – Scopes a single bean definition to the lifecycle of an HTTP Session. Only valid in the context of a web-aware Spring ApplicationContext.
+	\item global-session – 	Scopes a single bean definition to the lifecycle of a global HTTP Session. Typically only valid when used in a Portlet context. Only valid in the context of a web-aware Spring ApplicationContext.
 \end{itemize}
-
 
 Inversion of Control can be achieved through various mechanisms such as: Strategy design pattern, Service Locator pattern, Factory pattern, and Dependency Injection (DI).
 
@@ -812,8 +739,6 @@ Regular expression is done using Java's Pattern class. In the example of a regul
 		Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 \end{lstlisting}
 
-The result of the article parsing is returned as a ParsedPage object that contains context, initial Wikipedia's page data and page structure with links.
-
 \subsection{NIF Formatting}
 
 After the article is parsed, the ParsedPage object is passed to the NifFormatter generator class methods to format output lines. This class utilizes Apache Jena modelling to create \gls{RDF} models, resources and properties. In the code listing \ref{lst:nif-format-context}, we can find the code that generates \gls{RDF} resources for DBPedia and context resourse, and then proceeds to create context's type property(http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core\#Context) and its starting index("0"\^\^<http://www.w3.org/2001/XMLSchema\#nonNegativeInteger>).
@@ -830,6 +755,14 @@ Property beginIndexProperty = jenaModel.createProperty(PERSISTENCE_ONTOLOGY_LINK
 dbPediaResource.addProperty(beginIndexProperty, jenaModel.createTypedLiteral(beginIndex, XSDDatatype.XSDnonNegativeInteger));
 \end{lstlisting}
 
+NifFormatter converts parse page objects into Apache Jena models. For each article, three different models are produced: context model, page structure model and links model. Many of the strings required to generate the model are hardcoded, such as links(DBPedia URL, ontology) or property names. 
+
+Context and Link model creation is straightforward, but page structure is more complicated. Page structure generation is done using a  recursive function. Main method is generatePageStructureEntry, and this method calls a recursive function generateNodeEntry for the article's root section. Then a recursive call processes every paragraph of the section, adding them as section resource properties with property name "hasParagraph". First and last paragraph have to be added as separate properties, so first and last paragraphs are added twice with "firstParagraph" and "lastParagraph" properties as well as again with "hasParagraph".  After processing all section's paragraph, every subsection of a section is then processed by recursive call. Subsections then are constructed with the same algorithm, until all the article's sections are processed.
+
+
+\subsection{Output generation}
+
+OutputFolderWriter is a simple class that utilizes java.io to produce output in the desired folder. The path to the folder is passed via --output CLI variable, and OutputFolderWriter creates three files in the folder: nif\_context.nt for article's context resources, nif\_links.nt for article's links and nif\_structure.nt for article's section structure. If the output folder is not created yet, the framework will create it. When the framework processes several articles, OutputFolderWriter iteratively appends output of every article to the files.
 
 \subsection{Dynamic Language Support}\label{dynamic_lang_support}
 
@@ -918,12 +851,12 @@ The output format should be in N-triples\cite{ntriples_format}, better described
 
 \section{Smoke Testing}
 
-Smoke test  is a test or a test suite that covers the main functionality of a component or system to determine whether it works properly before planned testing begins. Smoke testing, also known as “Build Verification Testing”, is a type of software testing that comprises of a non-exhaustive set of tests that aim at ensuring that the most important functions work. The result of this testing is used to decide if a build is stable enough to proceed with further testing. It can also be used to decide whether to announce a production release or to revert. The term ‘smoke testing’, it is said, came to software testing from a similar type of hardware testing, in which the device passed the test if it did not catch fire (or smoked) the first time it was turned on. Smoke testing covers most of the major functions of the software but none of them in depth. The result of this test is used to decide whether to proceed with further testing. If the smoke test passes, go ahead with further testing. If it fails, halt further tests and ask for a new build with the required fixes. If an application is badly broken, detailed testing might be a waste of time and effort. Smoke test helps in exposing integration and major problems early in the cycle. It can be conducted on both newly created software and enhanced software. Smoke test is performed manually or with the help of automation tools/scripts. If builds are prepared frequently, it is best to automate smoke testing.
+Smoke test  is a test or a test suite that covers the main functionality of a component or system to determine whether it works properly before planned testing begins\cite{smoke_testing}.
 
 To list the information, those are the advantages of an early and continuous smoke testing:
 \begin{itemize}
-	\item It exposes integration issues.
-	\item It uncovers problems early.
+	\item It exposes any integration issues, that is if there any problems in communication between different tools used in the project.
+	\item It uncovers problems early, 
 	\item It provides some level of confidence that changes to the software have not adversely affected major areas (the areas covered by smoke testing)
 \end{itemize}
 
@@ -946,29 +879,16 @@ For the smoke testing, the next tests were conducted:
 
 \section{Unit Test coverage}
 
-Unit testing is a software testing method by which individual units of source code - sets of one or more computer program modules together with associated control data, usage procedures, and operating procedures - are tested to determine whether they are fit for use. The goal of unit testing is to isolate each part of the program and show that the individual parts are correct. A unit test provides a strict, written contract that the piece of code must satisfy. As a result, it affords several benefits.
+Unit testing is a software testing method by which individual units of source code - sets of one or more computer program modules together with associated control data, usage procedures, and operating procedures - are tested to determine whether they are fit for use. The goal of unit testing is to isolate each part of the program and show that the individual parts are correct. A unit test provides a strict, written contract that the piece of code must satisfy. As a result, it affords several benefits\cite{kh07}.
 
-Unit testing finds problems early in the development cycle. This includes both bugs in the programmer's implementation and flaws or missing parts of the specification for the unit. The process of writing a thorough set of tests forces the author to think through inputs, outputs, and error conditions, and thus more crisply define the unit's desired behavior. The cost of finding a bug before coding begins or when the code is first written is considerably lower than the cost of detecting, identifying, and correcting the bug later. Bugs in released code may also cause costly problems for the end-users of the software. Code can be impossible or difficult to unit test if poorly written, thus unit testing can force developers to structure functions and objects in better ways.
+Unit testing finds problems early in the development cycle. This includes both bugs in the programmer's implementation and flaws or missing parts of the specification for the unit. The process of writing a thorough set of tests forces the author to think through inputs, outputs, and error conditions, and thus more crisply define the unit's desired behavior. The cost of finding a bug before coding begins or when the code is first written is considerably lower than the cost of detecting, identifying, and correcting the bug later. Bugs in released code may also cause costly problems for the end-users of the software. Code can be impossible or difficult to unit test if poorly written, thus unit testing can force developers to structure functions and objects in better ways\cite{bp88}\cite{test_early}\cite{prove_it_works}.
 
-Unit testing allows the programmer to refactor code or upgrade system libraries at a later date, and make sure the module still works correctly (e.g., in regression testing). The procedure is to write test cases for all functions and methods so that whenever a change causes a fault, it can be quickly identified. Unit tests detect changes which may break a design contract.
+An important indicator for the quality of tests is their code coverage. Code coverage is measured by what percentage of the code is tested by unit tests. Running an analysis shows that  73\% of the current Framework lines, 53\% of its methods, or 52\% of its classes are covered by tests. Both unit and integration tests are included into this statistic, as the analysis tool does not differentiate those tests.
 
-Unit testing may reduce uncertainty in the units themselves and can be used in a bottom-up testing style approach. By testing the parts of a program first and then testing the sum of its parts, integration testing becomes much easier.
 
 \subsection{JUnit Framework}
 
-For the framework implementation, a JUnit library was used. \textbf{JUnit} is a Regression Testing Framework used by developers to implement unit testing in Java, and accelerate programming speed and increase the quality of code. JUnit Framework can be easily integrated with Maven.
-
-JUnit test framework provides the following important features:
-
-\begin{itemize}
-	\item \textbf{Fixtures} -  is a fixed state of a set of objects used as a baseline for running tests. The purpose of a test fixture is to ensure that there is a well-known and fixed environment in which tests are run so that results are repeatable. It includes setUp() method, which runs before every test invocation, and tearDown() method, which runs after every test method.
-	\item \textbf{Test suites.}A test suite bundles a few unit test cases and runs them together. In JUnit, both @RunWith and @Suite annotation are used to run the suite test. 
-	\item \textbf{Test runners.} Test runner is used for executing the test cases. 
-	\item \textbf{JUnit classes} JUnit classes are important classes, used in writing and testing JUnits.  Examples of those classes are:
-	\subitem Assert - contains a set of assert methods.	
-	\subitem TestCase - contains a test case that defines the fixture to run multiple tests.
-	\subitem TestResult - contains methods to collect the results of executing a test case.
-\end{itemize}
+For the framework implementation, a JUnit library was used. \textbf{JUnit} is a  popular Testing Framework used to implement unit tests in Java\cite{junit_framework}.
 
 For a given project, unit tests were used to test the execution of a WIkipediaPageParser class, that is used to parse separate pages, as well as its supplementary classes, such as a DumpSplitService. You can see the examples of a unit test used in the project in the Listing\ \ref{lst:unit-test-example}:
 
@@ -1002,6 +922,88 @@ public class WikipediaPageParserTest {
 }
 \end{lstlisting}
 
+Those tests are checking for specific methods to return some basically expected values, as well as test possible corner cases that were previously discovered as bugs, but were already fixed later. Such tests can be classified as regression tests.  For example, Listing \ref{lst:regression-test-example} is a test that checks whether <ref> tags are removed from the text by the WikiTagsRemover class. Those tags were initially causing issues with parsing, and a unit test has been added to check whether they are properly removed. If the WikiTagsRemover method is broken during development, the test will immediately indicate that method's output is now broken(or that a "regression" has happened). Those tests are run on every project recompilation.
+
+\begin{lstlisting}[caption=Regression Testing,frame=tlrb,  label = {lst:regression-test-example}]{Name}
+@Test
+public void removeRefTags() {
+	String refText = "&lt;ref&gt;{{cite OED|anarchism}}&lt;/ref&gt; and the <ref>word</ref> &lt;ref&gt;{{cite OED|anarchism}}&lt;/ref&gt;";
+	refText = StringEscapeUtils.unescapeHtml4(StringEscapeUtils.unescapeHtml4(refText));
+
+	Pattern HTML_TAGS = Pattern.compile("<[^>]+>");
+	refText = wikiTagsRemover.removeHtmlTags(refText);
+	log.info(refText);
+	Assert.assertFalse(HTML_TAGS.matcher(refText).find());
+}
+\end{lstlisting}
+
+\section{Integration Testing}
+
+Integration testing is the phase in software testing in which individual software modules are combined and tested as a group. Integration testing is conducted to evaluate the compliance of a system or component with specified functional requirements\cite{integration_test1}. It occurs after unit testing and before system testing. Integration testing takes as its input modules that have been unit tested, groups them in larger aggregates, applies tests defined in an integration test plan to those aggregates, and delivers as its output the integrated system ready for system testing\cite{integration_test2}.
+
+
+Integration testing in the project tests that all aspects of the Framework work as intended, from parsing to output, and different cases with varying sizes and languages are automatically tested whenever the project is recompiled. To speed up the development, it is possible to skip those tests by compiling the project with -DskipTests argument, but this is not recommended. Integration tests compare Framework's output for prepared articles that are stored in the test folder with expected values that are manually verified to be true. 
+
+Integration tests are placed in the OutputValidationTests class. Every test is verifying any specific information:
+
+\begin{itemize}
+	\item \textbf{test*ArticleGeneral} - tests that the total amount of nodes/lines in the context, structure and links files is correct;
+	\item \textbf{test*ArticleContext} - tests context output file to verify that every node and property is in the output;
+	\item \textbf{test*ArticleLinks} - tests if the links output file is formed correctly. Since there is a lot of links in every article, only selected links are tested;
+	\item \textbf{test*ArticleStructure} - tests if the page structure output file is formed correctly. Similarly to links, this test verifies that a selected part of sections are correctly formed in the output.
+\end{itemize}
+
+Apache Jena is used to parse the output and create a model. The model is then verified by the inegration test, as can be seen on Listing \ref{lst:integration-test-example}:
+
+\begin{lstlisting}[caption=Integration Testing - English Article Context,frame=tlrb,  label = {lst:integration-test-example}]{Name}
+    @Test
+public void testEnglishArticleContext() throws IOException {
+	loadArticle("xml_test_page.xml", "ENGLISH");
+	
+	File outputContext = Paths.get(folder.getRoot().getAbsolutePath(), OutputFolderWriter.CONTEXT_FILENAME).toFile();
+	
+	jenaModel.read(new FileInputStream(outputContext), null, NTRIPLES);
+	
+	String testSubject = String.format("http://dbpedia.org/resource/Anarchism?dbpv=%s&nif=context"
+	, getCurrentDateString());
+	String testPredicate = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
+	String testObject = getPersistenceOntologyUrl("Context");
+	
+	// test if type is Context
+	assertStatementContains(testSubject, testPredicate, testObject);
+		
+	....
+	
+	// test predLang
+	assertStatementContains(testSubject, testPredicate, testObjectLiteral);
+	
+	testPredicate = getPersistenceOntologyUrl("sourceUrl");
+	testObjectLiteral = createLiteral("http://en.wikipedia.org/wiki/Anarchism");
+	
+	//test sourceUrl
+	assertStatementContains(testSubject, testPredicate, testObjectLiteral);
+	
+	jenaModel.removeAll();
+}
+\end{lstlisting}
+
+Integration tests also verify that other languages are properly processed. Currently integration tests cover English and German languages. For a German article, integration test on Listing \ref{lst:integration-test-german} verifies that language input parameter is processed correctly and the context output specifies the correct language:
+
+\begin{lstlisting}[caption=Integration Testing - German Article Context,frame=tlrb,  label = {lst:integration-test-german}]{Name}
+    @Test
+public void testGermanArticleContext() throws IOException{
+	loadArticle("xml_test_deutsch_one_page.xml", "GERMAN");
+	....
+	
+	testPredicate = getPersistenceOntologyUrl("predLang");
+	Literal testObjectLiteral = createLiteral("http://lexvo.org/id/iso639-3/deu");
+	
+	// test predLang
+	assertStatementContains(testSubject, testPredicate, testObjectLiteral);
+}
+\end{lstlisting}
+
+
 \section{End-to-End Testing}\label{end_to_end_testing}
 
 \textbf{End-to-end testing} is a Software testing methodology to test an application flow from start to end. The purpose of End-to-end testing is to simulate the real user scenario and validate the system under test and its components for integration and data integrity. What it means for this project is that we will need to do a test from downloading an XML dump from Wikipedia to receiving the processed results. Here is the general outlay of a testing process:
@@ -1017,7 +1019,7 @@ public class WikipediaPageParserTest {
 \subsection{SHACL Shape Validation}
 
 To ensure that \gls{RDF} resources produced are not malformed, \gls{SHACL} forms were utilized. \gls{SHACL} shapes allow to define certain classes for \gls{RDF} resources and then to validate any \gls{RDF} resources against those shapes, making it possible to run the tests on any output.
-In the Listing \ref{{lst:shacl-class} a definition for a Context class is shown. 
+In the Listing \ref{lst:shacl-class} a definition for a Context class is shown. \gls{SHACL} definitions are defined in a Turtle format, which is another format from  \gls{NIF} format, produced by the framework.
 \begin{lstlisting}[caption=SHACL Context Class definition,frame=tlrb,  label = {lst:shacl-class}]{Name}]
 ontology:Context
 rdf:type rdfs:Class ;
@@ -1051,11 +1053,30 @@ sh:severity sh:Violation
 .
 \end{lstlisting}
 
-To validate output against SHACL shapes, various tools can be used, notably an open-source validator to test shapes and data: https://shacl.org/playground/.
+To validate output against SHACL shapes, various tools can be used, notably an open-source validator to test shapes and data: https://shacl.org/playground/. Application's output can be converted to a Turtle format using EasyRDF Converter from https://www.easyrdf.org/converter/.
+
+Current SHACL shapes validate whether properties are present and that their number does not exceed the required number. For more complex validation, integration tests are used.
 
 \subsection{English language parsing}
 
 Initially the testing was done on a single English-language article. This testing uncovered many problems with the parsing model, such as the need to update the recursive function to build the page structure. Most importantly, the first testing helped to understand the vast number of Wikipedia XML components. Of those, I had to drop the parts that were already covered by the previous frameworks mentioned in Section \ref{dbpedia_in_extraction_framework}, such as infoboxes, images, files, categories and others, and instead focus only on the text. I also dropped the citations mentioned in the article's footer, and instead focused on the text itself.
+
+In the Listing \ref{lst:english-cli}, an example of the Framework's output is shown. Every run shows the total amount of pages parsed, as well as what percentage of articles was not parsed due to Framework's exceptions. In this case 96.74\% of articles were parsed and added to the output. If there is a processing error, it is indicated in the output by providing the reason for an error and part of the paragraph where the error happened, for example "Error parsing page Crankshaft: Broken xml component - closing brace not found for \{\{ in paragraph \{\{Main|Science and t...".
+
+\begin{lstlisting}[caption=Example of an English processing command,frame=tlrb,  label = {lst:english-cli}]{Name}]
+macs-MacBook-Air:wiki-realtime-extractor mac$    ./parse_xml_dump.sh documents/large_documents/short_test_1000k.xml --language=ENGLISH --clean -o=output
+....
+22-01-31 00:08:36 INFO  XmlDumpParser:112 - Parsed page: Cemetery H culture
+2022-01-31 00:08:36 INFO  XmlDumpParser:112 - Parsed page: Corrado Gini
+2022-01-31 00:08:36 ERROR XmlDumpParser:121 - Error parsing page Crankshaft: Broken xml component - closing brace not found for "{{" in paragraph "{{Main|Science and t..."
+2022-01-31 00:08:36 INFO  XmlDumpParser:112 - Parsed page: Central nervous system
+2022-01-31 00:08:36 INFO  XmlDumpParser:112 - Parsed page: Caste
+2022-01-31 00:08:36 INFO  XmlDumpParser:112 - Parsed page: Creation
+2022-01-31 00:08:36 INFO  XmlDumpParser:112 - Parsed page: Coral 66
+2022-01-31 00:08:36 INFO  XmlDumpParser:112 - Parsed page: Rhyming slang
+2022-01-31 00:08:36 INFO  XmlDumpParser:112 - Parsed page: Canchim
+2022-01-31 00:08:36 INFO  XmlDumpParser:135 - Total pages parsed: 3378. Success rate: 96.74%. Seconds passed: 198
+\end{lstlisting}
 
 \subsection{Testing other languages}
 
@@ -1069,24 +1090,50 @@ Additionally to English language, I have added other popular Wikipedia languages
 	\item \textbf{Japanese:} 523,629 articles, 4.6\%.
 \end{enumerate}
 
+Dynamic Language Support is described in \ref{dynamic_lang_support}. To verify that the Framework works in other languages, I have downloaded English, German and Polish XML dumps and run the framework against them, as seen on Listing \ref{lst:polish-cli}. 
 
-\subsection{Output validation}
 
-There are several utilities that can be used to validate the output, most notable Apache Jena and rapper\cite{rapper_utility}. For the output validation, I have picked rapper, as it is more lightweight and has the ability to count or parse the provided N-triples. For example, the command \lstinline{rapper --input ntriples --output rdfxml --show-graphs nif\_links.nt} will parse the links and transform it into RDF/XML format. If this transformation will not throw any exceptions, this will mean that the output is a valid set of N-triples.
+\begin{lstlisting}[caption=Example of a Polish processing command,frame=tlrb,  label = {lst:polish-cli}]{Name}]
+macs-MacBook-Air:wiki-realtime-extractor mac$    ./parse_xml_dump.sh documents/xml_test_polish.xml --language=POLISH --clean -o=output
+2022-01-31 00:00:35 INFO  XmlDumpParser:112 - Parsed page: AWK
+2022-01-31 00:00:36 INFO  XmlDumpParser:112 - Parsed page: Alergologia
+2022-01-31 00:00:37 INFO  XmlDumpParser:112 - Parsed page: Aksjomat
+2022-01-31 00:00:37 INFO  XmlDumpParser:112 - Parsed page: Arytmetyka
+....
+2022-01-31 00:00:40 INFO  XmlDumpParser:112 - Parsed page: Alabama
+2022-01-31 00:00:40 INFO  XmlDumpParser:135 - Total pages parsed: 76. Success rate: 100.00%. Seconds passed: 5
+\end{lstlisting}
+
+
+\subsection{Output format validation}
+
+There are several utilities that can be used to validate the output, most notable Apache Jena and rapper\cite{rapper_utility}. For the output validation, I have picked rapper, as it is more lightweight and has the ability to count or parse the provided N-triples. For example, the command \lstinline{rapper --input ntriples --output rdfxml --show-graphs nif\_links.nt} will parse the links and transform it into RDF/XML format. If this transformation will not throw any exceptions, this will mean that the output is a valid set of N-triples. Rapper tool can also be used to convert output into a different format, such as RDF.
 
 \subsection{Scale Testing}
 
 For the scale testing, I have implemented logging and a simple parsing success metric, as some of the articles have a syntax that may deviate from the standard or the framework's programmed expectations. For example, some might contain links that are broken with line separators, or differently encoded XML components. 
 
-To further measure the time that the application will take to parse the code, I have added the execution time metric.
+To further measure the time that the application will take to parse the code, I have added the execution time metric. To make sure it is still possible to execute, I added a --dry-run CLI option that cleans up the output files to remove output after every execution. Not doing that results in generating text that takes a lot of disk space. Unfortunately, output clean up slows down execution by around 3 times, so this option is unusuable for a general performance testing.
 
-I have run several tests over the English Wiki dump with the next results:
+I have run several tests over the English Wiki dump with the next results. The table shows results with appending and keeping text in output files, that is faster because the file output connection is not closed after every article parsing.
 
-\begin{itemize}
-	\item Total pages parsed: 258. Success rate: 84.88\%. Seconds passed: 31.
-	\item Total pages parsed: 2087. Success rate: 88.55\%. Seconds passed: 109.
-	\item Total pages parsed: 6738. Success rate: 87.90\%. Seconds passed: 237.
-\end{itemize}
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	\# of pages parsed & Total execution time &  ms per article &  Success rate\\
+	\hline
+	257 & 26 & 110 & 100\% \\
+	\hline
+	257 & 46 & 178 & 100\% \\
+	\hline
+	2087 & 109  & 50 & 88.5\% \\
+	\hline
+	6738 & 237  & 35 & 87.9\% \\
+	\hline
+	6649 & 414  & 63 & 96.35\% \\
+	\hline
+	15118 &  1433 & 94 & 96.47\% \\
+	\hline
+\end{tabular}
 
 \chapter{Conclusions}
 
@@ -1097,10 +1144,21 @@ The result of this thesis is a Java Framework that allows users to parse and ret
 	\item \textbf{Extract page structure.} Page structure is extracted and recursively built in the form of N-Triples.
 	\item \textbf{Extract links.} Links are extracted, URLs that link them to the page structure are created.
 	\item \textbf{Provide outputs for context, links and page structure in the form of N-Triples.} Output is printed.
-	\item \textbf{Implement language extensibility.} Language extensibility mechanism is implemented, new languages can be added in the form of an XML that is parsed into \gls{POJO} when the application is starting, better described in Section \ref{dynamic_lang_support}.
+	\item \textbf{Implement language extensibility.} Language extensibility mechanism is implemented, new languages can be added in the form of an XML that is parsed into \gls{POJO} when the application is starting, better described in Section \ref{dynamic_lang_support}. Framework is tested in several languages - English, German and Polish.
 	\item \textbf{Provide a user interface.} User interface is provided in two different forms and is described in Section \ref{usability_considerations}.
 \end{enumerate} 
 
+
+\section{Future improvements}
+
+There is a number of future improvements that can be done to this project:
+
+\begin{itemize}
+	\item Code quality improvements. There is currently some unused code, style warnings and duplicate fragments that can be updated to clean up the code.
+	\item Article parsing success rate. By analyzing the logs, more articles can be successfuly parsed by adding more rules to regular expression editing of the context.
+	\item Add parsing of Wikipedia footers. Only the main article text is currently parsed by the Framework, the footers, specifically citations, might contain useful information.
+	\item Add horizontal scalability. Execution on the main Wikipedia dump files takes a lot of time, with 25 minutes for each XML part and 27 parts available for English, the whole processing can take around 10 to 11 hours. The work, however, can be easily parallelized by splitting the input to be processed by different machines.
+\end{itemize}
 
 \printglossaries
 

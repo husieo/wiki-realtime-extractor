@@ -2,6 +2,7 @@ package org.dbpedia.extractor.service;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
@@ -37,6 +38,9 @@ public class XmlDumpParser {
     private XmlMapper xmlMapper;
 
     private NifFormatter nifFormatter;
+
+    @Setter
+    private boolean dryRun;
 
 
     private static final String pageBegin = "<page>";
@@ -116,6 +120,10 @@ public class XmlDumpParser {
                         outputFolderWriter.writeToFile(OutputFolderWriter.STRUCTURE_FILENAME, pageStructEntry);
                         Model linksEntry = nifFormatter.generateLinksEntry(parsedPage);
                         outputFolderWriter.writeToFile(OutputFolderWriter.LINKS_FILENAME, linksEntry);
+                        if(dryRun){
+                            // remove all file contents if dry-run. used to quickly estimate performance.
+                            outputFolderWriter.removeAllFileContents();
+                        }
                         success++;
                     } catch (ParsingException e) {
                         log.error(String.format("Error parsing page %s: %s", wikiPage.getTitle(), e.getMessage()));
@@ -132,7 +140,9 @@ public class XmlDumpParser {
 
             int total = Math.max(success + failure, 1);
             double successRate = 100 * (success / (double) total);
-            log.info(String.format("Total pages parsed: %d. Success rate: %.2f%%. Seconds passed: %d", total, successRate, timeElapsed));
+            double milliSecondsPerArticle = (timeElapsed /(double )total) * 1000;
+            log.info(String.format("Total pages parsed: %d. Success rate: %.2f%%. Seconds passed: %d, ms per article: %.1f",
+                    total, successRate, timeElapsed, milliSecondsPerArticle));
         } finally {
             LineIterator.closeQuietly(it);
         }

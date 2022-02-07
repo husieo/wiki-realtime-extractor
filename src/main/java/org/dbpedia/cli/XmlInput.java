@@ -35,6 +35,10 @@ public class XmlInput implements Callable<Integer> {
                     "Valid values are ENGLISH, CHINESE, FRENCH, GERMAN, ITALIAN, RUSSIAN, SPANISH, or any language added to configuration/language_list.xml")
     private String language;
 
+    @CommandLine.Option(names = {"-d","--dry-run"}, defaultValue = "false",
+            description = "Whether to output NIF triples. Used for performance testing. Removes NIF file contentc on every iteration if set to true.")
+    private boolean dryRun = false;
+
     public Integer call() throws Exception {
         //check if needed to remove file content
         if(cleanFiles){
@@ -45,7 +49,7 @@ public class XmlInput implements Callable<Integer> {
         // business logic here
         languageIdentifierBean.readLanguageList();
         languageIdentifierBean.setLanguage(language);
-        xmlDumpService.submitXml(xmlFile.getPath(), outputPath.getPath());
+        xmlDumpService.submitXml(xmlFile.getPath(), outputPath.getPath(),dryRun);
         return 0;
     }
 

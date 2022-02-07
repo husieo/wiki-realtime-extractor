@@ -1,0 +1,718 @@
+Extracting Structured Information from Wikipedia
+Wikipedia articles contain different types of structured information, such as infobox templates, categorisation information, images, geo-coordinates, links to external Web pages and links across different language editions of Wikipedia. To process this, Wikipedia uses Mediawik software. Due to the nature of this  Wiki system, basically all editing, linking, annotating with meta-data is done inside article texts by adding special syntactic constructs. Hence, structured information can be obtained by parsing article texts for these syntactic constructs. Example of Wikipedia XML and then cleaned text that will be shown to the user can be seen in listings  and  respectively.
+
+[caption=Raw Wikipedia XML,frame=tlrb,  label = lst:raw-wikipedia-xml]Name
+basic forms of government
+"'Anarchism"' is an [[Anti-authoritarianismanti-authoritarian]] [[Political philosophypolitical]] and [[Social philosophysocial philosophy]]sfnm1a1=McLaughlin1y=20071p=592a1=Flint2y=20092p=27 that rejects [[Hierarchyhierarchies]] deemed unjust and advocates their replacement with [[Workers' self-managementself-managed]], [[Self-governanceself-governed]] societies based on voluntary, [[cooperative]] institutions. These institutions are often described as [[Stateless societystateless societies]],sfnm1a1=Sheehan1y=20031p=852a1=Craig2y=20052p=14 ...
+
+[caption=Cleaned Wikipedia text,frame=tlrb, label = lst:cleaned-wikipedia-text]Name
+Anarchism is an anti-authoritarian political and social philosophy that rejects hierarchies deemed unjust and advocates their replacement with self-managed, self-governed societies based on voluntary, cooperative institutions. These institutions are often described as stateless societies, ...
+
+The XML extraction algorithm detects such Mediawiki templates and recognizes their structure using pattern matching techniques. It selects significant templates, which are then parsed and transformed to RDF triples. The algorithm uses post-processing techniques to increase the quality of the extraction. MediaWiki links are recognized and transformed to suitable URIs, common units are detected and transformed to data types. Furthermore, the algorithm can detect lists of objects, which are transformed to RDF lists.
+
+DBpedia Dataset
+
+As stated on the DBpedia's official website, the English version of the DBpedia dataset currently provides information about more than 4.58 million things, out of which 4.22 million are classified in a consistent ontology, including at least 1,445,000 persons, 735,000 places(including 478.000 populated places), 411,000 creative works (including 123,000 music albums, 87,000 films and 19,000 video games), 241,000 organizations (including 58,000 companies and 49,000 educational institutions), 251,000 species and 6,000 diseases.
+
+DBpedia concepts are described by short and long abstracts in 125 languages. All these versions together describe 38.3 million things, out of which 23.8 million are localized descriptions of things that also exist in the English version of DBpedia. The full DBpedia data set features 38 million labels and abstracts in 125 different languages, 25.2 million links to images and 29.8 million links to external web pages; 80.9 million links to Wikipedia categories, and 41.2 million links to YAGO categories. DBpedia is connected with other Linked Datasets by around 50 million RDF links.
+
+Triplestore
+
+A triplestore is a software program capable of storing and indexing RDF data, in order to enable querying this data efficiently. Most triplestores support the SPARQL query language for querying RDF data. Virtuoso, Sesame, and BigOWLIM are typical examples of triplestores. DBpedia is using Virtuoso as the underlying triplestore.
+
+DBpedia Dataset Web Endpoints
+
+DBpedia website provides three access mechanisms to the DBpedia dataset: Linked Data, the SPARQL protocol, and downloadable RDF dumps. Royalty-free access to these interfaces is granted under the terms of the GNU Free Documentation License.
+
+Linked Data. DBpedia resource identifiers, are set up to return RDF descriptions when accessed by Semantic Web agents, and a simple HTML view of the same information to traditional web browsers. HTTP content negotiation is used to deliver the appropriate format.
+
+SPARQL Endpoint. Client applications can send queries over the SPARQL protocol to this
+endpoint at http://dbpedia.org/sparql. This interface is appropriate when the client application developer knows in advance exactly what information is needed. In addition to standard SPARQL, the endpoint supports several extensions of the query language that have proved useful for developing user interfaces: full text search over selected RDF predicates, and aggregate functions, notably COUNT. To protect the service from overload, limits on query cost and result size are in place. For example, a query that asks for the store’s entire contents is rejected as too costly, and SELECT results are truncated at 1000 rows.
+
+RDF Dumps. N-Triple serializations of the datasets are available for download at the DBpedia website and can be used by sites that are interested in larger parts of the dataset.
+
+Related works
+
+DBpedia Information Extraction FrameworkPrior to the current project, a few projects have already been made in order to facilitate DBpedia's need for extracting information from Wikipedia and related resources, namely DBpedia Information Extraction Framework.
+
+DBpedia Information Extraction Framework focuses on the main disadvantage of DBpedia: heavy-weight release process. Producing a DBpedia dataset release through the traditional dump-based extraction requires manual effort and – since dumps of the Wikipedia database are created on a monthly basis – DBpedia has never reflected the current state of Wikipedia. Hence, this prokect extended the DBpedia extraction framework to support a live extraction, which works on a continuous stream of updates from Wikipedia and processes that stream on the fly. More importantly, the extraction framework focuses on other parts of the Wikipeida articles. The framework has 19 extractors that process the following Wikipedia content, most important of which are list below:
+
+	Labels. All Wikipedia articles have a title, which is used as an rdfs:label for the
+	corresponding DBpedia resource.
+	Abstracts. Those include a short abstract (first paragraph, represented by using rdfs:comment) and a long abstract (text before a table of contents, using the 	property dbpedia:abstract) from each article.
+	Interlanguage links.
+	Images.
+	Redirects.
+	Disambiguation.
+	External links.
+	Page links.
+	Person data. It extracts personal information such as surname, and birth date.	This information is represented in predicates such as foaf:surname, and dbpedia:birthDate.
+	Infobox
+	Category label Wikipedia articles are arranged in categories, and this extractor	extracts the labels for those categories.
+
+
+Analysis and Implementation
+
+Requirements
+Before starting to design the project, it is beneficial to specify the requirements. There several ways to layout the requirements, mainly writing down formal requirements or use cases. Because the project is oriented on delivering results to a smaller group of developers, it will be better to use formal requirements, as opposed to user-oriented use cases.
+
+A FR is a description of the service that the software, specifically the Extraction Framework, must offer to the user. It describes a software system or its component.  Functional requirements should include the following things:
+
+	Details of operations conducted in the system;
+	Description of system inputs and outputs or other reports;
+	Information about the workflows performed by the system.
+
+Functional requirements have next advantages:
+
+	Helps to check whether the application is providing all the functionalities that were mentioned;
+	A functional requirement document helps you to define the functionality of a system or one of its subsystems;
+	Functional requirements along with requirement analysis help identify missing requirements. They help clearly define the expected system service and behavior;
+	Errors caught in the Functional requirement gathering stage are the cheapest to fix;
+	Support user goals, tasks, or activities.
+
+The list of functional requirements for the Framework for Extraction of Wikipedia Articles Content:
+
+
+	Accept input data: The framework should accept the official  Wikipedia dumps in the XML format, provided by the Wikipedia. The dumps can contain an amount of information up to 20 GB of text data. The framework should be able to parse dumps in English and at least 4 other popular Wikipedia languages.
+	Provide outputs: The framework should print all the outputs in the NIF triples, concatenating processed data from all articles in a single XML input file and writing the data to .nt output file.
+	Extract context: The framework should extract clean text from the Wikipedia page, removing or processing all the XML and Wikipedia-specific markup, including the core text but excluding infoboxes, files, images, and footers.
+	Extract page structure: The framework should extract a page tree, where every page section is a node, preserving the relation to the page context. The page tree should include The page tree should be printed in an output file separately from the page context.
+	Extract links: In addition to context, the framework should supplement the context by extracting internal Wikipedia links from the page. These links should refer to their respective sections of the text, and include only other Wikipedia articles, excluding possible external links to other web pages. The links should also be printed in another output file, separately from the page structure and context.
+	Implement extensibility: The framework should be easily extensible by other developers to include new languages.
+	Provide an interface: The framework is required to have an intuitive interface for the user to easily leverage the framework in other works.
+	Evaluate the results: The framework should contain the metrics that will provide user with a feedback about every execution.
+
+
+While functional requirements are the most important part of the project, there can be other, less specific requirements that go along with the functional requirements, commonly known as non-functional requirements. For this project, the non-functional requirements included the research of Wikipedia XML Dump Structure, NIF data format and the ways to facilitate the goals of the DBpedia project.
+
+Desired Output
+
+The output that is required is defined below, split into context, links and page structure.
+
+
+Context
+
+For the context resource, we need next values:
+
+
+	Predicate Language - predLang. The main language of the context.
+	Context String - isString. The context's text.
+	Source URL - sourceUrl Link to the Wikipedia article.
+	Context's Index at the start - beginIndex Starting index of the context - always starts at zero.
+	Context's Index at the end - endIndex The context's length.
+
+[caption=Example of an output for context in NIF format,frame=tlrb,  label = lst:nif-context]Name
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#predLang> "http://lexvo.org/id/iso639-3/eng" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#isString> "Anarchism is an anti-authoritarian political and social philosophy that rejects ..." .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#sourceUrl> "http://en.wikipedia.org/wiki/Anarchism" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "43346"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Context> .
+
+Links
+
+For the links resource, we need to pick all the internal, or Wikipedia links, as well as external links that lead to other websites from Wikipedia. Note that this does not include references, only links that are part of the text. Links can be either of type Word, which is a single word, or Phrase, which is includes several words that have the same link. Links should have next properties:
+
+
+	Reference Context - referenceContext. The context resource to where this link belongs.
+	Identity Reference - taIdentRef. Resource's identity reference in DPBpedia
+	Super string - superString. Parent paragraph of the link.
+	Anchor - anchorOf Link's word or phrase in the text.
+	Context's Index at the start - beginIndex Starting index of the link, as related to the context's text.
+	Context's Index at the end - endIndex The link's end index.
+
+
+[caption=Example of an output for a Word link in NIF format,frame=tlrb,  label = lst:nif-links]Name
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Word> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#referenceContext> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex> "157"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "170"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#superString> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_0_550" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://www.w3.org/2005/11/its/rdf#taIdentRef> <http://dbpedia.org/resource/Self-governance> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#anchorOf> "self-governed" .
+
+Page Structure
+
+Page structure describes the structure of the article, with sections and paragraphs organize into a tree. Page structure has two types of resources, sections that are separated by titles in the article, and paragraphs that are part of the section.
+
+
+	Reference Context - referenceContext. The context resource to where the page structure belongs.
+	Has Section - hasSection. Section's children subsections.
+	Has Paragraph - hasParagraph. Section's paragraphs.
+	First Paragraph - firstParagraph First paragraph of the section
+	Last Paragraph - lastParagraph Last Paragraph of the section.
+	Context's Index at the start - beginIndex Starting index of the section, as related to the context's text.
+	Context's Index at the end - endIndex The section's end index.
+
+[caption=Example of an output for a Section,frame=tlrb,  label = lst:nif-links]Name
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Section> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#referenceContext> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasSection> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_1231_3745" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "1231"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+...
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasParagraph> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_0_550" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasParagraph> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_550_1227" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#firstParagraph> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_0_550" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#lastParagraph> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_550_1227" .
+
+
+
+Design
+
+General Workflow
+
+The general data workflow of the Framework for Extraction of Wikipedia Articles is depicted in Figure .
+
+
+			General Extraction Framework data workflow
+
+
+	Wikipedia: the main Wikipedia website is the primary sources of information.
+	Wikipedia XML dump: Wikipedia runs a daily database archivation process and releases all the archived data in the form of XML dumps. These dumps can then be downloaded, unpacked and fed to the framework.
+	Framework for Extraction of Wikipedia Articles:  the framework processes the XML dump to get the context, structure and links and provide several options for the output.
+	N-Triples Dumps: one of the outputs is to write the processed information to text files as N-Triples
+	REST API endpoints: the other option is to provide the REST API endpoints for more convenient view of the output.
+
+
+Usability considerations
+One of the goals of the application is to make it easy to use, both by researchers and machines. In order to achieve that, application provides several interfaces. For the machines, it might be easier to connect to the application via REST API. Humans prefer other interfaces, such as GUI, or CLI.
+
+REST API
+
+REST is a software architectural style that defines a set of constraints to be used for creating Web services. Web services that conform to the REST architectural style, called RESTful Web services, provide interoperability between computer systems on the internet. RESTful Web services allow the requesting systems to access and manipulate textual representations of Web resources by using a uniform and predefined set of stateless operations.
+
+An API is a computing interface which defines interactions between multiple software intermediaries. It defines the kinds of calls or requests that can be made, how to make them, the data formats that should be used, the conventions to follow, etc.
+
+In a RESTful Web service, requests made to a resource's URI will elicit a response with a payload formatted in HTML, XML, JSON, or some other format. The response can confirm that some alteration has been made to the resource state, and the response can provide hypertext links to other related resources. When HTTP is used, as is most common, the operations (HTTP methods) available are GET, HEAD, POST, PUT, PATCH, DELETE, CONNECT, OPTIONS and TRACE. Therefore, HTTP-based RESTful APIs are defined with the following aspects:
+
+
+	A base URI, such as http://api.example.com/collection/;
+	Standard HTTP methods (e.g., GET, POST, PUT, PATCH and DELETE);
+	A media type that defines state transition data elements (e.g., Atom, microformats, application/vnd.collection+json, xml, etc.). The current representation tells the client how to compose requests for transitions to all the next available application states. This could be as simple as a URI or as complex as a Java applet.
+
+
+The framework gives an option to use REST API endpoints over the CLI interface. To understand the reasoning of why to include an API in the application, it is best to start with its pros and cons in the context of this project.
+
+Using REST API Pros
+
+	REST is a defined way of communication between machines
+	REST API will allow users to retrieve information in chunks rather than having a complete output at once
+	REST API can be easily tested by using applications tools Postman or curl to produce automated and granulated integration tests
+
+Cons
+
+	REST API is not cut out to transfer large amounts of data, and is usually limited by the machine's RAM, making it unsuitable for serving the amounts produced by this project.
+	REST API is not a user-friendly out-of-the-box solution, as navigating it will require either some special tools or an additional development of the client interface.
+
+Considering these points, it can be concluded that while REST API is useful for some particular tasks, it is better to use it as a secondary interface.
+
+REST API Endpoints
+
+In API terminology, communication endpoint, or simply endpoint is a unique URL address that users can access to exchange information with the server. Or in other words, APIs work using requests and responses. When an API requests information from a web application or web server, it will receive a response. The place that APIs send requests and where the resource lives, is called an endpoint.
+
+Designing the endpoints is an intricate process on its own. While there is no single standard on how to design and name the endpoints, there are several recommendations followed by the programming community:
+
+
+	Use Nouns in URI. While this rule is not hard, the API is oriented towards resources, and nouns that define resources are generally preferred over verbs or adjectives.
+	Plurals over Singulars. The ideology behind using plurals is that usually we operate on one resource from a collection of resources.
+	Let the HTTP Verb Define Action. Continuing on the first point, HTTP already has verbs(such as GET, POST, PUT, DELETE) in place to define the action of a request.
+	Do not misuse idempotent methods. Safe, or idempotent, methods in HTTP are the methods which will return the same response irrespective of how many times they are called by the client. GET, HEAD, OPTIONS and TRACE methods are defined as safe. It is important to use HTTP methods according to the action which needs to be performed.
+	Depict Resource Hierarchy Through URI. If a resource contains sub-resources, make sure to depict this in the API to make it more explicit. For example, if a user has posts and we want to retrieve a specific post by user, API can be defined as GET /users/123/posts/1 which will retrieve Post with id 1 by user with id 123.
+	Version Your APIs Versioning APIs always helps to ensure backward compatibility of a service while adding new features or updating existing functionality for new clients.
+
+The framework provides the next REST endpoints:
+
+
+	POST /articles - Submission endpoint allows you to submit the XML dump or its part to the server. After that is done, the server will asynchronously parse the provided XML, adding the articles to the database as it goes through the submitted articles.
+	GET /articles/title/context Get the context N-Triples of an article with a given title.
+	GET /articles/title/structure Similarly, get the page structure of an article.
+	GET /articles/title/links Get the links associated with an article with a given title.
+	GET /articles/count Get the total count of articles in a server's database.
+
+Command Line Interface
+
+Parsing of large xml files imposes limitations on the technologies that can be used. Particularly, the size of English part of the Wikipedia xml dump has a size of 16 GB. This means that the file cannot be normally loaded into RAM, as a single modern computer will usually have from 4 to 16 GB of RAM, with Java heap utilizing a quarter of that capability by default.
+
+Furthermore, modern internet communication is better built around frequent exchange with small packets, and imposes a limit of maximum amount of requests that can be sent in a second. For example, it will not be possible to use Wikipedia's API for this task, as the Wikipedia's server might ban all further requests. For that reason, all the processing should be done offline and not rely on the internet connection at all.
+
+Considering the limitations described above, it was decided to use CLI as the main way to use the application.
+
+CLI Design Principles
+
+Developers can get a lot more done by using a well-designed CLI. Usability and discovery are paramount in a CLI application. There are next important points to consider when designing a good CLI:
+
+	Provide a Help Screen Getting started with a CLI is unlike using other software for the first time. There is not always a welcome screen, no confirmation email with a link to documentation. Only through the command itself can developers explore what’s possible. That experience begins in the help screen, accessible via a command in your CLI application, usually via runing command with a help parameter.
+	Consider following already created CLI For example, there a few general parameters that are included in every CLI:
+	-h or -help Display the help screen
+	-v or -verbose: Show less succinct output of the command, usually for debugging purposes. This one may be contentious, as some CLIs use -v for version.
+	-V or -version: It’s important to know which version of the CLI you’re using, but not as often as you want verbose output.
+	Allow Developers to Customize Their CLI Experience. This one usually achieved via providing profiles. In this project's case, it was simplified by using an existing CLI library.
+
+To simplify further development process, it was decided to use an existing picocli library for simple CLI implementation.
+
+Command Line Input Options
+
+The library used to create a CLI provides a good mechanisms to generate help text, from which the list of possible arguments, both mandatory and optional, can be extracted:
+
+
+	xmlFile - The relative path to the XML Wiki dump.
+	-c, -clean - The optional argument to clear output files of content before writing a new information. Useful option for testing the framework.
+	-h, -help - Show this help message and exit.
+	-l, -language=language - Provide the language of the XML dump that is being parsed. Default language is English.
+	-o, -output=outputPath - The NIF files output folder.
+	-V, -version - Print framework version information.
+
+Project Architecture
+
+Since the related works mentioned in  are based on Java and other JVM based technologies such as Scala, it is best to build the project on those technologies in order to leverage the existing knowledge and reuse already developed libraries where possible. It is, however, worth noting that a large amount of dependencies used will introduce more complexity into the system. When the dependency' behavior that is not controlled by the framework is changed, the whole application workflow may be affected until the fix is implemented. Therefore, using only necessary dependencies is important.
+
+
+
+Following the Java application standards, the codebase was split into packages, with org.dbpedia as the main package prefix, common for all DBpedia-related projects. A package in Java is used to group related classes, and is similar to a folder or a directory. We use packages to avoid name conflicts, and to write a better maintainable code.
+
+
+	application - package for main Java classes. The application is developed in such a way that it has several main methods, and depending on the configuration, only one of those will be used.
+	cli - package responsible for generating CLI.
+	configuration - package that contains necessary Spring configuration, further described in .
+	exception - package responsible for custom exception handling. While Java has its own Exception handling system, for a better handling it is recommended to extend the existing interfaces and catch custom exceptions instead.
+	extractor - main package that contains all the code responsible for the extraction, parsing and structuring the information.
+	splitter - support package that helps to split the xml dump into separate pages.
+
+After designing the package structure, it is important to identify the general class diagram outlay. This outlay is presented in Figure . The classes and their purpose are broken down below:
+
+
+	ExtractionApplicationCLI - main executable class that contains Java's main method.
+	XmlInput - a class that processes the CLI input parameters, by using the picocly library.
+	LanguageIdentifierBean - a singleton class that defines the language of an XML dump that is processed, set to English by default. A singleton classes can only have one instance and usually contains project-wide settings. Singleton mechanic is handled by the Spring framework, described in section .
+	XmlDumpService -  a service class that is a wrapper for all XML-processing operations.
+	XmlDumpParser - a specific class that processes XML dump and breaks it up into pages.
+	WikipediaPageParser - a parser class that focuses on processing a single page.
+	OutputFolderWriter - a writer class that facilitates the output of a current project.
+
+
+			Framework Main Class Diagram
+
+
+Implementation
+
+Tools and libraries
+
+The chosen language for framework development is Java, as it is used in DBpedia Extraction Framework, described in section . It is, however, important to notice that plain Java is not sufficient to achieve the goal of implementing modern Web Framework. For that reason, many other supplementary tools, libraries and other technologies were developed. This current ecosystem will be described below.
+
+The project was developed using an IntelliJ IDEA, a modern  IDE that is maintained by a Czech company JetBrains. While initially inferior to its counterparts, such as Eclipse and NetBeans, this IDE has over time grew into an industry standard, currently becoming by far the most popular IDE used by developers, as can be seen on Figure . The company is now also developing a JVM-based language called Kotlin, that will be able to overcome some of Java's own shortcomings, such as a lack of support for functional programming paradigm. For the current project, however, it was decided to eliminate unnecessary dependencies and use Java as a main development language.
+
+
+			Usage of IDEs for Java development
+
+Spring Framework
+
+Spring framework is an open source Java platform. It was initially written by Rod Johnson and was first released under the Apache 2.0 license in June 2003.
+
+The core features of the Spring Framework can be used in developing any Java application, but there are extensions for building web applications on top of the Java Enterprise Edition platform. Spring framework targets to make J2EE development easier to use and promotes good programming practices by enabling a POJO-based programming model.
+
+The Spring Framework provides a comprehensive programming and configuration model for modern Java-based enterprise applications - on any kind of deployment platform.
+
+A key element of Spring is infrastructural support at the application level: Spring focuses on the "plumbing" of enterprise applications so that teams can focus on application-level business logic, without unnecessary ties to specific deployment environments.
+
+Following is the list of few of the great benefits of using Spring Framework:
+
+
+	Spring enables developers to develop enterprise-class applications using POJOs. The benefit of using only POJOs is that you do not need an EJB container product such as an application server but you have the option of using only a robust servlet container such as Tomcat or some commercial product.
+
+	Spring is organized in a modular fashion. Even though the number of packages and classes are substantial, you have to worry only about the ones you need and ignore the rest.
+
+	Spring makes use of some of the existing technologies like several ORM frameworks, logging frameworks, JEE, Quartz and JDK timers, and other view technologies.
+
+	Testing an application written with Spring is simple because environment-dependent code is moved into this framework. Furthermore, by using JavaBeanstyle POJOs, it becomes easier to use dependency injection for injecting test data.
+
+	Spring's web framework is a well-designed web MVC framework, which provides a great alternative to web frameworks such as Struts or other over-engineered or less popular web frameworks.
+
+	Spring provides a convenient API to translate technology-specific exceptions (thrown by JDBC, Hibernate, or JDO, for example) into consistent, unchecked exceptions.
+
+	Lightweight IoC containers tend to be lightweight, especially when compared to EJB containers, for example. This is beneficial for developing and deploying applications on computers with limited memory and CPU resources.
+
+	Spring provides a consistent transaction management interface that can scale down to a local transaction (using a single database, for example) and scale up to global transactions (using JTA, for example).
+
+There is a several versions of Spring Framework, namely the original Spring and a newer version called Spring Boot. The difference between those two is that the original Spring leverages the use of XML configurations, while Spring Boot instead uses Java Configuration classes.
+
+An Inversion of Control(IoC) container is a common characteristic of frameworks that implement IoC.
+
+In the Spring framework, the IoC container is represented by the interface ApplicationContext. The Spring container is responsible for instantiating, configuring and assembling objects known as beans, as well as managing their lifecycle.
+
+One of the important aspects of the Spring Framework is a Bean. Beans are the objects that form the backbone of your application and that are managed by the Spring Inversion of Control container. A bean is an object that is instantiated, assembled, and otherwise managed by a Spring IoC container. These beans are created with the configuration metadata that supplied to the container.
+
+Beans have so-called Spring Bean Scopes, that allow developers to have more granular control of the bean lifecycles. There are 5 maing Bean scopes in Spring:
+
+
+	singleton – only one instance of the spring bean will be created for the spring container. This is the default spring bean scope. While using this scope, make sure bean doesn’t have shared instance variables otherwise it might lead to data inconsistency issues.
+	prototype – A new instance will be created every time the bean is requested from the spring container.
+	request – This is same as prototype scope, however it’s meant to be used for web applications. A new instance of the bean will be created for each HTTP request.
+	session – A new bean will be created for each HTTP session by the container.
+	global-session – This is used to create global session beans for Portlet applications.
+
+For this project, mostly prototype and singleton Bean scopes were used, with singleton being a default one.
+
+Spring Dependency Injection
+Inversion of Control
+Inversion of Control is a principle in software engineering by which the control of objects or portions of a program is transferred to a container or framework. It's most often used in the context of object-oriented programming.
+
+By contrast with traditional programming, in which our custom code makes calls to a library, IoC enables a framework to take control of the flow of a program and make calls to our custom code. To enable this, frameworks use abstractions with additional behavior built in. If we want to add our own behavior, we need to extend the classes of the framework or plugin our own classes.
+
+The advantages of this architecture are:
+
+
+	Decoupling the execution of a task from its implementation.
+	Making it easier to switch between different implementations.
+	Greater modularity of a program.
+	Greater ease in testing a program by isolating a component or mocking its dependencies and allowing components to communicate through contracts.
+
+
+Inversion of Control can be achieved through various mechanisms such as: Strategy design pattern, Service Locator pattern, Factory pattern, and Dependency Injection (DI).
+
+Dependency Injection
+
+Dependency injection is a pattern through which to implement IoC, where the control being inverted is the setting of object's dependencies.
+
+The act of connecting objects with other objects, or “injecting” objects into other objects, is done by an assembler rather than by the objects themselves.
+
+You can see an example on how to create an object dependency in traditional programming in Listing
+
+[caption=Example class without a Dependency Injection,frame=tlrb,  label = lst:no-dep-injection]Name
+public class Store
+	private Item item;
+
+	public Store()
+	item = new ItemImpl1();
+
+
+
+In the example above, we need to instantiate an implementation of the Item interface within the Store class itself. By using Dependency Injection pattern, this example can be rewritten without specifying the implementation of Item that we want, as can be seen in Listing .
+
+[caption=Example class with a Dependency Injection,frame=tlrb,  label = lst:with-dep-injection]Name
+public class Store
+	private Item item;
+	public Store(Item item)
+	this.item = item;
+
+
+
+Java Jackson XML Library
+The Jackson project is a collection of data processing tools for the Java language and the JVM platform. It supports a wide range of data formats such as CSV, Java Properties, XML, and YAML through extension components that support the specific language.
+
+The Jackson XML component is meant for reading and writing XML data by emulating how JAXB works, although not conclusively.
+
+In this project, Jackson library will be used to serialize Java objects into XML and deserialize them back into Java objects, in order to eventually produce text output.
+
+XmlMapper Class
+
+XmlMapper is the main class from Jackson 2.x that helps the developers  in serialization. This mapper is available in jackson-dataformat-xml jar, that can be easily added to the project using Apache Maven - project's dependency management.
+
+An example of deserialization can be seen in Listing . Here, a Mediawiki class is a POJO class, or in other words a simple mapping of an XML scheme to a Java class hierarchy, where every subcomponent of a schema is mapped to a Java subclass.
+
+[caption=Example of an XML Deserialization,frame=tlrb,  label = lst:xml-deserialization]Name
+
+   private XmlMapper xmlMapper = new XmlMapper();
+
+   private Mediawiki deserializeXml(String dump) throws IOException
+	return xmlMapper.readValue(dump, Mediawiki.class);
+
+
+
+Article Parsing
+The most important part of the Framework is a parsing component. While the code utilizes Jackson XML Library  to deserialize XML, the article text is processed in a WikipediaPageParser class. First, we need to clean up the text from many tags used by Wikipedia.  Tags and patterns listed above utilize regular expressions to match and remove patterns in the text. The exact list of tags removed is described in the next list:
+
+
+	Gallery. Both tags(<gallery/>) and their contents are removed.
+	Unit Conversion.  For this tag, the Framework extracts 2nd and 3rd parts and separates them by a space, i.e. for "convert2kmmi" output is "2 km"
+	Emphasis. Removes single-quote tags from text("' or ") while keeping its contents intact.
+	No Table of Contents. Remove technical "NOTOC" tags that hide table of contents.
+	Indentation. Replaces excessive line breaks with simple
+n.
+	Math formula. Remove all math formulas(<math>) and their contents.
+	IPA. Removes all International Phonetic Alphabet(IPA) tags.
+
+Regular expression is done using Java's Pattern class. In the example of a regular expression  that is used  to remove gallery, the regular expression checks for a pattern <gallery>...</gallery>, ignoring cases and including line breaks as part of the .* regular expression, passing Pattern.DOTALL parameter.
+
+[caption=Example of a regular expression,frame=tlrb,  label = lst:code-regex]Name
+	private static final Pattern GALLERY = Pattern.compile("&lt;gallery&gt;.*?&lt;/gallery&gt;[
+n]?",
+	Pattern.CASE_INSENSITIVE  Pattern.DOTALL);
+
+The result of the article parsing is returned as a ParsedPage object that contains context, initial Wikipedia's page data and page structure with links.
+
+NIF Formatting
+
+After the article is parsed, the ParsedPage object is passed to the NifFormatter generator class methods to format output lines. This class utilizes Apache Jena modelling to create RDF models, resources and properties. In the code listing , we can find the code that generates RDF resources for DBPedia and context resourse, and then proceeds to create context's type property(http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-coreContext) and its starting index("0"<http://www.w3.org/2001/XMLSchemanonNegativeInteger>).
+
+[caption=Generating Apache Jena context model,frame=tlrb,  label = lst:nif-format-context]Name
+Resource dbPediaResource = jenaModel.createResource(dbpediaUrl);
+Resource contextResource = jenaModel.createResource(PERSISTENCE_ONTOLOGY_LINK + "#" + LinkType.CONTEXT.getCapitalizedTypeLabel());
+
+// Context NIF type
+Property rdfSyntaxProperty = jenaModel.createProperty(RDF_SYNTAX_TYPE);
+dbPediaResource.addProperty(rdfSyntaxProperty, contextResource);
+// Context beginIndex
+Property beginIndexProperty = jenaModel.createProperty(PERSISTENCE_ONTOLOGY_LINK, "#"+BEGIN_INDEX);
+dbPediaResource.addProperty(beginIndexProperty, jenaModel.createTypedLiteral(beginIndex, XSDDatatype.XSDnonNegativeInteger));
+
+
+Dynamic Language Support
+The XML-structure of the Wikipedia article does not differ much from language to language. There are only a few points to be aware of: Footer headings and categories. In English, those would be "See also", "References", "Further reading", "External Links", and "Related pages", and Categories simply have a heading "Category". Those are the parts that have to be removed from the articles.
+
+One of the project's requirements was to implement an easy extensibility mechanism to add new languages, mention in the Requirements Section . This was achieved by adding an abstract class LanguageFooterRemover. This class has some general functions to parse parts of the text that might be unique to different languages. Before the framework starts, it processes the configuration file languagelist.xml that is stored in the configuration folder. The examples of this file's contents can be seen in Listing . Such template can easily be reused to extend the number of supported languages if needed.
+
+[caption=Example of an language configuration file,frame=tlrb,  label = lst:language-list]Name
+<languageContainer>
+	<language>
+	<langName>ENGLISH</langName>
+	<categoryName>Category</categoryName>
+	<footer>See also</footer>
+	<footer>References</footer>
+	<footer>Further reading</footer>
+	<footer>External Links</footer>
+	<footer>Related pages</footer>
+	</language>
+	<language>
+	<langName>POLISH</langName>
+	<categoryName>Kategoria</categoryName>
+	<footer>Przypisy</footer>
+	<footer>Uwagi</footer>
+	</language>
+</languageContainer>
+
+Testing and Results
+
+Before we dive into the testing, it might be interesting to describe a general approach to testing that was taken while implementing this framework.
+
+Software testing is a procedure of implementing software or the application to identify the defects or bugs. For testing an application or software, we need to follow some principles to make our product defects free, and that also helps the test engineers to test the software with their effort and time. It is important to also keep in mind the essential principles of software testing.
+
+
+	Testing shows the presence of defects. The primary purpose of doing testing is to identify the numbers of unknown bugs with the help of various methods and testing techniques because the entire test should be traceable to the customer requirement, which means that to find any defects that might cause the failure to meet the requirements. By doing testing on any application, we can decrease the number of bugs, which does not mean that the application is defect-free because sometimes the software seems to be bug-free while performing multiple types of testing on it.
+	Exhaustive Testing is not possible. Instead of performing the exhaustive testing as it takes boundless determinations and most of the hard work is unsuccessful, it is better to focus on tests  according to the importance of the modules because the timelines will not permit to perform a full testing scenario.
+	Early Testing. This means that all the testing activities should start in the early stages of the software development life cycle's requirement analysis stage to identify the defects because if we find the bugs at an early stage, it will be fixed in the initial stage itself, which may cost us very less as compared to those which are identified in the future phase of the testing process.
+	Defect Clustering. The defect clustering defined that throughout the testing process, we can detect the numbers of bugs which are correlated to a small number of modules. We have various reasons for this, such as the modules could be complicated; the coding part may be complex, and so on. These types of software or the application will follow the Pareto Principle, which states that we can identify that approx. Eighty percent of the complication is present in 20 percent of the modules. With the help of this, we can find the uncertain modules, but this method has its difficulties if the same tests are performing regularly, hence the same test will not able to identify the new defects.
+	Pesticide Paradox. This principle defined that if we are executing the same set of test cases again and again over a particular time, then these kinds of the test will not be able to find the new bugs in the software or the application. To get over these pesticide paradoxes, it is very significant to review all the test cases frequently.
+	Testing is context-dependent. Testing is a context-dependent principle states that we have multiple fields such as e-commerce websites, commercial websites, and so on are available in the market. There is a definite way to test the commercial site as well as the e-commerce websites because every application has its own needs, features, and functionality. To check this type of application, we will take the help of various kinds of testing, different technique, approaches, and multiple methods. Therefore, the testing depends on the context of the application.
+	Absence of errors fallacy. Once the application is completely tested and there are no bugs identified before the release, so we can say that the application is 99 percent bug-free. But there is the chance when the application is tested beside the incorrect requirements, identified the flaws, and fixed them on a given period would not help as testing is done on the wrong specification, which does not apply to the client's requirements. The absence of error fallacy means identifying and fixing the bugs would not help if the application is impractical and not able to accomplish the client's requirements and needs.
+
+
+The main machine that was used for testing, unless specified otherwise, had next specifications:
+
+	Processor: 2,7 Hz Dual-Core Intel Core i5;
+	Memory: 8 GB 1867 MHz DDR3;
+	Graphics Card: Intel Iris Graphics 6100 1536 MB;
+	Operating System: macOS Catalina, Version 10.15.6.
+
+Project benchmarks
+
+Benchmark Testing measures a repeatable set of quantifiable results that serves as a point of reference against which products/services can be compared. The purpose of benchmark testing results is to compare the present and future software releases with their respective benchmarks.
+
+A benchmark must be repeatable. For instance, with every iteration of load a test, if the response times varies too much, system performance be benchmarked. Response time needs to be stable amongst different load conditions.
+
+A benchmark must be quantifiable. For example, the user experience cannot be quantified in numbers, but time a user spends on a webpage due to good UI can be quantified.
+
+While testing this project, the results were constantly compared to an ideal output, that has been provided by the DBpedia project.
+
+Three different output components were compared separately. On the listings below, the ideal result can be seen, for the context output in Listing , for links
+
+[caption=Exemplary result for NIF Context,frame=tlrb,  label = lst:context-example]Name
+<http://dbpedia.org/resource/Anarchism?dbpv=2020-02&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#isString> "Anarchism is a radical political ... * Textbooks from Wikibooks  * Data from Wikidata  * Anarchy Archives. Anarchy Archives is an online research center on the history and theory of anarchism" .
+
+[caption=Exemplary result for NIF Links,frame=tlrb,  label = lst:links-example]Name
+<http://dbpedia.org/resource/Austroasiatic_languages?dbpv=2016-04&nif=phrase_94_109> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Phrase> .
+<http://dbpedia.org/resource/Austroasiatic_languages?dbpv=2016-04&nif=phrase_94_109> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#referenceContext> <http://dbpedia.org/resource/Austroasiatic_languages?dbpv=2016-04&nif=context> .
+<http://dbpedia.org/resource/Austroasiatic_languages?dbpv=2016-04&nif=phrase_94_109> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex> "94"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://dbpedia.org/resource/Austroasiatic_languages?dbpv=2016-04&nif=phrase_94_109> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "109"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://dbpedia.org/resource/Austroasiatic_languages?dbpv=2016-04&nif=phrase_94_109> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#superString>
+
+[caption=Exemplary result for NIF Page Structure,frame=tlrb,  label = lst:page-structure-example]Name
+<http://dbpedia.org/resource/Ada?dbpv=2016-04&nif=section_0_17> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Section> .
+<http://dbpedia.org/resource/Ada?dbpv=2016-04&nif=section_0_17> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://dbpedia.org/resource/Ada?dbpv=2016-04&nif=section_0_17> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "17"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://dbpedia.org/resource/Ada?dbpv=2016-04&nif=section_0_17> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#referenceContext> <http://dbpedia.org/resource/Ada?dbpv=2016-04&nif=context> .
+...
+
+The output format should be in N-triples, better described in Section .
+
+Smoke Testing
+
+Smoke test  is a test or a test suite that covers the main functionality of a component or system to determine whether it works properly before planned testing begins. Smoke testing, also known as “Build Verification Testing”, is a type of software testing that comprises of a non-exhaustive set of tests that aim at ensuring that the most important functions work. The result of this testing is used to decide if a build is stable enough to proceed with further testing. It can also be used to decide whether to announce a production release or to revert. The term ‘smoke testing’, it is said, came to software testing from a similar type of hardware testing, in which the device passed the test if it did not catch fire (or smoked) the first time it was turned on. Smoke testing covers most of the major functions of the software but none of them in depth. The result of this test is used to decide whether to proceed with further testing. If the smoke test passes, go ahead with further testing. If it fails, halt further tests and ask for a new build with the required fixes. If an application is badly broken, detailed testing might be a waste of time and effort. Smoke test helps in exposing integration and major problems early in the cycle. It can be conducted on both newly created software and enhanced software. Smoke test is performed manually or with the help of automation tools/scripts. If builds are prepared frequently, it is best to automate smoke testing.
+
+To list the information, those are the advantages of an early and continuous smoke testing:
+
+	It exposes integration issues.
+	It uncovers problems early.
+	It provides some level of confidence that changes to the software have not adversely affected major areas (the areas covered by smoke testing)
+
+This kind of testing was performed during every stage of the implementation after each new part of functionality has been added to the framework. It includes CLI testing, API testing, functionality testing, and output verification. During development and testing the framework was running locally on a Mac-based machine.
+
+A big amount of bugs and errors was revealed and subsequently fixed during these tests. For example, there were many errors related to the parsing of Wikipedia articles, and lots of inconsistencies happening during the page structure translation into the page.
+
+Furthermore, scaling the framework has caused a lot of problems. The size of an English Wikipedia dump is about 16 GB of data, and parsing it takes a lot of time. During those tests, it was discovered that such amount of data can not be handled by the server, and therefore an adequate API for production purposes can not be easily provided.
+
+For the smoke testing, the next tests were conducted:
+
+
+	Single-article XML dump in English language.
+	Two-page XML dump in English language.
+	Other languages support testing, conducted for a single page from a German segment of Wikipedia.
+
+
+
+
+Unit Test coverage
+
+Unit testing is a software testing method by which individual units of source code - sets of one or more computer program modules together with associated control data, usage procedures, and operating procedures - are tested to determine whether they are fit for use. The goal of unit testing is to isolate each part of the program and show that the individual parts are correct. A unit test provides a strict, written contract that the piece of code must satisfy. As a result, it affords several benefits.
+
+Unit testing finds problems early in the development cycle. This includes both bugs in the programmer's implementation and flaws or missing parts of the specification for the unit. The process of writing a thorough set of tests forces the author to think through inputs, outputs, and error conditions, and thus more crisply define the unit's desired behavior. The cost of finding a bug before coding begins or when the code is first written is considerably lower than the cost of detecting, identifying, and correcting the bug later. Bugs in released code may also cause costly problems for the end-users of the software. Code can be impossible or difficult to unit test if poorly written, thus unit testing can force developers to structure functions and objects in better ways.
+
+Unit testing allows the programmer to refactor code or upgrade system libraries at a later date, and make sure the module still works correctly (e.g., in regression testing). The procedure is to write test cases for all functions and methods so that whenever a change causes a fault, it can be quickly identified. Unit tests detect changes which may break a design contract.
+
+Unit testing may reduce uncertainty in the units themselves and can be used in a bottom-up testing style approach. By testing the parts of a program first and then testing the sum of its parts, integration testing becomes much easier.
+
+JUnit Framework
+
+For the framework implementation, a JUnit library was used. JUnit is a Regression Testing Framework used by developers to implement unit testing in Java, and accelerate programming speed and increase the quality of code. JUnit Framework can be easily integrated with Maven.
+
+JUnit test framework provides the following important features:
+
+
+	Fixtures -  is a fixed state of a set of objects used as a baseline for running tests. The purpose of a test fixture is to ensure that there is a well-known and fixed environment in which tests are run so that results are repeatable. It includes setUp() method, which runs before every test invocation, and tearDown() method, which runs after every test method.
+	Test suites.A test suite bundles a few unit test cases and runs them together. In JUnit, both @RunWith and @Suite annotation are used to run the suite test.
+	Test runners. Test runner is used for executing the test cases.
+	JUnit classes JUnit classes are important classes, used in writing and testing JUnits.  Examples of those classes are:
+	Assert - contains a set of assert methods.
+	TestCase - contains a test case that defines the fixture to run multiple tests.
+	TestResult - contains methods to collect the results of executing a test case.
+
+For a given project, unit tests were used to test the execution of a WIkipediaPageParser class, that is used to parse separate pages, as well as its supplementary classes, such as a DumpSplitService. You can see the examples of a unit test used in the project in the Listing :
+
+
+[caption=JUnit Paragraph Parsing Unit Test Class,frame=tlrb,  label = lst:unit-test-example]Name
+@Log4j
+public class WikipediaPageParserTest
+
+	private static WikipediaPageParser pageParser;
+	private static WikiPage wikiPage;
+	private static XmlTransformer contextLanguageTransformer;
+
+	@BeforeAll
+	public static void beforeAll() throws IOException
+	pageParser = new WikipediaPageParser(new ContextLanguageTransformer());
+
+	URL textUrl = Resources.getResource("page_test.txt");
+	wikiPage = new WikiPage("Anarchism",
+	Resources.toString(textUrl, StandardCharsets.UTF_8));
+
+
+	@Test
+	public void parseParagraphsTest() throws IOException, ParsingException
+	Subdivision root = pageParser.buildPageStructure(wikiPage);
+	// check that the paragraphs are parsed
+	assertTrue(root.getParagraphs().size() > 1);
+	// check that the page has a meaningful structure
+	assertTrue(root.getChildren().size() > 1);
+
+	...
+
+
+End-to-End Testing
+End-to-end testing is a Software testing methodology to test an application flow from start to end. The purpose of End-to-end testing is to simulate the real user scenario and validate the system under test and its components for integration and data integrity. What it means for this project is that we will need to do a test from downloading an XML dump from Wikipedia to receiving the processed results. Here is the general outlay of a testing process:
+
+
+	Download the latest Wikipedia dump. They are released at least monthly and usually twice a month. Different languages are listed after the metawiki dumps.
+	Unzip the file, in Unix-like operating systems usually done in bzip2 -d wikidatawiki-*-pages-meta-history1.xml-p1p224.bz2
+	[Optional] Because parsing of the whole XML dump is time-consuming, I have used a way to reduce the amount of articles that is processed. To do it, it is possible to execute this command head -n 100000 enwiki-20191101-pages-articles-multistream1.xml > short_test_100k.xml, and then properly close off the XML by removing the last article and close the XML brackets.
+	Build the framework and pass the input parameters to a file. I have created a script parse_xml_dump.sh that will build the framework if necessary and run the executable with the XML dump path as the parameter.
+
+
+SHACL Shape Validation
+
+To ensure that RDF resources produced are not malformed, SHACL forms were utilized. SHACL shapes allow to define certain classes for RDF resources and then to validate any RDF resources against those shapes, making it possible to run the tests on any output.
+In the Listing  a definition for a Context class is shown. SHACL definitions are defined in a Turtle format, which is another format from  NIF format, produced by the framework.
+[caption=SHACL Context Class definition,frame=tlrb,  label = lst:shacl-class]Name]
+ontology:Context
+rdf:type rdfs:Class ;
+rdfs:label "Context" ;
+.
+
+ontology:isString
+rdf:type rdf:Property ;
+rdfs:domain ontology:Context ;
+rdfs:label "Context string" ;
+rdfs:range xsd:string ;
+.
+...
+ontology:ContextShape
+a sh:NodeShape ;
+sh:targetClass ontology:Context ;
+sh:property ontology:isStringShape ;
+sh:property ontology:sourceUrlShape ;
+sh:property ontology:predLangShape ;
+sh:property ontology:beginIndexShape ;
+sh:property ontology:endIndexShape ;
+.
+
+ontology:isStringShape
+a sh:isStringShape ;
+sh:path ontology:isString ;
+sh:minCount 1 ;
+sh:maxCount 1 ;
+sh:datatype xsd:string ;
+sh:severity sh:Violation
+.
+
+To validate output against SHACL shapes, various tools can be used, notably an open-source validator to test shapes and data: https://shacl.org/playground/. Application's output can be converted to a Turtle format using EasyRDF Converter from https://www.easyrdf.org/converter/.
+
+Current SHACL shapes validate whether properties are present and that their number does not exceed the required number. For more complex validation, integration tests are used.
+
+English language parsing
+
+Initially the testing was done on a single English-language article. This testing uncovered many problems with the parsing model, such as the need to update the recursive function to build the page structure. Most importantly, the first testing helped to understand the vast number of Wikipedia XML components. Of those, I had to drop the parts that were already covered by the previous frameworks mentioned in Section , such as infoboxes, images, files, categories and others, and instead focus only on the text. I also dropped the citations mentioned in the article's footer, and instead focused on the text itself.
+
+Testing other languages
+
+Additionally to English language, I have added other popular Wikipedia languages. According to the latest Wikipedia statistics, those are the main languages of Wikipedia:
+
+
+	English: 2,567,509 articles, 22.5 of the total number of articles;
+	German: 808,044 articles, 7.1;
+	French: 709,312 articles, 6.2;
+	Polish: 539,688 articles, 4.7;
+	Japanese: 523,629 articles, 4.6.
+
+
+Output validation
+
+There are several utilities that can be used to validate the output, most notable Apache Jena and rapper. For the output validation, I have picked rapper, as it is more lightweight and has the ability to count or parse the provided N-triples. For example, the command rapper -input ntriples -output rdfxml -show-graphs niflinks.nt will parse the links and transform it into RDF/XML format. If this transformation will not throw any exceptions, this will mean that the output is a valid set of N-triples.
+
+Scale Testing
+
+For the scale testing, I have implemented logging and a simple parsing success metric, as some of the articles have a syntax that may deviate from the standard or the framework's programmed expectations. For example, some might contain links that are broken with line separators, or differently encoded XML components.
+
+To further measure the time that the application will take to parse the code, I have added the execution time metric.
+
+I have run several tests over the English Wiki dump with the next results:
+
+
+	Total pages parsed: 258. Success rate: 84.88. Seconds passed: 31.
+	Total pages parsed: 2087. Success rate: 88.55. Seconds passed: 109.
+	Total pages parsed: 6738. Success rate: 87.90. Seconds passed: 237.
+
+Conclusions
+
+The result of this thesis is a Java Framework that allows users to parse and retrieve the Wikipedia XML dump and achieves most of the original objectives, in some places with a room for improvement:
+
+	Accept and process input data in the form of Wikipedia XML dumps. The Wikipedia XML Dump parsing was achieved, and the process to do so best described in Section . The statistics show that the parsing success rate averages on 88 over the large amounts of articles, meaning that around 12 of articles will contain some kind of component that will not be parsable by the framework and will be skipped. These systemic errors can be avoided by further investigation of Wikipedia's XML Format.
+	Extract context. Context is extracted and stored in the form of N-Triples. Some of the contexts might still contain traces of the original XML code. This can be later fixed by improving the XML removal code.
+	Extract page structure. Page structure is extracted and recursively built in the form of N-Triples.
+	Extract links. Links are extracted, URLs that link them to the page structure are created.
+	Provide outputs for context, links and page structure in the form of N-Triples. Output is printed.
+	Implement language extensibility. Language extensibility mechanism is implemented, new languages can be added in the form of an XML that is parsed into POJO when the application is starting, better described in Section .
+	Provide a user interface. User interface is provided in two different forms and is described in Section .
+
+
+
+
+iso690.bst

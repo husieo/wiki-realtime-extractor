@@ -24,7 +24,8 @@ public class XmlDumpService {
         this.nifFormatter = nifFormatter;
     }
 
-    public void submitXml(String inputFilePath, String outputFolder) throws IOException {
+    public void submitXml(String inputFilePath, String outputFolder, boolean dryRun) throws IOException {
+        parser.setDryRun(dryRun);
         parser.iterativeParseXmlDump(inputFilePath, outputFolder);
     }
 
