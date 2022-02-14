@@ -40,6 +40,8 @@ Possible command line arguments:
 Larger xml dump example:
 ```
    ./parse_xml_dump.sh documents/short_test_100k.xml --language=ENGLISH --clean -o=output
+   ./parse_xml_dump.sh documents/large_documents/short_test_600k.xml --language=ENGLISH --clean -o=output
+   ./parse_xml_dump.sh /Users/mac/Downloads/old/enwiki-20191101-pages-articles-multistream1.xml --language=ENGLISH --clean -o=output
 ```
 
 Dumps can be obtained at https://dumps.wikimedia.org/wikidatawiki/.
@@ -74,4 +76,6 @@ Output validation can be done via rapper tool(output to file in output_examples 
 
 SHACL shapes are also defined in \shacl folder, and tested via https://shacl.org/playground/
 SHACL properties are defined in https://www.w3.org/TR/shacl/.
-To convert N-Triples, use https://www.easyrdf.org/converter/.
+To convert N-Triples, use https://www.easyrdf.org/converter/ or alternatively run a CLI command:
+```
+```

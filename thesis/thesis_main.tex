@@ -128,7 +128,7 @@ The main goal of this thesis was  to develop a framework for extraction of Wikip
 
 \section{The Concept of Semantic Web}
 
-The Semantic Web is a Web of Data, an extension to the Web that links the related data. The collection of Semantic Web technologies (such as \gls{RDF}, \gls{OWL}, \gls{SKOS}, \gls{SPARQL}, etc.) provides an environment where application can query that data, draw inferences using vocabularies, etc. The goal of the Semantic Web is to transform current Internet data and eventually make it machine-readable.  "Semantic Web" is a term that Tim Berners-Lee has initially coined\cite{Berners_QA} for a web of data where not simply text, but also meaning, or logical connections that machines can process.
+The Semantic Web is a Web of Data, an extension to the Web that links the related data. The collection of Semantic Web technologies (such as \gls{RDF}, \gls{OWL}, \gls{SKOS}, \gls{SPARQL}, etc.) provides an environment where application can query that data, draw inferences using vocabularies, etc. The goal of the Semantic Web is to develop languages to express current Internet data in a machine processable way. This is achieved by making Internet data interoperable  by allowing every machine to exchange data that has unambiguous meaning defined in centralized reference resources, such as DBPedia."Semantic Web" is a term that Tim Berners-Lee has initially coined\cite{Berners_QA} for a web of data where not simply text, but also meaning, or logical connections that machines can process.
 The Semantic Web is an extension of the current World Wide Web, defined by standards set by the \gls{W3C}.
 
 Although Semantic Web is a term that has often been criticized as confusing, opaque, and academic, it does nonetheless capture two of the most critical aspects of these technologies:
@@ -154,31 +154,16 @@ The term was introduced in 2006 by Tim Berners-Lee's four rules for publishing d
 
 While these four rules are the basis of Linked Data and related developments, their exact implementation can be done differently and evolves over time. Specifically, the way \gls{URI} is now serialized either in \gls{RDF}/\gls{XML} or via N3(also known as Turtle, or N-triples).
 
-\subsection{Web Ontology Language Overview}
-
-There is a long history of ontological development in philosophy and computer science. Since the 1990s, several research efforts have explored how the idea of knowledge representation (KR) from artificial intelligence (AI) could be made useful on the World Wide Web. These included languages based on HTML (called SHOE), based on XML (called XOL, later OIL), and various frame-based languages and knowledge acquisition approaches.
-
-The \gls{OWL} Web Ontology Language 2, informally \gls{OWL} 2, is an ontology language for the Semantic Web with formally defined meaning. \gls{OWL} 2 ontologies provide classes, properties, individuals, and data values and are stored as Semantic Web documents. OWL 2 ontologies can be used along with information written in RDF, and \gls{OWL} 2 ontologies themselves are primarily exchanged as RDF documents. Ontologies are formalized vocabularies of terms, often covering a specific domain and shared by a community of users. They specify the definitions of terms by describing their relationships with other terms in the ontology. \gls{OWL} 2 is an extension and revision of the original OWL Web Ontology Language developed by the W3C Web Ontology Working Group and published in 2004 (referred to hereafter as “OWL 1”)\cite{owl_reference}. OWL 2 is being developed (and this document was written) by a follow-on group, the W3C OWL Working Group. \gls{OWL} 2 is designed to facilitate ontology development and sharing via the Web, with the ultimate goal of making Web content more accessible to machines. Full OWL 2 Ontology Structure is shown on \ref{fig:owl2structure}. Most users of OWL 2 will need only one syntax and one semantics; for them, this diagram would be much simpler, with only their one syntax at the top, their one semantics at the bottom, and rarely a need to see what's inside the ellipse in the center.\cite{owl_overview}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1.0\linewidth]{owl2_structure}
-	\caption{The Structure of OWL 2}
-	\label{fig:owl2structure}
-\end{figure}
-
-The OWL languages are characterized by formal semantics. They are built upon the \gls{W3C} XML standard for objects called the \gls{RDF}. OWL and RDF have attracted significant academic, medical, and commercial interest.
-
 \subsection{RDF Description}\label{rdf-description}
 
-The Resource Definition Framework(RDF) is a general-purpose language for representing information in the Web\cite{roussey2011}.The \gls{RDF} data model is similar to classical conceptual modeling approaches, such as entity-relationship or class diagrams. It is based on the idea of making statements about the resource in expressions of the form subject–predicate–object, also known as triples. The subject denotes the resource, and the predicate denotes traits or aspects of the resource, and expresses a relationship between the subject and the object.\cite{rdf_syntax}.
+The Resource Definition Framework(RDF) is a general-purpose language for representing information in the Web\cite{roussey2011}.The \gls{RDF} data model is similar to classical conceptual modeling approaches, such as entity-relationship or class diagrams. It is based on the idea of making statements about the resource in expressions of the form subject–predicate–object, also known as triples. The subject denotes the resource, and the predicate denotes traits or aspects of the resource, and expresses a relationship between the subject and the object\cite{rdf_syntax}.
 
 The underlying structure of any expression in RDF is a collection of triples, each consisting of a subject, a predicate and an object. A set of such triples is called an RDF graph. Each triple represents a statement of a relationship between the things denoted by the nodes that it links. Each triple has three parts - subject, predicate and object\cite{rdf_concepts}. Subject and object are graph nodes, while a predicate defines a relation between them, pointing from subject to an object. On \ref{fig:basicrdfgraph}, for a triple <http://www.w3.org/TR/rdf-syntax-grammar> is a subject, <http://purl.org/de/elements/1.1/title> is a predicate and "RDF/XML Syntax Specification (Revised)" is an object.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\linewidth]{basic_rdf_graph}
-	\caption{Basic RDF Graph}
+	\includegraphics[width=1.0\linewidth]{basic_rdf_graph}
+	\caption{Basic RDF Graph\cite{rdf_syntax}}
 	\label{fig:basicrdfgraph}
 \end{figure}
 
@@ -199,19 +184,21 @@ Subject can be either an \gls{RDF} \gls{URI} Reference or a blank node.
 Predicate is an \gls{RDF} \gls{URI} Reference.
 Object can be an \gls{RDF} \gls{URI} Reference, Literal or a blank node.
 
-
-
-In Semantic Web applications and relatively popular applications of \gls{RDF} like \gls{RSS} and \gls{FOAF}, resources tend to be represented by URIs that intentionally denote, and can be used to access, actual data on the World Wide Web. But \gls{RDF}, in general, is not limited to the description of Internet-based resources.
+In applications of RDF such as \gls{RSS} resources are represented by URIs that denote and are used to link actual data on the World Wide Web\cite{rdf_concepts}. \gls{RDF} in general can be used not only for Internet resources, but for other knowledge ontologies too.
 
 An \gls{RDF} database, also called triplestore contains triples of  interrelated statements that can be visualized with a network graph. A traditional relational database might split attributes about artworks and features about artists into separate tables. In an RDF/graph database, all these data points belong to the same interconnected graph, allowing users maximum flexibility in deciding how they wish to query it.
 
-RDF graphs can also be represented in many text serialization formats. In the statement \ref{lst:rdf-statement}, the subject is \textless The Nightwatch\textgreater, the object is \textless Rembrandt van Rijn\textgreater , and a predicate \textless was created by\textgreater  defines a relation between the subject and the object.
+RDF graphs can also be represented in many text serialization formats. In a sentence "Mona Lisa was painted by Leonardo da Vinci" the subject is  "Mona Lisa", the object is "Leonardo da Vinci" , and a predicate  that defines a relation between the subject and the object is "paintedBy", as  seen in the listing \ref{lst:rdf-statement} .
 
 \begin{lstlisting}[language=XML, caption=Example of an RDF statement, label = {lst:rdf-statement}]
-<The Nightwatch> <was created by> <Rembrandt van Rijn> .
+<https://dbpedia.org/page/Mona_Lisa> <http://purl.org/dc/terms/title> "Mona Lisa" .
+
+<https://dbpedia.org/ontology/author> <http://www.w3.org/1999/02/22-rdf-syntax-ns#label> "was created by" .
+
+<https://dbpedia.org/page/Leonardo_da_Vinci> <http://xmlns.com/foaf/0.1/name> "Leonardo da Vinci" .
 \end{lstlisting}
 
-The particular encoding for resources or triples varies from format to format. Complete list of \gls{RDF} serialization formats includes:
+The particular encoding for resources or triples varies from format to format. A non-exhaustive list of popular \gls{RDF} serialization formats includes:
 \begin{itemize}
 	\item \textbf{Turtle} - a compact human-friendly format.
 	\item \textbf{N3} - format that is similar to Turtle, but allows for additional features like inference, or transformation rules.
@@ -226,8 +213,8 @@ For example, it is required to write an \gls{RDF} file,  say \textless http://ex
 
 \begin{lstlisting}[language=XML, caption=Example of RDF serialization in XML, label = {lst:rdf-xml-example}]
 <rdf:Description about="#albert"
-<fam:child rdf:Resource="#brian">
-<fam:child rdf:Resource="#carol">
+	<fam:child rdf:Resource="#brian">
+	<fam:child rdf:Resource="#carol">
 </rdf:Description>
 \end{lstlisting}
 
@@ -238,7 +225,7 @@ For example, it is required to write an \gls{RDF} file,  say \textless http://ex
 
 The \gls{WWW} architecture now gives a global identifier  "http://example.org/smith\#albert" to Albert. Anyone can now use this global identifier to refer to and provide more information about Albert.
 
-In addition to the ways of describing a link, it is important to know when to make a link. One important pattern is a set of data which you can explore as you go link by link by fetching data.   Whenever one looks up the \gls{URI} for a node in the RDF graph, the server returns information about the arcs out of that node, and the arcs in.  In other words, it returns any RDF statements in which the term appears as either subject or object.
+In addition to describing a link, it is essential to know when to make a link. One important pattern is a set of data which you can explore as you go link by link by fetching data.   Whenever one looks up the \gls{URI} for a node in the RDF graph, the server returns information about the arcs out of that node, and the arcs in.  In other words, it returns any RDF statements in which the term appears as either subject or object.
 
 Formally, call a graph G \textit{browsable} if, for  the \gls{URI} of any node in G, if I look up that \gls{URI} I will be returned information which describes the node, where describing a node means:
 \begin{enumerate}
@@ -254,9 +241,9 @@ In conclusion, linked data is essential for linking the Semantic Web. It is quit
 
 \section{NLP Interchange Format}
 
-It is important to first explain what \gls{NLP} is. \gls{NLP} is a field of science that combines lingustics, computer science and artificial intelligence concerned with the interactions between computers and human language, in particular how to program computers to process and analyze large amounts of natural language data.
+\gls{NLP} is a field of science that combines lingustics, computer science and artificial intelligence concerned with the interactions between computers and human language, in particular how to program computers to process and analyze large amounts of natural language data.
 
-The \gls{NIF} is an \gls{RDF}/\gls{OWL}-based format that aims to achieve between \gls{NLP} tools, language resources and annotations. NIF consists of specifications, ontologies and software (overview), which are combined under the common version identifier "NIF 2.0", but are also versioned individually\cite{nlp_cite}. The initial specification of \gls{NIF} was released in November 2011.
+The \gls{NIF} is an \gls{RDF}/\gls{OWL}-based format that aims to achieve between \gls{NLP} tools, language resources and annotations\cite{nlp_cite}. NIF consists of specifications, ontologies and software  that are combined under the  version identifier "NIF 2.0", but are also versioned separately. The initial specification of \gls{NIF} was released in November 2011.
 
 \gls{NIF} is being developed as a result and to facilitate the needs of Linked Data and related tools.  NIF addresses the interoperability problem on three layers: the structural, conceptual and access layer. NIF is based on a Linked Data enabled URI scheme for identifying elements in (hyper-)texts that are described by the NIF Core Ontology (structural layer) and a selection of ontologies for describing common NLP terms and concepts (conceptual layer). NIF-aware applications will produce output adhering to the NIF Core Ontology as REST services (access layer). NIF enables the creation of heterogeneous, distributed and loosely coupled NLP applications, which use the Web as an integration platform. Another benefit is
 that a NIF wrapper has to be only created once for a particular tool, but enables the tool to interoperate with a potentially large number of other tools without additional adaptations. Ultimately, we envision an ecosystem of NLP tools and services to emerge using NIF for exchanging and integrating rich annotations.
@@ -274,17 +261,7 @@ text (26610 characters) of the document \url{http://www.w3.org/DesignIssues/Link
 
 The NIF Core Ontology\cite{nif_core_ontology} provides classes and properties to describe the relations between substrings, text, documents and their URI schemes. The main class in the ontology is nif:String, which is the class of all words over the alphabet of Unicode characters (sometimes called $\Sigma^{*}$). We built NIF upon the Unicode Normalization Form C, as this follows the recommendation of the RDF standard for rdf:Literal. Indices are to be counted in code units. Each URI scheme is a subclass of nif:String and puts further restrictions over the syntax of the URIs. For example, instances of type nif:RFC5147String have to adhere to the NIF URI scheme based on RFC 5147. Users of NIF can create their own URI schemes by subclassing nif:String and providing documentation on the Web in the rdfs:comment field.
 
-Another important to the Framework for Extraction of Wikipedia Articles Content subclass of nif:String is the nif:Context OWL class. This class is assigned to the whole string of the text (i.e. all characters). The purpose of an individual of this class is special, because the string of this individual is used to calculate the indices for all substrings. Therefore, all substrings have to have a relation nif:referenceContext pointing to an instance of nif:Context.
-
-
-
-\paragraph{Workflows and Modularity of NIF}
-
-Workflows: NIF web services are loosely coupled and can receive either text or RDF. To allow seamless NLP integration, clients should create work flows where the text is normalized (Unicode) at the beginning and tokenization is provided.\cite{workflow_modularity}
-
-Modularity: The NIF ontology is split in three parts: The terminological model is lightweight in terms of expressivity and contains the core classes
-and properties. Overall, it has 125 axioms, 28 classes, 16 data properties and 28 object properties. The inference model contains further axioms, which are typically used to infer additional knowledge, such as transitive property axioms. The validation model contains axioms, which are usually relevant for consistency checking or constraint validation. Depending on the use case, the inference and validation model can
-optionally be loaded. 
+Framework for Extraction of Wikipedia Articles Content generates a resource of the nif:Context OWL class. This class is assigned to the whole string of the text (i.e. all characters). The purpose of an individual of this class is special, because the string of this individual is used to calculate the indices for all substrings. Therefore, all substrings have to have a relation nif:referenceContext pointing to an instance of nif:Context.
 
 \subsection{Existing Use Cases for NIF}
 
@@ -405,11 +382,11 @@ DBpedia Information Extraction Framework focuses on the main disadvantage of DBp
 
 Before starting to design the project, it is beneficial to specify the requirements. There several ways to layout the requirements, mainly writing down formal requirements or use cases. Because the project is oriented on delivering results to a smaller group of developers, it will be better to use formal requirements, as opposed to user-oriented use cases.
 
-The list of requirements for the Framework for Extraction of Wikipedia Articles Content:
+The list of functional requirements for the Framework for Extraction of Wikipedia Articles Content:
 
 \begin{enumerate}
 	\item \textbf{Accept input data:} The framework should accept the official  Wikipedia dumps in the \gls{XML} format, provided by the Wikipedia. The dumps can contain an amount of information up to 20 GB of text data. The framework should be able to parse dumps in English and at least 4 other popular Wikipedia languages.
-	\item \textbf{Provide outputs:} The framework should print all the outputs in the \gls{NIF} triples, concatenating processed data from all articles in a single \gls{XML} input file and writing the data to .nt output file.
+	\item \textbf{Provide outputs:} The framework should print all the outputs in the N-Triples format, concatenating processed data from all articles in a single \gls{XML} input file and writing the data to .nt output file.
 	\item \textbf{Extract context:} The framework should extract clean text from the Wikipedia page, removing or processing all the \gls{XML} and Wikipedia-specific markup, including the core text but excluding infoboxes, files, images, and footers.
 	\item \textbf{Extract page structure:} The framework should extract a page tree, where every page section is a node, preserving the relation to the page context. The page tree should include The page tree should be printed in an output file separately from the page context. 
 	\item \textbf{Extract links:} In addition to context, the framework should supplement the context by extracting internal Wikipedia links from the page. These links should refer to their respective sections of the text, and include only other Wikipedia articles, excluding possible external links to other web pages. The links should also be printed in another output file, separately from the page structure and context.
@@ -418,7 +395,12 @@ The list of requirements for the Framework for Extraction of Wikipedia Articles 
 	\item \textbf{Evaluate the results:} The framework should contain the metrics that will provide user with a feedback about every execution.
 \end{enumerate} 
 
-While functional requirements are the most important part of the project, there can be other, less specific requirements that go along with the functional requirements, commonly known as non-functional requirements. For this project, the non-functional requirements included the research of Wikipedia \gls{XML} Dump Structure, \gls{NIF} data format and the ways to facilitate the goals of the DBpedia project.
+While functional requirements are the most important part of the project, there can be other, less specific requirements that go along with the functional requirements, commonly known as non-functional requirements. For this project, the non-functional requirements were next:
+
+\begin{enumerate}
+	\item  Research of Wikipedia \gls{XML} Dump Structure and \gls{NIF} data format.
+	\item  Find ways to facilitate the goals of the DBpedia project.
+\end{enumerate}
 
 \subsection{Desired Output}
 
@@ -427,7 +409,7 @@ The output that is required is defined below\cite{NIF_Format}, split into contex
 
 \subsubsection{Context}
 
-For the context resource, we need next values:
+Context is a resource that includes the full text of a page with all the Wikipedia formatting removed in a nif:isString property. This string serves as a context for its substrings. The Unicode String given in the nif:isString property must be used to calculate the begin and endIndex for all nif:Strings that have a nif:referenceContext property to this URI\cite{NIF_Ontology}.For the context resource, we need next values:
 
 \begin{itemize}
 	\item \textbf{Predicate Language - predLang.} The main language of the context. 
@@ -438,9 +420,9 @@ For the context resource, we need next values:
 \end{itemize}
 
 \begin{lstlisting}[caption=Example of an output for context in NIF format,frame=tlrb,  label = {lst:nif-context}]{Name}
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#predLang> "http://lexvo.org/id/iso639-3/eng" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#predLang> <http://lexvo.org/id/iso639-3/eng> .
 <http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#isString> "Anarchism is an anti-authoritarian political and social philosophy that rejects ..." .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#sourceUrl> "http://en.wikipedia.org/wiki/Anarchism" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#sourceUrl> <http://en.wikipedia.org/wiki/Anarchism> .
 <http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "43346"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 <http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 <http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Context> .
@@ -452,7 +434,7 @@ For the links resource, we need to pick all the internal, or Wikipedia links, as
 
 \begin{itemize}
 	\item \textbf{Reference Context - referenceContext.} The context resource to where this link belongs.
-	\item \textbf{Identity Reference - taIdentRef.} Resource's identity reference in DPBpedia
+	\item \textbf{Identity Reference - taIdentRef.} Resource's identity reference in DPpedia
 	\item \textbf{Super string - superString.} Parent paragraph of the link.
 	\item \textbf{Anchor - anchorOf} Link's word or phrase in the text.
 	\item \textbf{Context's Index at the start - beginIndex} Starting index of the link, as related to the context's text.
@@ -461,13 +443,13 @@ For the links resource, we need to pick all the internal, or Wikipedia links, as
 
 
 \begin{lstlisting}[caption=Example of an output for a Word link in NIF format,frame=tlrb,  label = {lst:nif-links}]{Name}
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Word> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#referenceContext> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context" .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex> "157"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "170"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#superString> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_0_550" .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://www.w3.org/2005/11/its/rdf#taIdentRef> <http://dbpedia.org/resource/Self-governance> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#anchorOf> "self-governed" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=word_157_170> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Word> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#referenceContext> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=context> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex> "157"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "170"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#superString> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=paragraph_0_550> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=word_157_170> <http://www.w3.org/2005/11/its/rdf#taIdentRef> <http://dbpedia.org/resource/Self-governance> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#anchorOf> "self-governed" .
 \end{lstlisting}
 
 \subsubsection{Page Structure}
@@ -485,16 +467,18 @@ Page structure describes the structure of the article, with sections and paragra
 \end{itemize}
 
 \begin{lstlisting}[caption=Example of an output for a Section,frame=tlrb,  label = {lst:nif-links}]{Name}
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Section> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#referenceContext> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context" .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasSection> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_1231_3745" .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "1231"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Section> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasSection> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_3745_3758> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasParagraph> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=paragraph_550_1227> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#referenceContext> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=context> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#lastParagraph> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=paragraph_550_1227> .
 ...
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasParagraph> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_0_550" .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasParagraph> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_550_1227" .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#firstParagraph> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_0_550" .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#lastParagraph> "http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=paragraph_550_1227" .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasSection> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_1231_3745> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "1231"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#firstParagraph> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=paragraph_0_550> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasSection> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_43313_43346> .
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasParagraph> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=paragraph_0_550> .
 \end{lstlisting}
 
 

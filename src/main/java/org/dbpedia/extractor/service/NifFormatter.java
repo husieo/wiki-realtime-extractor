@@ -79,13 +79,16 @@ public class NifFormatter {
         dbPediaResource.addProperty(endIndexProperty, jenaModel.createTypedLiteral(endIndex, XSDDatatype.XSDnonNegativeInteger));
         // Context sourceUrl
         Property sourceUrlProperty = jenaModel.createProperty(PERSISTENCE_ONTOLOGY_LINK, "#"+SOURCE_URL);
-        dbPediaResource.addProperty(sourceUrlProperty, WIKI_LINK+title);
+        Property sourceUrlLinkProperty = jenaModel.createProperty(WIKI_LINK+title);
+        dbPediaResource.addProperty(sourceUrlProperty, sourceUrlLinkProperty);
         // Context isString string corpus
         Property contextStringProperty = jenaModel.createProperty(PERSISTENCE_ONTOLOGY_LINK, "#"+IS_STRING);
         dbPediaResource.addProperty(contextStringProperty, context.getText());
         // Context language
         Property predLangProperty = jenaModel.createProperty(PERSISTENCE_ONTOLOGY_LINK, "#"+PRED_LANG);
-        dbPediaResource.addProperty(predLangProperty, LANG_URL+languageIdentifierBean.getLanguage().getIsoLangCode());
+        Property predLangLinkProperty = jenaModel
+                .createProperty(LANG_URL+languageIdentifierBean.getLanguage().getIsoLangCode());
+        dbPediaResource.addProperty(predLangProperty, predLangLinkProperty);
 
         return jenaModel;
     }
@@ -108,8 +111,9 @@ public class NifFormatter {
         String endIndexString = Integer.toString(endIndex);
         String dbPediaSectionUrl = getDbpediaUrl(pageTitle, String.format("section_%s_%s", beginIndexString, endIndexString));
         Property contextHasSectionProperty = pageStructureEntry.createProperty(getPersistenceOntologyUrl(HAS_SECTION));
+        Property dbPediaSectionUrlProperty = pageStructureEntry.createProperty(dbPediaSectionUrl);
         dbPediaContextResource
-                .addProperty(contextHasSectionProperty, dbPediaSectionUrl);
+                .addProperty(contextHasSectionProperty, dbPediaSectionUrlProperty);
 
         pageStructureEntry.add(generateNodeEntry(parsedPage.getStructureRoot()));
         return pageStructureEntry;
@@ -151,8 +155,9 @@ public class NifFormatter {
                     .addProperty(endIndexProperty, nodeEntry.createTypedLiteral(endIndex, XSDDatatype.XSDnonNegativeInteger));
 
             Property referenceContextProperty = nodeEntry.createProperty(getPersistenceOntologyUrl(REFERENCE_CONTEXT));
+            Property dbPediaContextUrlProperty = nodeEntry.createProperty(dbPediaContextUrl);
             dbPediaSectionResource
-                    .addProperty(referenceContextProperty, dbPediaContextUrl);
+                    .addProperty(referenceContextProperty, dbPediaContextUrlProperty);
 
             for(Subdivision subSection: node.getChildren()){
                 Position subSectionPosition = subSection.getPosition();
@@ -163,8 +168,9 @@ public class NifFormatter {
                 String dbPediaSubSectionUrl
                         = getDbpediaUrl(title, String.format("section_%s_%s", subBeginIndexString, subEndIndexString));
                 Property hasSectionProperty = nodeEntry.createProperty(getPersistenceOntologyUrl(HAS_SECTION));
+                Property dbPediaSubSectionUrlProperty = nodeEntry.createProperty(dbPediaSubSectionUrl);
                 dbPediaSectionResource
-                        .addProperty(hasSectionProperty, dbPediaSubSectionUrl);
+                        .addProperty(hasSectionProperty, dbPediaSubSectionUrlProperty);
             }
 
         }
@@ -201,24 +207,28 @@ public class NifFormatter {
             //Reference Context
 
             Property resourceContextProperty = nodeEntry.createProperty(getPersistenceOntologyUrl(REFERENCE_CONTEXT));
-            dbPediaParagraphResource.addProperty(resourceContextProperty,dbPediaContextUrl);
+            Property dbPediaContextUrlProperty = nodeEntry.createProperty(dbPediaContextUrl);
+            dbPediaParagraphResource.addProperty(resourceContextProperty,dbPediaContextUrlProperty);
 
             Property superStringProperty = nodeEntry.createProperty(getPersistenceOntologyUrl(SUPER_STRING));
-            dbPediaParagraphResource.addProperty(superStringProperty,  dbPediaSectionUrl);
+            Property superStringLinkProperty = nodeEntry.createProperty(dbPediaSectionUrl);
+            dbPediaParagraphResource.addProperty(superStringProperty,  superStringLinkProperty);
 
             // add hasParagraph to section resource
             Property hasParagraphProperty = nodeEntry.createProperty(getPersistenceOntologyUrl(HAS_PARAGRAPH));
-            dbPediaSectionResource.addProperty(hasParagraphProperty,  dbPediaParagraphUrl);
+            Property dbPediaParagraphUrlProperty = nodeEntry.createProperty(dbPediaParagraphUrl);
+
+            dbPediaSectionResource.addProperty(hasParagraphProperty,  dbPediaParagraphUrlProperty);
 
             // add first or last paragraph properties to section resource
             if (!firstParagraphDone) {
                 firstParagraphDone = true;
                 Property firstParagraphProperty = nodeEntry.createProperty(getPersistenceOntologyUrl(FIRST_PARAGRAPH));
-                dbPediaSectionResource.addProperty(firstParagraphProperty,  dbPediaParagraphUrl);
+                dbPediaSectionResource.addProperty(firstParagraphProperty,  dbPediaParagraphUrlProperty);
             }
             if (paragraphIndex == numberOfParagraphs - 1) {
                 Property lastParagraphProperty = nodeEntry.createProperty(getPersistenceOntologyUrl(LAST_PARAGRAPH));
-                dbPediaSectionResource.addProperty(lastParagraphProperty,  dbPediaParagraphUrl);
+                dbPediaSectionResource.addProperty(lastParagraphProperty,  dbPediaParagraphUrlProperty);
             }
         }
         //initiate recursion
@@ -262,7 +272,8 @@ public class NifFormatter {
 
                     // Reference Context
                     Property referenceContextProperty = nodeEntry.createProperty(getPersistenceOntologyUrl(REFERENCE_CONTEXT));
-                    dbPediaLinkResource.addProperty(referenceContextProperty, dbPediaContextUrl);
+                    Property dbPediaContextUrlProperty = nodeEntry.createProperty(dbPediaContextUrl);
+                    dbPediaLinkResource.addProperty(referenceContextProperty, dbPediaContextUrlProperty);
                     //NIF Indexes
                     Property beginIndexProperty = nodeEntry.createProperty(getPersistenceOntologyUrl(BEGIN_INDEX));
                     dbPediaLinkResource.addProperty(beginIndexProperty, nodeEntry.createTypedLiteral(linkBeginIndex, XSDDatatype.XSDnonNegativeInteger));
@@ -271,7 +282,8 @@ public class NifFormatter {
                     dbPediaLinkResource.addProperty(endIndexProperty, nodeEntry.createTypedLiteral(linkEndIndex, XSDDatatype.XSDnonNegativeInteger));
                     // Super String
                     Property superStringProperty = nodeEntry.createProperty(getPersistenceOntologyUrl(SUPER_STRING));
-                    dbPediaLinkResource.addProperty(superStringProperty, dbPediaParagraphUrl);
+                    Property dbPediaParagraphUrlProperty = nodeEntry.createProperty(dbPediaParagraphUrl);
+                    dbPediaLinkResource.addProperty(superStringProperty, dbPediaParagraphUrlProperty);
                     // taIdentRef
                     String dbPediaIdentRef = String.format("%s/%s", DBPEDIA_LINK, link.getTaIdentRef());
                     Resource identRefResource = nodeEntry.createResource(dbPediaIdentRef);
