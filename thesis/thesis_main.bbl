@@ -7,6 +7,10 @@
   \urlstyle{rm}\Url}\fi
 \providecommand{\eprint}[2][]{\biburl{#2}}
 
+\bibitem{rdf_syntax}
+Beckett, D. RDF/XML Syntax Specification. In \emph{W3C Recommendation - RDF/XML
+  Syntax Specification}, February 2004.
+
 \bibitem{Berners_QA}
 Berners-Lee, T. Q\&A with Tim Berners-Lee {[online]}. {April} {2007}.
 \urlprefix\biburl{https://www.bloomberg.com/news/articles/2007-04-09/q-and-a-with-tim-berners-leebusinessweek-business-news-stock-market-and-financial-advice}
@@ -15,23 +19,11 @@ Berners-Lee, T. Q\&A with Tim Berners-Lee {[online]}. {April} {2007}.
 Berners-Lee, T. Linked Data {[online]}. {July} {2006}.
 \urlprefix\biburl{https://www.w3.org/DesignIssues/LinkedData.html}
 
-\bibitem{owl_reference}
-Sean~Bechofer, F. v.~H. OWL Web Ontology Language Reference. In \emph{W3C
-  Recommendation - OWL Web Ontology Language Reference}, February 2004.
-
-\bibitem{owl_overview}
-Ivan~Herman, I.~H. OWL 2 Web Ontology Language Overview. In \emph{W3C
-  Recommendation - OWL 2 Web Ontology Language Overview}, December 2012.
-
 \bibitem{roussey2011}
 Roussey, C.; Pinet, F.; et al. \emph{An Introduction to Ontologies and Ontology
   Engineering}. London: Springer London, 2011, ISBN 978-0-85729-724-2, pp.
   9--38, \doi{10.1007/978-0-85729-724-2_2}.
 \urlprefix\biburl{https://doi.org/10.1007/978-0-85729-724-2_2}
-
-\bibitem{rdf_syntax}
-Beckett, D. RDF/XML Syntax Specification. In \emph{W3C Recommendation - RDF/XML
-  Syntax Specification}, February 2004.
 
 \bibitem{rdf_concepts}
 Klyne, G. RDF Concepts and Abstract Syntax. In \emph{W3C Recommendation - RDF
@@ -83,6 +75,10 @@ Hellmann, S.; Stadler, C.; et al. DBpedia Live Extraction. 11 2009, ISBN
 \bibitem{NIF_Format}
 DBPedia Language Resources(NIF). {January} {2022}.
 \urlprefix\biburl{https://www.dbpedia.org/resources/nif/}
+
+\bibitem{NIF_Ontology}
+NIF Core Ontology. {January} {2022}.
+\urlprefix\biburl{https://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core/nif-core.html}
 
 \bibitem{rest_proposal}
 Fielding, R.~T. Architectural Styles and the Design of Network-based Software

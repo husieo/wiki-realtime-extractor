@@ -76,6 +76,4 @@ Output validation can be done via rapper tool(output to file in output_examples 
 
 SHACL shapes are also defined in \shacl folder, and tested via https://shacl.org/playground/
 SHACL properties are defined in https://www.w3.org/TR/shacl/.
-To convert N-Triples, use https://www.easyrdf.org/converter/ or alternatively run a CLI command:
-```
-```
+To convert N-Triples, use https://www.easyrdf.org/converter or alternatively run a CLI command:

@@ -420,12 +420,18 @@ Context is a resource that includes the full text of a page with all the Wikiped
 \end{itemize}
 
 \begin{lstlisting}[caption=Example of an output for context in NIF format,frame=tlrb,  label = {lst:nif-context}]{Name}
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#predLang> <http://lexvo.org/id/iso639-3/eng> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#isString> "Anarchism is an anti-authoritarian political and social philosophy that rejects ..." .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#sourceUrl> <http://en.wikipedia.org/wiki/Anarchism> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "43346"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Context> .
+@prefix ns0: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=context>
+	ns0:predLang <http://lexvo.org/id/iso639-3/eng> ;
+	ns0:sourceUrl <http://en.wikipedia.org/wiki/Anarchism> .
+
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-01&nif=context>
+	ns0:isString "Anarchism is an anti-authoritarian political and social philosophy that rejects ..." ;
+	ns0:endIndex "43346"^^xsd:nonNegativeInteger ;
+	ns0:beginIndex "0"^^xsd:nonNegativeInteger ;
+	a ns0:Context .
 \end{lstlisting}
 
 \subsubsection{Links}
@@ -443,13 +449,18 @@ For the links resource, we need to pick all the internal, or Wikipedia links, as
 
 
 \begin{lstlisting}[caption=Example of an output for a Word link in NIF format,frame=tlrb,  label = {lst:nif-links}]{Name}
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=word_157_170> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Word> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#referenceContext> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=context> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex> "157"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "170"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#superString> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=paragraph_0_550> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=word_157_170> <http://www.w3.org/2005/11/its/rdf#taIdentRef> <http://dbpedia.org/resource/Self-governance> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=word_157_170> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#anchorOf> "self-governed" .
+@prefix ns0: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ns1: <http://www.w3.org/2005/11/its/rdf#> .
+
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=word_157_170>
+	a <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Word> ;
+	ns0:referenceContext <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=context> ;
+	ns0:beginIndex "157"^^xsd:nonNegativeInteger ;
+	ns0:endIndex "170"^^xsd:nonNegativeInteger ;
+	ns0:superString <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=paragraph_0_550> ;
+	ns1:taIdentRef <http://dbpedia.org/resource/Self-governance> ;
+	ns0:anchorOf "self-governed" .
 \end{lstlisting}
 
 \subsubsection{Page Structure}
@@ -467,18 +478,19 @@ Page structure describes the structure of the article, with sections and paragra
 \end{itemize}
 
 \begin{lstlisting}[caption=Example of an output for a Section,frame=tlrb,  label = {lst:nif-links}]{Name}
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Section> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasSection> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_3745_3758> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasParagraph> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=paragraph_550_1227> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#referenceContext> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=context> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#lastParagraph> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=paragraph_550_1227> .
-...
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasSection> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_1231_3745> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex> "1231"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#firstParagraph> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=paragraph_0_550> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasSection> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_43313_43346> .
-<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#hasParagraph> <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=paragraph_0_550> .
+
+@prefix ns0: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_0_1231>
+	a <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Section> ;
+	ns0:hasSection <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_3745_3758>, <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_1231_3745>, <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=section_43313_43346> ;
+	ns0:hasParagraph <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=paragraph_550_1227>, <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=paragraph_0_550> ;
+	ns0:referenceContext <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=context> ;
+	ns0:lastParagraph <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=paragraph_550_1227> ;
+	ns0:endIndex "1231"^^xsd:nonNegativeInteger ;
+	ns0:firstParagraph <http://dbpedia.org/resource/Anarchism?dbpv=2022-02&nif=paragraph_0_550> ;
+	ns0:beginIndex "0"^^xsd:nonNegativeInteger .
 \end{lstlisting}
 
 
@@ -521,18 +533,7 @@ The framework gives an option to use REST API endpoints over the CLI interface. 
 
 \subsubsection{REST API Endpoints}
 
-In \gls{API} terminology, communication endpoint, or simply endpoint is a unique URL address that users can access to exchange information with the server. Or in other words, APIs work using requests and responses. When an API requests information from a web application or web server, it will receive a response. The place that APIs send requests and where the resource lives, is called an endpoint. 
-
-Designing the endpoints is an intricate process on its own. While there is no single standard on how to design and name the endpoints, there are several recommendations followed by the programming community\cite{REST_Design}:
-
-\begin{itemize}
-	\item \textbf{Use Nouns in URI.} While this rule is not hard, the API is oriented towards resources, and nouns that define resources are generally preferred over verbs or adjectives.
-	\item \textbf{Plurals over Singulars.} The ideology behind using plurals is that usually we operate on one resource from a collection of resources.
-	\item \textbf{Let the HTTP Verb Define Action.} Continuing on the first point, HTTP already has verbs(such as GET, POST, PUT, DELETE) in place to define the action of a request.
-	\item \textbf{Do not misuse idempotent methods.} Safe, or idempotent, methods in HTTP are the methods which will return the same response irrespective of how many times they are called by the client. GET, HEAD, OPTIONS and TRACE methods are defined as safe. It is important to use HTTP methods according to the action which needs to be performed.
-	\item \textbf{Depict Resource Hierarchy Through URI.} If a resource contains sub-resources, make sure to depict this in the API to make it more explicit. For example, if a user has posts and we want to retrieve a specific post by user, API can be defined as GET /users/123/posts/1 which will retrieve Post with id 1 by user with id 123.
-	\item \textbf{Version Your APIs} Versioning APIs always helps to ensure backward compatibility of a service while adding new features or updating existing functionality for new clients.
-\end{itemize}
+In \gls{API} terminology, communication endpoint, or simply endpoint is a unique URL address that users can access to exchange information with the server. Or in other words, APIs work using requests and responses. When an API requests information from a web application or web server, it will receive a response. The place that APIs send requests and where the resource lives, is called an endpoint\cite{REST_Design}. 
 
 The framework provides the next \gls{REST} endpoints:
 
@@ -610,18 +611,9 @@ After designing the package structure, it is important to identify the general c
 
 The chosen language for framework development is Java, as it is used in DBpedia Extraction Framework, described in section \ref{dbpedia_in_extraction_framework}. It is, however, important to notice that plain Java is not sufficient to achieve the goal of implementing modern Web Framework. For that reason, many other supplementary tools, libraries and other technologies were developed. This current ecosystem will be described below.
 
-The project was developed using an IntelliJ IDEA\cite{intellij_link}, a modern  \gls{IDE} that is maintained by a Czech company JetBrains. While initially inferior to its counterparts, such as Eclipse and NetBeans, this \gls{IDE} has over time grew into an industry standard, currently becoming by far the most popular \gls{IDE} used by developers\cite{java_dev_ecosystem}, as can be seen on Figure \ref{fig:idepollresults}. The company is now also developing a JVM-based language called Kotlin, that will be able to overcome some of Java's own shortcomings, such as a lack of support for functional programming paradigm. For the current project, however, it was decided to eliminate unnecessary dependencies and use Java as a main development language. 
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{ide_poll_results}
-	\caption{Usage of IDEs for Java development}
-	\label{fig:idepollresults}
-\end{figure}
+The project was developed using an IntelliJ IDEA\cite{intellij_link}, a modern  \gls{IDE} that is maintained by a Czech company JetBrains. The company is now also developing a JVM-based language called Kotlin, that will be able to overcome some of Java's own shortcomings, such as a lack of support for functional programming paradigm. For the current project, however, it was decided to eliminate unnecessary dependencies and use Java as a main development language. IntelliJ IDEA was used for development and testing of the framework.
 
 \subsection{Spring Framework}
-
-
 
 The Spring Framework is a Java platform that provides comprehensive infrastructure support for developing Java applications. Spring handles the infrastructure so you can focus on your application.Spring enables you to build applications from "plain old Java objects" (\gls{POJO}) and to apply enterprise services non-invasively. This capability applies to the Java Standard Edition programming model and to full and partial Java Enterprise Edition\cite{spring_ref}.
 
@@ -629,54 +621,6 @@ There is a several versions of Spring Framework, namely the original Spring and 
 
 For this project, mostly prototype and singleton Bean scopes were used, with singleton being a default one.
 
-\subsubsection{Spring Dependency Injection}\label{spring}
-
-\paragraph{Inversion of Control}
-\textbf{Inversion of Control} is a principle in software engineering by which the control of objects or portions of a program is transferred to a container or framework. The Spring Framework Inversion of Control (IoC) component addresses this concern by providing a formalized means of composing disparate components into a fully working application ready for use. The Spring Framework codifies formalized design patterns as first-class objects that you can integrate into your own application(s). Numerous organizations and institutions use the Spring Framework in this manner to engineer robust, maintainable applications\cite{spring_ref}.
-
-One of the important aspects of the Spring Framework is a \textbf{Bean}. Beans are the objects that form the backbone of your application and that are managed by the Spring Inversion of Control container. A bean is an object that is instantiated, assembled, and otherwise managed by a Spring IoC container. These beans are created with the configuration metadata that supplied to the container.
-
-Beans have so-called Spring Bean Scopes, that allow developers to have more granular control of the bean lifecycles. There are 5 main Bean scopes in Spring:
-
-\begin{itemize}
-	\item singleton – Scopes a single bean definition to a single object instance per Spring IoC container.
-	\item prototype –	Scopes a single bean definition to any number of object instances.
-	\item request – Scopes a single bean definition to the lifecycle of a single HTTP request; that is, each HTTP request has its own instance of a bean created off the back of a single bean definition. 
-	\item session – Scopes a single bean definition to the lifecycle of an HTTP Session. Only valid in the context of a web-aware Spring ApplicationContext.
-	\item global-session – 	Scopes a single bean definition to the lifecycle of a global HTTP Session. Typically only valid when used in a Portlet context. Only valid in the context of a web-aware Spring ApplicationContext.
-\end{itemize}
-
-Inversion of Control can be achieved through various mechanisms such as: Strategy design pattern, Service Locator pattern, Factory pattern, and Dependency Injection (DI).
-
-\paragraph{Dependency Injection}
-
-Dependency injection is a pattern through which to implement IoC, where the control being inverted is the setting of object's dependencies.
-
-The act of connecting objects with other objects, or “injecting” objects into other objects, is done by an assembler rather than by the objects themselves.
-
-You can see an example on how to create an object dependency in traditional programming in Listing \ref{lst:no-dep-injection}
-
-
-\begin{lstlisting}[caption=Example class without a Dependency Injection,frame=tlrb,  label = {lst:no-dep-injection}]{Name}
-public class Store {
-	private Item item;
-
-	public Store() {
-		item = new ItemImpl1();    
-	}
-}
-\end{lstlisting}
-
-In the example above, we need to instantiate an implementation of the Item interface within the Store class itself. By using Dependency Injection pattern, this example can be rewritten without specifying the implementation of Item that we want, as can be seen in Listing \ref{lst:with-dep-injection}.
-
-\begin{lstlisting}[caption=Example class with a Dependency Injection,frame=tlrb,  label = {lst:with-dep-injection}]{Name}
-public class Store {
-	private Item item;
-	public Store(Item item) {
-		this.item = item;
-	}
-}
-\end{lstlisting}
 
 \subsection{Java Jackson XML Library}\label{jackson_library}
 
@@ -684,7 +628,7 @@ The Jackson project is a collection of data processing tools for the Java langua
 
 The Jackson XML component is meant for reading and writing XML data by emulating how \gls{JAXB} works, although not conclusively.
 
-In this project, Jackson library will be used to serialize Java objects into XML and deserialize them back into Java objects, in order to eventually produce text output.
+In this project, Jackson library is used to serialize Java objects into XML and deserialize them back into Java objects, in order to eventually produce text output.
 
 \paragraph{XmlMapper Class} 
 
@@ -776,21 +720,6 @@ One of the project's requirements was to implement an easy extensibility mechani
 
 \chapter{Testing and Results}
 
-Before we dive into the testing, it might be interesting to describe a general approach to testing that was taken while implementing this framework.
-
-\textbf{Software testing} is a procedure of implementing software or the application to identify the defects or bugs. For testing an application or software, we need to follow some principles to make our product defects free, and that also helps the test engineers to test the software with their effort and time. It is important to also keep in mind the essential principles of software testing.
-
-\begin{itemize}
-	\item \textbf{Testing shows the presence of defects.} The primary purpose of doing testing is to identify the numbers of unknown bugs with the help of various methods and testing techniques because the entire test should be traceable to the customer requirement, which means that to find any defects that might cause the failure to meet the requirements. By doing testing on any application, we can decrease the number of bugs, which does not mean that the application is defect-free because sometimes the software seems to be bug-free while performing multiple types of testing on it.
-	\item \textbf{Exhaustive Testing is not possible.} Instead of performing the exhaustive testing as it takes boundless determinations and most of the hard work is unsuccessful, it is better to focus on tests  according to the importance of the modules because the timelines will not permit to perform a full testing scenario.
-	\item \textbf{Early Testing.} This means that all the testing activities should start in the early stages of the software development life cycle's requirement analysis stage to identify the defects because if we find the bugs at an early stage, it will be fixed in the initial stage itself, which may cost us very less as compared to those which are identified in the future phase of the testing process.
-	\item \textbf{Defect Clustering.} The defect clustering defined that throughout the testing process, we can detect the numbers of bugs which are correlated to a small number of modules. We have various reasons for this, such as the modules could be complicated; the coding part may be complex, and so on. These types of software or the application will follow the Pareto Principle, which states that we can identify that approx. Eighty percent of the complication is present in 20 percent of the modules. With the help of this, we can find the uncertain modules, but this method has its difficulties if the same tests are performing regularly, hence the same test will not able to identify the new defects.
-	\item \textbf{Pesticide Paradox.} This principle defined that if we are executing the same set of test cases again and again over a particular time, then these kinds of the test will not be able to find the new bugs in the software or the application. To get over these pesticide paradoxes, it is very significant to review all the test cases frequently.
-	\item \textbf{Testing is context-dependent.} Testing is a context-dependent principle states that we have multiple fields such as e-commerce websites, commercial websites, and so on are available in the market. There is a definite way to test the commercial site as well as the e-commerce websites because every application has its own needs, features, and functionality. To check this type of application, we will take the help of various kinds of testing, different technique, approaches, and multiple methods. Therefore, the testing depends on the context of the application.
-	\item \textbf{Absence of errors fallacy.} Once the application is completely tested and there are no bugs identified before the release, so we can say that the application is 99 percent bug-free. But there is the chance when the application is tested beside the incorrect requirements, identified the flaws, and fixed them on a given period would not help as testing is done on the wrong specification, which does not apply to the client's requirements. The absence of error fallacy means identifying and fixing the bugs would not help if the application is impractical and not able to accomplish the client's requirements and needs.
-\end{itemize}
-
-
 The main machine that was used for testing, unless specified otherwise, had next specifications:
 \begin{itemize}
 	\item \textbf{Processor:} 2,7 Hz Dual-Core Intel Core i5;
@@ -807,9 +736,20 @@ A benchmark must be repeatable. For instance, with every iteration of load a tes
 
 A benchmark must be quantifiable. For example, the user experience cannot be quantified in numbers, but time a user spends on a webpage due to good UI can be quantified.
 
-While testing this project, the results were constantly compared to an ideal output, that has been provided by the DBpedia project\cite{dbpedia_url}.
+Next benchmark tests were repeatedly used to test the framework. They are located in the project's folder \\documents:
 
-Three different output components were compared separately. On the listings below, the ideal result can be seen, for the context output in Listing \ref{lst:context-example}, for links 
+\begin{itemize}
+	\item 1 Page test, English language. Expected to be completed quickly and successfully.
+	\item 257 pages, English language. Execution time is expected to be less than a minute.
+	\item 6738 pages, English language. Execution time is expected to be around 5 minutes.
+	\item 6649 pages, Polish language. Execution time is expected to be around 5 minutes.
+	\item 15118 pages, English language. Execution time is around 25 minutes.
+\end{itemize}
+
+
+Benchmarking can be used not only for performance testing, but also for testing the quality of output. While testing this project, the results were constantly compared to an ideal output, that has been provided by the DBpedia project\cite{dbpedia_url}. Dbpedia website contains ideal output format on  the resources page at https://www.dbpedia.org/resources/nif/. The output on the page is shown for the Antropology page in Turtle format, but it can be used to compare output properties for context, links and page structure.
+
+Three different output components were compared separately. On the listings below, the ideal result can be seen, for the context output in Listing \ref{lst:context-example} - the output containing properties for the context. For links in Listing \ref{lst:links-example}, the example contains output for one of the phrases for "Austroasiatic languages" page. For page structure in Listing \ref{lst:page-structure-example}, the output shows an example of a Section and its reference to the parent context resource.
 
 \begin{lstlisting}[caption=Exemplary result for NIF Context,frame=tlrb,  label = {lst:context-example}]{Name}
 <http://dbpedia.org/resource/Anarchism?dbpv=2020-02&nif=context> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#isString> "Anarchism is a radical political ... \n* Textbooks from Wikibooks  \n* Data from Wikidata  \n* Anarchy Archives. Anarchy Archives is an online research center on the history and theory of anarchism" .
@@ -923,7 +863,7 @@ public void removeRefTags() {
 
 \section{Integration Testing}
 
-Integration testing is the phase in software testing in which individual software modules are combined and tested as a group. Integration testing is conducted to evaluate the compliance of a system or component with specified functional requirements\cite{integration_test1}. It occurs after unit testing and before system testing. Integration testing takes as its input modules that have been unit tested, groups them in larger aggregates, applies tests defined in an integration test plan to those aggregates, and delivers as its output the integrated system ready for system testing\cite{integration_test2}.
+Integration testing is used to test application as a whole, running through separate modules in one test \cite{integration_test1}. In contrast to the unit tests that only focus on an individual module, integration tests make sure that the application can accept input, process it, and then produce output\cite{integration_test2}. This output is then verified against the test data for correctness.
 
 
 Integration testing in the project tests that all aspects of the Framework work as intended, from parsing to output, and different cases with varying sizes and languages are automatically tested whenever the project is recompiled. To speed up the development, it is possible to skip those tests by compiling the project with -DskipTests argument, but this is not recommended. Integration tests compare Framework's output for prepared articles that are stored in the test folder with expected values that are manually verified to be true. 
@@ -937,7 +877,7 @@ Integration tests are placed in the OutputValidationTests class. Every test is v
 	\item \textbf{test*ArticleStructure} - tests if the page structure output file is formed correctly. Similarly to links, this test verifies that a selected part of sections are correctly formed in the output.
 \end{itemize}
 
-Apache Jena is used to parse the output and create a model. The model is then verified by the inegration test, as can be seen on Listing \ref{lst:integration-test-example}:
+Apache Jena is used to parse the output and create a model. The model is then verified by the integration test, as can be seen on Listing \ref{lst:integration-test-example}:
 
 \begin{lstlisting}[caption=Integration Testing - English Article Context,frame=tlrb,  label = {lst:integration-test-example}]{Name}
     @Test

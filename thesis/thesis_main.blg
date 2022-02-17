@@ -6,17 +6,17 @@ Database file #1: ref.bib
 Warning--entry type for "rest_proposal" isn't style-file defined
 --line 531 of file ref.bib
 Warning--entry type for "Wikipedia_Template" isn't style-file defined
---line 627 of file ref.bib
+--line 645 of file ref.bib
 Warning--entry type for "spring_ref" isn't style-file defined
---line 639 of file ref.bib
+--line 657 of file ref.bib
 Warning--entry type for "smoke_testing" isn't style-file defined
---line 653 of file ref.bib
+--line 671 of file ref.bib
 Warning--entry type for "test_early" isn't style-file defined
---line 722 of file ref.bib
+--line 757 of file ref.bib
 Warning--entry type for "prove_it_works" isn't style-file defined
---line 734 of file ref.bib
+--line 769 of file ref.bib
 Warning--entry type for "junit_framework" isn't style-file defined
---line 748 of file ref.bib
+--line 783 of file ref.bib
 Warning--I didn't find a database entry for "lst:olia-example"
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Name 1 in "Sebastian Hellmann, Jens Lehmann, Sören Auer, and Martin Brümmer" has a comma at the end for entry nlp_cite
@@ -24,6 +24,7 @@ while executing---line 1550 of file iso690.bst.bst
 Warning--to sort, need author or key in nif_core_ontology
 Warning--to sort, need author or key in DBpedia_facts
 Warning--to sort, need author or key in NIF_Format
+Warning--to sort, need author or key in NIF_Ontology
 Warning--to sort, need author or key in picocli_library
 Warning--to sort, need author or key in intellij_link
 Warning--to sort, need author or key in java_dev_ecosystem
@@ -40,10 +41,8 @@ Warning--to sort, need author or key in integration_test1
 Warning--to sort, need author or key in wikimedia_downloads
 Warning--to sort, need author or key in top_ten_wikis
 Warning--to sort, need author or key in rapper_utility
-Warning--empty pages in owl_reference
-Warning--empty pages in owl_overview
-Warning--empty chapter and pages in roussey2011
 Warning--empty pages in rdf_syntax
+Warning--empty chapter and pages in roussey2011
 Warning--empty pages in rdf_concepts
 Name 1 in "Sebastian Hellmann, Jens Lehmann, Sören Auer, and Martin Brümmer" has a comma at the end for entry nlp_cite
 while executing---line 1596 of file iso690.bst.bst
@@ -56,45 +55,45 @@ Warning--empty year in nif_rdf
 Warning--empty booktitle in dbpedia_nucleus
 Warning--empty booktitle in dbpedia_live_extraction
 Warning--empty author in integration_test1
-You've used 39 entries,
+You've used 38 entries,
             3146 wiz_defined-function locations,
-            851 strings with 10614 characters,
-and the built_in function-call counts, 13115 in all, are:
-= -- 955
-> -- 286
+            847 strings with 10472 characters,
+and the built_in function-call counts, 12611 in all, are:
+= -- 930
+> -- 273
 < -- 13
-+ -- 154
-- -- 77
-* -- 654
-:= -- 1366
-add.period$ -- 90
-call.type$ -- 39
-change.case$ -- 124
++ -- 149
+- -- 73
+* -- 630
+:= -- 1297
+add.period$ -- 86
+call.type$ -- 38
+change.case$ -- 116
 chr.to.int$ -- 0
-cite$ -- 72
-duplicate$ -- 1291
-empty$ -- 1373
-format.name$ -- 87
-if$ -- 2912
+cite$ -- 70
+duplicate$ -- 1228
+empty$ -- 1316
+format.name$ -- 83
+if$ -- 2811
 int.to.chr$ -- 0
-int.to.str$ -- 39
-missing$ -- 307
-newline$ -- 149
-num.names$ -- 40
-pop$ -- 791
+int.to.str$ -- 38
+missing$ -- 292
+newline$ -- 147
+num.names$ -- 36
+pop$ -- 760
 preamble$ -- 1
-purify$ -- 114
+purify$ -- 110
 quote$ -- 0
-skip$ -- 560
+skip$ -- 544
 stack$ -- 0
-substring$ -- 373
-swap$ -- 642
+substring$ -- 368
+swap$ -- 615
 text.length$ -- 13
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 152
-warning$ -- 33
-while$ -- 55
-width$ -- 41
-write$ -- 312
+type$ -- 148
+warning$ -- 32
+while$ -- 51
+width$ -- 40
+write$ -- 303
 (There were 2 error messages)

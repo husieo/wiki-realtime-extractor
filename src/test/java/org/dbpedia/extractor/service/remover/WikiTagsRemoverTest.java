@@ -26,7 +26,23 @@ class WikiTagsRemoverTest {
 
         Pattern HTML_TAGS = Pattern.compile("<[^>]+>");
         refText = wikiTagsRemover.removeHtmlTags(refText);
-        log.info(refText);
         Assert.assertFalse(HTML_TAGS.matcher(refText).find());
+    }
+
+    @Test
+    public void removeMathTest(){
+        String refText = ":&lt;math&gt;\\mathrm{^{226}_{\\ 88}Ra\\ +\\ ^{1}_{0}n\\ \\longrightarrow \\ ^{227}_{\\ 88}Ra\\ \\xrightarrow[42,2 \\ min]{\\beta^-} \\ ^{227}_{\\ 89}Ac}&lt;/math&gt;";
+
+        String wikiTagToRemove = "math&gt;";
+        refText = wikiTagsRemover.removeMath(refText);
+        Assert.assertFalse(refText.contains(wikiTagToRemove));
+    }
+
+    @Test
+    public void removeMathFormulaTest(){
+        String refText = "\\alpha_\\ce{H2A}   &amp;= \\frac{\\ce{[H+]^2}}{\\ce{[H+]^2}  + [\\ce{H+}]K_1 + K_1 K_2}  = \\frac{\\ce{[H2A]}}{\\ce{{[H2A]}} + [HA^-] + [A^{2-}]}\\";
+        String wikiTagToRemove = "\\alpha_\\ce";
+        refText = wikiTagsRemover.removeMathFormula(refText);
+        Assert.assertFalse(refText.contains(wikiTagToRemove));
     }
 }
